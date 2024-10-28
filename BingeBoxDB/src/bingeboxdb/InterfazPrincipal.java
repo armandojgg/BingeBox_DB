@@ -4,6 +4,8 @@
  */
 package bingeboxdb;
 
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 import java.sql.*;
 import java.util.List;
@@ -18,11 +20,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private Connection dbConnection = null;
 
     public InterfazPrincipal() {
-        setTitle("BingeBox Database");
-        setSize(300, 200);
         setDefaultCloseOperation(InterfazPrincipal.EXIT_ON_CLOSE);
-        setLayout(null);
-        initComponents();
+        setSize(300, 200);
+        setTitle("BingeBox Database");
+        setLocationRelativeTo(null); // Centra la ventana en la pantalla
         initComponents();
     }
 
@@ -41,6 +42,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         sentenciasQueridas = new javax.swing.JLabel();
         botonInsert = new javax.swing.JButton();
         botonUpdate = new javax.swing.JButton();
+        botonDelete = new javax.swing.JButton();
+        botonSelect = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +83,20 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             }
         });
 
+        botonDelete.setText("DELETE");
+        botonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonDeleteActionPerformed(evt);
+            }
+        });
+
+        botonSelect.setText("SELECT");
+        botonSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSelectActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,7 +111,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sentenciasQueridas)
-                            .addComponent(botonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(botonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cerrarConexion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -116,7 +135,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 .addComponent(botonInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(217, 217, 217))
+                .addGap(18, 18, 18)
+                .addComponent(botonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
         );
 
         pack();
@@ -137,6 +160,14 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private void botonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUpdateActionPerformed
         actualizarDatos();
     }//GEN-LAST:event_botonUpdateActionPerformed
+    // B O T Ó N  D E L E T E
+    private void botonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDeleteActionPerformed
+        borrarDatos();
+    }//GEN-LAST:event_botonDeleteActionPerformed
+    // B O T Ó N  S E L E C T
+    private void botonSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSelectActionPerformed
+        realizarSelect();
+    }//GEN-LAST:event_botonSelectActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,7 +206,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonConexion;
+    private javax.swing.JButton botonDelete;
     private javax.swing.JButton botonInsert;
+    private javax.swing.JButton botonSelect;
     private javax.swing.JButton botonUpdate;
     private javax.swing.JButton cerrarConexion;
     private javax.swing.JLabel jLabel1;
@@ -252,7 +285,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         String sql = "INSERT INTO " + nombreTabla + " (" + String.join(", ", columnasArray) + ") VALUES (" + "?,".repeat(columnasArray.length).replaceAll(",$", "") + ")";
 
         // Insertar datos en la base de datos
-        try ( PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
             for (int i = 0; i < columnasArray.length; i++) {
                 String dato = JOptionPane.showInputDialog("Ingrese el dato para " + columnasArray[i].trim() + ":");
                 pstmt.setString(i + 1, dato);
@@ -315,7 +348,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         sql += " WHERE " + condicion;
 
         // Actualizar datos en la base de datos
-        try ( PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
             // Establecer los valores
             for (int i = 0; i < columnasArray.length; i++) {
                 String[] partes = columnasArray[i].split("=");
@@ -329,4 +362,125 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         }
     }
 
+    private void borrarDatos() {
+        // Lista de nombres de tablas
+        List<String> nombresTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula",
+                "directors", "log_series", "participacion_actor_pelicula",
+                "participacion_actor_serie", "peliculas", "series", "temporadas");
+
+        // Solicitar el nombre de la tabla con un cuadro de diálogo
+        String nombreTabla = (String) JOptionPane.showInputDialog(
+                null,
+                "Selecciona el nombre de la tabla:",
+                "Seleccion tabla",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                nombresTablas.toArray(),
+                nombresTablas.get(0)
+        );
+
+        if (nombreTabla == null) {
+            JOptionPane.showMessageDialog(null, "No seleccionaste ningún nombre de tabla.");
+            return;
+        }
+
+        // Solicitar al usuario la condición de eliminación (por ejemplo, WHERE id = 1)
+        String condicion = JOptionPane.showInputDialog("Escribe la condición para eliminar (por ejemplo, id = 1):");
+
+        if (condicion == null || condicion.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No proporcionaste ninguna condición.");
+            return;
+        }
+
+        // Generar la sentencia SQL DELETE
+        String sql = "DELETE FROM " + nombreTabla + " WHERE " + condicion;
+
+        // Verificar si hay una conexión activa antes de ejecutar el DELETE
+        if (dbConnection == null) {
+            JOptionPane.showMessageDialog(null, "No hay conexión activa. Conéctate antes de ejecutar esta operación.");
+            return;
+        }
+
+        try (PreparedStatement statement = dbConnection.prepareStatement(sql)) {
+            int filasAfectadas = statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se han eliminado " + filasAfectadas + " filas de la tabla " + nombreTabla);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al ejecutar el DELETE: " + e.getMessage());
+        }
+    }
+
+    // M É T O D O  S E L E C T
+    private void realizarSelect() {
+        // Lista de nombres de tablas
+        List<String> nombresTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula",
+                "directors", "log_series", "participacion_actor_pelicula",
+                "participacion_actor_serie", "peliculas", "series", "temporadas");
+
+        // Solicitar el nombre de la tabla con un cuadro de diálogo
+        String nombreTabla = (String) JOptionPane.showInputDialog(
+                null,
+                "Selecciona el nombre de la tabla:",
+                "Seleccion tabla",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                nombresTablas.toArray(),
+                nombresTablas.get(0)
+        );
+
+        if (nombreTabla == null) {
+            JOptionPane.showMessageDialog(null, "No seleccionaste ningún nombre de tabla.");
+            return;
+        }
+
+        // Verificar si hay una conexión activa antes de ejecutar el SELECT
+        if (dbConnection == null) {
+            JOptionPane.showMessageDialog(null, "No hay conexión activa. Conéctate antes de ejecutar esta operación.");
+            return;
+        }
+
+        // Construir la sentencia SQL SELECT
+        String sql = "SELECT * FROM " + nombreTabla;
+
+        try (PreparedStatement statement = dbConnection.prepareStatement(sql); ResultSet resultSet = statement.executeQuery()) {
+
+            // Obtener los metadatos de la consulta para saber las columnas
+            ResultSetMetaData metaData = resultSet.getMetaData();
+            int columnCount = metaData.getColumnCount();
+
+            // Definir un ancho fijo para cada columna (ajusta según el tamaño esperado de los datos)
+            int columnWidth = 20;
+
+            // Crear un StringBuilder para almacenar los datos y mostrarlos
+            StringBuilder resultado = new StringBuilder("Datos de la tabla " + nombreTabla + ":\n\n");
+
+            // Agregar los nombres de las columnas con un ancho fijo
+            for (int i = 1; i <= columnCount; i++) {
+                resultado.append(String.format("%-" + columnWidth + "s", metaData.getColumnName(i)));
+            }
+            resultado.append("\n");
+
+            // Agregar separadores entre encabezado y datos
+            resultado.append("-".repeat(columnWidth * columnCount)).append("\n");
+
+            // Agregar cada fila de resultados con formato de columna fija
+            while (resultSet.next()) {
+                for (int i = 1; i <= columnCount; i++) {
+                    String value = resultSet.getString(i);
+                    resultado.append(String.format("%-" + columnWidth + "s", value));
+                }
+                resultado.append("\n");
+            }
+
+            // Mostrar el resultado en un cuadro de diálogo
+            JTextArea textArea = new JTextArea(resultado.toString());
+            textArea.setFont(new Font("monospaced", Font.PLAIN, 12)); // Fuente de ancho fijo para mejor alineación
+            JScrollPane scrollPane = new JScrollPane(textArea);
+            scrollPane.setPreferredSize(new Dimension(800, 400));
+
+            JOptionPane.showMessageDialog(null, scrollPane, "Resultado de la consulta", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al realizar el SELECT: " + e.getMessage());
+        }
+    }
 }

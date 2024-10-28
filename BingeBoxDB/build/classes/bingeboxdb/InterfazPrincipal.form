@@ -35,6 +35,8 @@
                           <Component id="botonInsert" min="-2" pref="107" max="-2" attributes="0"/>
                           <Component id="sentenciasQueridas" min="-2" max="-2" attributes="0"/>
                           <Component id="botonUpdate" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
+                          <Component id="botonDelete" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
+                          <Component id="botonSelect" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -64,7 +66,11 @@
               <Component id="botonInsert" min="-2" pref="58" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="botonUpdate" min="-2" pref="58" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="botonDelete" min="-2" pref="58" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="botonSelect" min="-2" pref="58" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -122,6 +128,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonUpdateActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonDelete">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="DELETE"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonDeleteActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonSelect">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="SELECT"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSelectActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
