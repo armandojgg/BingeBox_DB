@@ -6,6 +6,7 @@ package bingeboxdb;
 
 import java.awt.Image;
 import java.sql.*;
+import java.util.List;
 import javax.swing.*;
 
 /**
@@ -39,6 +40,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         cerrarConexion = new javax.swing.JButton();
         sentenciasQueridas = new javax.swing.JLabel();
         botonInsert = new javax.swing.JButton();
+        botonUpdate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +73,13 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             }
         });
 
+        botonUpdate.setText("UPDATE");
+        botonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,7 +93,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sentenciasQueridas))))
+                            .addComponent(sentenciasQueridas)
+                            .addComponent(botonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cerrarConexion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -104,7 +114,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     .addComponent(sentenciasQueridas))
                 .addGap(18, 18, 18)
                 .addComponent(botonInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(293, 293, 293))
+                .addGap(18, 18, 18)
+                .addComponent(botonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(217, 217, 217))
         );
 
         pack();
@@ -121,6 +133,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private void botonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsertActionPerformed
         insertarDatos();
     }//GEN-LAST:event_botonInsertActionPerformed
+    // B O T Ó N  U P D A T E
+    private void botonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUpdateActionPerformed
+        actualizarDatos();
+    }//GEN-LAST:event_botonUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +176,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonConexion;
     private javax.swing.JButton botonInsert;
+    private javax.swing.JButton botonUpdate;
     private javax.swing.JButton cerrarConexion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel sentenciasQueridas;
@@ -171,7 +188,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         final String URL_CONEXION = "jdbc:mysql://localhost:3306/bdpeliculasseries";
         final String usuario = "root";
         final String password = "1234";
-        
+
         try {
             // Cargar el driver JDBC
             Class.forName(DRIVER);
@@ -209,8 +226,25 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
     // M É T O D O  I N S E R T A R  D A T O S
     private void insertarDatos() {
-        // Solicitar el nombre de la tabla y las columnas
-        String nombreTabla = JOptionPane.showInputDialog("Ingrese el nombre de la tabla:");
+        // Lista de nombres de tablas
+        List<String> nombresTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula", "directors", "log_series",
+                "participacion_actor_pelicula", "participacion_actor_serie", "peliculas", "series", "temporadas");
+        // Solicitar el nombre de la tabla con un cuadro de diálogo
+        String nombreTabla = (String) JOptionPane.showInputDialog(
+                null,
+                "Selecciona el nombre de la tabla:",
+                "Seleccion tabla",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                nombresTablas.toArray(),
+                nombresTablas.get(0)
+        );
+        if (nombreTabla == null) {
+            JOptionPane.showMessageDialog(null, "No seleccionaste ningún nombre de tabla.");
+            return;
+        }
+
+        // Solicitar las columnas
         String columnas = JOptionPane.showInputDialog("Ingrese las columnas separadas por coma (ej. columna1,columna2,...):");
         String[] columnasArray = columnas.split(",");
 
@@ -218,7 +252,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         String sql = "INSERT INTO " + nombreTabla + " (" + String.join(", ", columnasArray) + ") VALUES (" + "?,".repeat(columnasArray.length).replaceAll(",$", "") + ")";
 
         // Insertar datos en la base de datos
-        try (PreparedStatement pstmt = dbConnection.prepareStatement(sql)) { // Cambié conn a dbConnection
+        try ( PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
             for (int i = 0; i < columnasArray.length; i++) {
                 String dato = JOptionPane.showInputDialog("Ingrese el dato para " + columnasArray[i].trim() + ":");
                 pstmt.setString(i + 1, dato);
@@ -230,4 +264,69 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al insertar datos: " + e.getMessage());
         }
     }
+
+    // M É T O D O  P A R A  A C T U A L I Z A R  D A T O S
+    private void actualizarDatos() {
+        // Lista de nombres de tablas
+        List<String> nombresTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula", "directors", "log_series",
+                "participacion_actor_pelicula", "participacion_actor_serie", "peliculas", "series", "temporadas");
+
+        // Solicitar el nombre de la tabla con un cuadro de diálogo
+        String nombreTabla = (String) JOptionPane.showInputDialog(
+                null,
+                "Selecciona el nombre de la tabla:",
+                "Seleccion tabla",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                nombresTablas.toArray(),
+                nombresTablas.get(0)
+        );
+
+        if (nombreTabla == null) {
+            JOptionPane.showMessageDialog(null, "No seleccionaste ningún nombre de tabla.");
+            return;
+        }
+
+        // Solicitar las columnas y sus nuevos valores
+        String columnas = JOptionPane.showInputDialog("Ingrese las columnas a actualizar separadas por coma (ej. rating=9.0,presupuesto=7500000):");
+        if (columnas == null || columnas.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No ingresaste columnas.");
+            return;
+        }
+
+        String[] columnasArray = columnas.split(",");
+
+        // Solicitar la condición para el WHERE
+        String condicion = JOptionPane.showInputDialog("Ingrese la condición para actualizar (ej. id=1):");
+        if (condicion == null || condicion.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No ingresaste una condición.");
+            return;
+        }
+
+        // Construir la consulta SQL con parámetros
+        String sql = "UPDATE " + nombreTabla + " SET ";
+        for (int i = 0; i < columnasArray.length; i++) {
+            if (i > 0) {
+                sql += ", ";
+            }
+            String[] partes = columnasArray[i].split("=");
+            sql += partes[0].trim() + "=?";
+        }
+        sql += " WHERE " + condicion;
+
+        // Actualizar datos en la base de datos
+        try ( PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
+            // Establecer los valores
+            for (int i = 0; i < columnasArray.length; i++) {
+                String[] partes = columnasArray[i].split("=");
+                pstmt.setString(i + 1, partes[1].trim());
+            }
+            pstmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Datos actualizados exitosamente en la tabla " + nombreTabla);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al actualizar datos: " + e.getMessage());
+        }
+    }
+
 }
