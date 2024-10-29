@@ -335,7 +335,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         String sql = "INSERT INTO " + nombreTabla + " (" + String.join(", ", columnasArray) + ") VALUES (" + "?,".repeat(columnasArray.length).replaceAll(",$", "") + ")";
 
         // Se insertan los datos en la base de datos
-        try ( PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
             for (int i = 0; i < columnasArray.length; i++) {
                 String dato = JOptionPane.showInputDialog("Ingrese el dato para " + columnasArray[i].trim() + ":");
                 pstmt.setString(i + 1, dato);
@@ -395,7 +395,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         }
         sql += " WHERE " + condicion;
 
-        try ( PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
             for (int i = 0; i < columnasArray.length; i++) {
                 String[] partes = columnasArray[i].split("=");
                 pstmt.setString(i + 1, partes[1].trim());
@@ -446,7 +446,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        try ( PreparedStatement statement = dbConnection.prepareStatement(sql)) {
+        try (PreparedStatement statement = dbConnection.prepareStatement(sql)) {
             int filasAfectadas = statement.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se han eliminado " + filasAfectadas + " filas de la tabla " + nombreTabla);
         } catch (SQLException e) {
@@ -485,7 +485,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         // Construir la sentencia SQL SELECT
         String sql = "SELECT * FROM " + nombreTabla;
 
-        try ( PreparedStatement statement = dbConnection.prepareStatement(sql);  ResultSet resultSet = statement.executeQuery()) {
+        try (PreparedStatement statement = dbConnection.prepareStatement(sql); ResultSet resultSet = statement.executeQuery()) {
 
             // Obtener los metadatos de la consulta para saber las columnas
             ResultSetMetaData metaData = resultSet.getMetaData();
@@ -555,21 +555,29 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     // Con el ON, lo que hacemos es que el actors_id de participacion_actor_pelicula debe ser igual al id_actor de la tabla actors
     // Este JOIN te muestra una lista con el título de la película, el nombre de los actores involucrados y el papel que desempeñaron en esta.
     private void realizarJoinPeliculasParticipacionActorPeliculaActores() {
-        String query = "SELECT peliculas.titulo, actors.nombre_actor, participacion_actor_pelicula.papel_realiza "
+        String primerJoin = "SELECT peliculas.titulo, actors.nombre_actor, participacion_actor_pelicula.papel_realiza "
                 + "FROM peliculas "
                 + "JOIN participacion_actor_pelicula ON peliculas.id_pelicula = participacion_actor_pelicula.peliculas_id "
                 + "JOIN actors ON participacion_actor_pelicula.actors_id = actors.id_actor";
 
         StringBuilder resultados = new StringBuilder();
-        try ( PreparedStatement pstmt = dbConnection.prepareStatement(query);  ResultSet rs = pstmt.executeQuery()) {
+        try (PreparedStatement pstmt = dbConnection.prepareStatement(primerJoin); ResultSet rs = pstmt.executeQuery()) {
+            String header = String.format("%-40s %-30s %-30s%n", "Título de la Película", "Nombre del Actor", "Papel Realiza");
+            resultados.append(header);
+            resultados.append(String.format("%-40s %-30s %-30s%n", "---------------------", "---------------", "-------------"));
+
             while (rs.next()) {
                 String tituloPelicula = rs.getString("titulo");
                 String nombreActor = rs.getString("nombre_actor");
                 String papelRealiza = rs.getString("papel_realiza");
-                resultados.append(String.format("Título de la Película: %s, Nombre del Actor: %s, Papel Realiza: %s%n",
-                        tituloPelicula, nombreActor, papelRealiza));
+                resultados.append(String.format("%-40s %-30s %-30s%n", tituloPelicula, nombreActor, papelRealiza));
             }
-            JOptionPane.showMessageDialog(null, resultados.toString(), "Resultados del JOIN", JOptionPane.INFORMATION_MESSAGE);
+            JTextArea textArea = new JTextArea(resultados.toString());
+            textArea.setEditable(false);
+            textArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
+            JScrollPane scrollPane = new JScrollPane(textArea);
+
+            JOptionPane.showMessageDialog(null, scrollPane, "Resultados del JOIN", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -583,20 +591,31 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         Con el ON, lo que hacemos es que el creador_id de la tabla creacion_series debe ser igual al idcreador_serie de la tabla creador_serie
         Este JOIN nos muestra una lista con el titulo de la serie, el nombre del creador de esta y su nacionalidad.*/
     private void realizarJoinSeriesCreadoresdeSeriesNacionalidadCreador() {
-        String query = "SELECT series.titulo, creador_serie.nombre, creador_serie.nacionalidad "
+        String segundoJoin = "SELECT series.titulo, creador_serie.nombre, creador_serie.nacionalidad "
                 + "FROM series "
                 + "JOIN creacion_series ON series.id_serie = creacion_series.series_id "
                 + "JOIN creador_serie ON creacion_series.creador_id = creador_serie.idcreador_serie";
+
         StringBuilder resultados = new StringBuilder();
-        try ( PreparedStatement pstmt = dbConnection.prepareStatement(query);  ResultSet rs = pstmt.executeQuery()) {
+        try (PreparedStatement pstmt = dbConnection.prepareStatement(segundoJoin); ResultSet rs = pstmt.executeQuery()) {
+
+            String header = String.format("%-40s %-30s %-20s%n", "Título de la Serie", "Nombre del Creador", "Nacionalidad");
+            resultados.append(header);
+            resultados.append(String.format("%-40s %-30s %-20s%n", "------------------", "-----------------", "-------------"));
+
             while (rs.next()) {
                 String tituloSerie = rs.getString("titulo");
                 String nombreCreador = rs.getString("nombre");
                 String nacionalidadCreador = rs.getString("nacionalidad");
-                resultados.append(String.format("Título de la Serie: %s, Nombre del Creador: %s, Nacionalidad del Creador: %s%n",
-                        tituloSerie, nombreCreador, nacionalidadCreador));
+                resultados.append(String.format("%-40s %-30s %-20s%n", tituloSerie, nombreCreador, nacionalidadCreador));
             }
-            JOptionPane.showMessageDialog(null, resultados.toString(), "Resultados del JOIN", JOptionPane.INFORMATION_MESSAGE);
+
+            JTextArea textArea = new JTextArea(resultados.toString());
+            textArea.setEditable(false);
+            textArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
+            JScrollPane scrollPane = new JScrollPane(textArea);
+
+            JOptionPane.showMessageDialog(null, scrollPane, "Resultados del JOIN", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -612,20 +631,33 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     
         El JOIN muestra el titulo de la serie, el numero de las temporadas mas el titulo de todos los capitulos de la serie*/
     private void realizarJoinSeriesTemporadasCapitulos() {
-        String query = "SELECT series.titulo, temporadas.num_temporada, capitulos.titulo_capitulo "
+        String tercerJoin = "SELECT series.titulo, temporadas.num_temporada, capitulos.titulo_capitulo "
                 + "FROM series "
                 + "JOIN temporadas ON series.id_serie = temporadas.series_id "
                 + "JOIN capitulos ON temporadas.id_temporada = capitulos.temporadas_id AND temporadas.series_id = capitulos.temporadas_series";
+
         StringBuilder resultados = new StringBuilder();
-        try ( PreparedStatement pstmt = dbConnection.prepareStatement(query);  ResultSet rs = pstmt.executeQuery()) {
+        try (PreparedStatement pstmt = dbConnection.prepareStatement(tercerJoin); ResultSet rs = pstmt.executeQuery()) {
+            // Encabezados y separadores
+            String header = String.format("%-40s %-20s %-40s%n", "Título de la Serie", "Número de Temporada", "Título del Capítulo");
+            resultados.append(header);
+            resultados.append(String.format("%-40s %-20s %-40s%n", "------------------", "------------------", "------------------"));
+
+            // Datos
             while (rs.next()) {
                 String tituloSerie = rs.getString("titulo");
                 int numeroTemporada = rs.getInt("num_temporada");
                 String tituloCapitulo = rs.getString("titulo_capitulo");
-                resultados.append(String.format("Título de la Serie: %s, Número de Temporada: %d, Título del Capítulo: %s%n",
-                        tituloSerie, numeroTemporada, tituloCapitulo));
+                resultados.append(String.format("%-40s %-20d %-40s%n", tituloSerie, numeroTemporada, tituloCapitulo));
             }
-            JOptionPane.showMessageDialog(null, resultados.toString(), "Resultados del JOIN", JOptionPane.INFORMATION_MESSAGE);
+
+            // Uso de JTextArea y JScrollPane para una mejor presentación
+            JTextArea textArea = new JTextArea(resultados.toString());
+            textArea.setEditable(false);
+            textArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
+            JScrollPane scrollPane = new JScrollPane(textArea);
+
+            JOptionPane.showMessageDialog(null, scrollPane, "Resultados del JOIN", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -635,7 +667,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     // Selecciona todos los datos de una tabla cuando se cumpla tal excepcion.
     private void realizarLike() {
         try {
-            // Hace que se obtengan todas las tablas de la base de datos
+            // Obtener todas las tablas de la base de datos
             DatabaseMetaData metaData = dbConnection.getMetaData();
             ResultSet tables = metaData.getTables(null, null, "%", new String[]{"TABLE"});
             ArrayList<String> nombresTablas = new ArrayList<>();
@@ -646,7 +678,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 }
             }
 
-            // Seleccionamos la tabla
+            // Seleccionar la tabla
             String tablaSeleccionada = (String) JOptionPane.showInputDialog(
                     null,
                     "Selecciona el nombre de la tabla:",
@@ -657,14 +689,14 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     nombresTablas.get(0)
             );
 
-            // Obtiene todos los nombres de todas las columnas de la tabla elegida
+            // Obtener todos los nombres de las columnas de la tabla elegida
             ResultSet columns = metaData.getColumns(null, "bdpeliculasseries", tablaSeleccionada, "%");
             ArrayList<String> nombredelasColumnas = new ArrayList<>();
             while (columns.next()) {
                 nombredelasColumnas.add(columns.getString("COLUMN_NAME"));
             }
 
-            // Seleccionamos una columna de la tabla seleccionada anteriormente
+            // Seleccionar una columna de la tabla seleccionada
             String columnaSeleccionada = (String) JOptionPane.showInputDialog(
                     null,
                     "Seleccione una columna:",
@@ -675,26 +707,46 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     nombredelasColumnas.get(0)
             );
 
-            // Nos pregunta mediante un JOptionPane el patron LIKE que queramos introducir
+            // Pedir el patrón LIKE
             String patrondelLike = JOptionPane.showInputDialog(null, "Introduzca el patrón LIKE: 'Ejemplo: A%'");
 
-            // Se ejecuta la consulta deseada
-            String query = "SELECT * FROM " + tablaSeleccionada + " WHERE " + columnaSeleccionada + " LIKE ?";
-            PreparedStatement pstmt = dbConnection.prepareStatement(query);
+            // Ejecutar la consulta
+            String sentenciaLike = "SELECT * FROM " + tablaSeleccionada + " WHERE " + columnaSeleccionada + " LIKE ?";
+            PreparedStatement pstmt = dbConnection.prepareStatement(sentenciaLike);
             pstmt.setString(1, patrondelLike);
             ResultSet rs = pstmt.executeQuery();
 
-            // Muestra los resultados de la consulta
+            // Mostrar los resultados de la consulta
             StringBuilder resultados = new StringBuilder();
             ResultSetMetaData rsMetaData = rs.getMetaData();
             int columnCount = rsMetaData.getColumnCount();
+
+            // Encabezados de columnas
+            for (int i = 1; i <= columnCount; i++) {
+                resultados.append(String.format("%-20s", rsMetaData.getColumnName(i)));
+            }
+            resultados.append("\n");
+
+            // Línea separadora
+            for (int i = 1; i <= columnCount; i++) {
+                resultados.append(String.format("%-20s", "--------------------"));
+            }
+            resultados.append("\n");
+
+            // Datos de las filas
             while (rs.next()) {
                 for (int i = 1; i <= columnCount; i++) {
-                    resultados.append(rsMetaData.getColumnName(i)).append(": ").append(rs.getString(i)).append(" ");
+                    resultados.append(String.format("%-20s", rs.getString(i)));
                 }
                 resultados.append("\n");
             }
-            JOptionPane.showMessageDialog(null, resultados.toString(), "Resultados de la Consulta", JOptionPane.INFORMATION_MESSAGE);
+
+            JTextArea textArea = new JTextArea(resultados.toString());
+            textArea.setEditable(false);
+            textArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
+            JScrollPane scrollPane = new JScrollPane(textArea);
+
+            JOptionPane.showMessageDialog(null, scrollPane, "Resultados de la Consulta", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -742,7 +794,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     nombresColumnas.toArray(),
                     nombresColumnas.get(0)
             );
-
 
             String query = "SELECT " + columnaSeleccionada
                     + " FROM " + tablaSeleccionada + " GROUP BY " + columnaSeleccionada;
