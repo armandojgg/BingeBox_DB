@@ -6,8 +6,8 @@ package bingeboxdb;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 
@@ -44,8 +44,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         botonUpdate = new javax.swing.JButton();
         botonDelete = new javax.swing.JButton();
         botonSelect = new javax.swing.JButton();
+        botonJOIN = new javax.swing.JButton();
+        botonLIKE = new javax.swing.JButton();
+        botonGROUPBY = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 204, 153));
 
         jLabel1.setBackground(new java.awt.Color(255, 102, 102));
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
@@ -97,6 +101,27 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             }
         });
 
+        botonJOIN.setText("JOIN");
+        botonJOIN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonJOINActionPerformed(evt);
+            }
+        });
+
+        botonLIKE.setText("LIKE");
+        botonLIKE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonLIKEActionPerformed(evt);
+            }
+        });
+
+        botonGROUPBY.setText("GROUP BY");
+        botonGROUPBY.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGROUPBYActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,10 +134,19 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botonInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonJOIN, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(sentenciasQueridas)
-                            .addComponent(botonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonLIKE, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonGROUPBY, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(botonSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,11 +166,17 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     .addComponent(cerrarConexion, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sentenciasQueridas))
                 .addGap(18, 18, 18)
-                .addComponent(botonInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonJOIN, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(botonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonLIKE, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(botonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonGROUPBY, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(botonSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65))
@@ -144,30 +184,42 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    // B O T Ó N  C O N E C T A R
+    // B O T O N  C O N E C T A R
     private void botonConexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConexionActionPerformed
         conectar();
     }//GEN-LAST:event_botonConexionActionPerformed
-    // B O T Ó N  D E S C O N E C T A R
+    // B O T O N  D E S C O N E C T A R
     private void cerrarConexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarConexionActionPerformed
         cerrarConexion();
     }//GEN-LAST:event_cerrarConexionActionPerformed
-    // B O T Ó N  I N S E R T
+    // B O T O N  I N S E R T
     private void botonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsertActionPerformed
         insertarDatos();
     }//GEN-LAST:event_botonInsertActionPerformed
-    // B O T Ó N  U P D A T E
+    // B O T O N  U P D A T E
     private void botonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUpdateActionPerformed
         actualizarDatos();
     }//GEN-LAST:event_botonUpdateActionPerformed
-    // B O T Ó N  D E L E T E
+    // B O T O N  D E L E T E
     private void botonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDeleteActionPerformed
         borrarDatos();
     }//GEN-LAST:event_botonDeleteActionPerformed
-    // B O T Ó N  S E L E C T
+    // B O T O N  S E L E C T
     private void botonSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSelectActionPerformed
         realizarSelect();
     }//GEN-LAST:event_botonSelectActionPerformed
+    // B O T O N  J O I N
+    private void botonJOINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJOINActionPerformed
+        realizarJoin();
+    }//GEN-LAST:event_botonJOINActionPerformed
+    // B O T O N  L I K E
+    private void botonLIKEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLIKEActionPerformed
+        realizarLike();
+    }//GEN-LAST:event_botonLIKEActionPerformed
+    // B O T O N  G R O U P  B Y
+    private void botonGROUPBYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGROUPBYActionPerformed
+        realizarGroupBy();
+    }//GEN-LAST:event_botonGROUPBYActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,7 +259,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonConexion;
     private javax.swing.JButton botonDelete;
+    private javax.swing.JButton botonGROUPBY;
     private javax.swing.JButton botonInsert;
+    private javax.swing.JButton botonJOIN;
+    private javax.swing.JButton botonLIKE;
     private javax.swing.JButton botonSelect;
     private javax.swing.JButton botonUpdate;
     private javax.swing.JButton cerrarConexion;
@@ -215,7 +270,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel sentenciasQueridas;
     // End of variables declaration//GEN-END:variables
 
-    // M É T O D O  C O N E C T A R
+    // M E T O D O  C O N E C T A R
     private void conectar() {
         final String DRIVER = "com.mysql.cj.jdbc.Driver";
         final String URL_CONEXION = "jdbc:mysql://localhost:3306/bdpeliculasseries";
@@ -223,18 +278,14 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         final String password = "1234";
 
         try {
-            // Cargar el driver JDBC
             Class.forName(DRIVER);
 
-            // Establecer la conexión
             dbConnection = DriverManager.getConnection(URL_CONEXION, usuario, password);
 
             JOptionPane.showMessageDialog(this, "Conexión realizada correctamente", "Estado de la Conexión", JOptionPane.INFORMATION_MESSAGE);
 
-            // Crear un objeto Statement
             dbConnection.createStatement();
 
-            // Aquí puedes realizar operaciones en la base de datos
         } catch (ClassNotFoundException e) {
             JOptionPane.showMessageDialog(this, "Driver no encontrado: " + e.getMessage());
         } catch (SQLException e) {
@@ -242,7 +293,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         }
     }
 
-    // M É T O D O  D E S C O N E C T A R
+    // M E T O D O  D E S C O N E C T A R
     private void cerrarConexion() {
         try {
             if (dbConnection != null) {
@@ -257,12 +308,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         }
     }
 
-    // M É T O D O  I N S E R T A R  D A T O S
+    // M E T O D O  I N S E R T A R  D A T O S
     private void insertarDatos() {
-        // Lista de nombres de tablas
+
         List<String> nombresTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula", "directors", "log_series",
                 "participacion_actor_pelicula", "participacion_actor_serie", "peliculas", "series", "temporadas");
-        // Solicitar el nombre de la tabla con un cuadro de diálogo
+
         String nombreTabla = (String) JOptionPane.showInputDialog(
                 null,
                 "Selecciona el nombre de la tabla:",
@@ -277,15 +328,14 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        // Solicitar las columnas
-        String columnas = JOptionPane.showInputDialog("Ingrese las columnas separadas por coma (ej. columna1,columna2,...):");
+        // Hace que el usuario ingrese las colummnas de la tabla en cuestion
+        String columnas = JOptionPane.showInputDialog("Ingrese las columnas separadas por coma (Ejemplo: id_serie, nombre_serie...):");
         String[] columnasArray = columnas.split(",");
 
-        // Construir la consulta SQL
         String sql = "INSERT INTO " + nombreTabla + " (" + String.join(", ", columnasArray) + ") VALUES (" + "?,".repeat(columnasArray.length).replaceAll(",$", "") + ")";
 
-        // Insertar datos en la base de datos
-        try (PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
+        // Se insertan los datos en la base de datos
+        try ( PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
             for (int i = 0; i < columnasArray.length; i++) {
                 String dato = JOptionPane.showInputDialog("Ingrese el dato para " + columnasArray[i].trim() + ":");
                 pstmt.setString(i + 1, dato);
@@ -298,13 +348,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         }
     }
 
-    // M É T O D O  P A R A  A C T U A L I Z A R  D A T O S
+    // M E T O D O  P A R A  A C T U A L I Z A R  D A T O S
     private void actualizarDatos() {
-        // Lista de nombres de tablas
         List<String> nombresTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula", "directors", "log_series",
                 "participacion_actor_pelicula", "participacion_actor_serie", "peliculas", "series", "temporadas");
 
-        // Solicitar el nombre de la tabla con un cuadro de diálogo
         String nombreTabla = (String) JOptionPane.showInputDialog(
                 null,
                 "Selecciona el nombre de la tabla:",
@@ -320,8 +368,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        // Solicitar las columnas y sus nuevos valores
-        String columnas = JOptionPane.showInputDialog("Ingrese las columnas a actualizar separadas por coma (ej. rating=9.0,presupuesto=7500000):");
+        // Hacemos que el usuario deba ingresar el nombre de las columnas que quiera actualizar
+        String columnas = JOptionPane.showInputDialog("Ingrese las columnas a actualizar separadas por coma: (Por ejemplo: id_serie= 12, nombre_serie= Stranger Things");
         if (columnas == null || columnas.trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No ingresaste columnas.");
             return;
@@ -329,14 +377,14 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         String[] columnasArray = columnas.split(",");
 
-        // Solicitar la condición para el WHERE
-        String condicion = JOptionPane.showInputDialog("Ingrese la condición para actualizar (ej. id=1):");
+        // Hacemos que el usuario ingrese la condicion para el WHERE
+        String condicion = JOptionPane.showInputDialog("Ingrese la condición para actualizar. (Ejemplo: nombre_actor= James)");
         if (condicion == null || condicion.trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No ingresaste una condición.");
             return;
         }
 
-        // Construir la consulta SQL con parámetros
+        // Mediante parametros hacemos la consulta UPDATE
         String sql = "UPDATE " + nombreTabla + " SET ";
         for (int i = 0; i < columnasArray.length; i++) {
             if (i > 0) {
@@ -347,9 +395,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         }
         sql += " WHERE " + condicion;
 
-        // Actualizar datos en la base de datos
-        try (PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
-            // Establecer los valores
+        try ( PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
             for (int i = 0; i < columnasArray.length; i++) {
                 String[] partes = columnasArray[i].split("=");
                 pstmt.setString(i + 1, partes[1].trim());
@@ -362,13 +408,13 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         }
     }
 
+    // M E T O D O  D E L E T E
     private void borrarDatos() {
-        // Lista de nombres de tablas
         List<String> nombresTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula",
                 "directors", "log_series", "participacion_actor_pelicula",
                 "participacion_actor_serie", "peliculas", "series", "temporadas");
 
-        // Solicitar el nombre de la tabla con un cuadro de diálogo
+        // Mediante un JOptionPane le solicitamos al usuario el nombre de la tabla
         String nombreTabla = (String) JOptionPane.showInputDialog(
                 null,
                 "Selecciona el nombre de la tabla:",
@@ -384,24 +430,23 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        // Solicitar al usuario la condición de eliminación (por ejemplo, WHERE id = 1)
-        String condicion = JOptionPane.showInputDialog("Escribe la condición para eliminar (por ejemplo, id = 1):");
+        // Hacemos que el usuario introduzca la condicion para eliminar el registro
+        String condicion = JOptionPane.showInputDialog("Escribe la condición para eliminar (Ejemplo: id_actor=10):");
 
         if (condicion == null || condicion.trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No proporcionaste ninguna condición.");
             return;
         }
 
-        // Generar la sentencia SQL DELETE
+        // Generamos el DELETE
         String sql = "DELETE FROM " + nombreTabla + " WHERE " + condicion;
 
-        // Verificar si hay una conexión activa antes de ejecutar el DELETE
         if (dbConnection == null) {
             JOptionPane.showMessageDialog(null, "No hay conexión activa. Conéctate antes de ejecutar esta operación.");
             return;
         }
 
-        try (PreparedStatement statement = dbConnection.prepareStatement(sql)) {
+        try ( PreparedStatement statement = dbConnection.prepareStatement(sql)) {
             int filasAfectadas = statement.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se han eliminado " + filasAfectadas + " filas de la tabla " + nombreTabla);
         } catch (SQLException e) {
@@ -409,14 +454,13 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         }
     }
 
-    // M É T O D O  S E L E C T
+    // M E T O D O  S E L E C T
     private void realizarSelect() {
-        // Lista de nombres de tablas
         List<String> nombresTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula",
                 "directors", "log_series", "participacion_actor_pelicula",
                 "participacion_actor_serie", "peliculas", "series", "temporadas");
 
-        // Solicitar el nombre de la tabla con un cuadro de diálogo
+        // Mediante un JOptionPane solicita el nombre de la tabla en cuestion
         String nombreTabla = (String) JOptionPane.showInputDialog(
                 null,
                 "Selecciona el nombre de la tabla:",
@@ -432,7 +476,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        // Verificar si hay una conexión activa antes de ejecutar el SELECT
+        // Verifica si la conexion ha sido conectada
         if (dbConnection == null) {
             JOptionPane.showMessageDialog(null, "No hay conexión activa. Conéctate antes de ejecutar esta operación.");
             return;
@@ -441,7 +485,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         // Construir la sentencia SQL SELECT
         String sql = "SELECT * FROM " + nombreTabla;
 
-        try (PreparedStatement statement = dbConnection.prepareStatement(sql); ResultSet resultSet = statement.executeQuery()) {
+        try ( PreparedStatement statement = dbConnection.prepareStatement(sql);  ResultSet resultSet = statement.executeQuery()) {
 
             // Obtener los metadatos de la consulta para saber las columnas
             ResultSetMetaData metaData = resultSet.getMetaData();
@@ -471,9 +515,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 resultado.append("\n");
             }
 
-            // Mostrar el resultado en un cuadro de diálogo
+            // Hace que el resultado se muestre de forma ordenada y bonita mediante un JTextField
             JTextArea textArea = new JTextArea(resultado.toString());
-            textArea.setFont(new Font("monospaced", Font.PLAIN, 12)); // Fuente de ancho fijo para mejor alineación
+            textArea.setFont(new Font("monospaced", Font.PLAIN, 12));
             JScrollPane scrollPane = new JScrollPane(textArea);
             scrollPane.setPreferredSize(new Dimension(800, 400));
 
@@ -483,4 +527,255 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al realizar el SELECT: " + e.getMessage());
         }
     }
+
+    // M E T O D O  M E N U  J O I N S
+    private void realizarJoin() {
+        String[] opciones = {"Películas, Participación del Actor en la Película y Actores", "Series, creadores de series y nacionalidad del creador",
+            "Series, temporadas y capitulos"};
+        String seleccion = (String) JOptionPane.showInputDialog(null, "Elija el JOIN a realizar", "Seleccionar JOIN",
+                JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+        switch (seleccion) {
+            case "Películas, Participación del Actor en la Película y Actores":
+                realizarJoinPeliculasParticipacionActorPeliculaActores();
+                break;
+            case "Series, creadores de series y nacionalidad del creador":
+                realizarJoinSeriesCreadoresdeSeriesNacionalidadCreador();
+                break;
+            case "Series, temporadas y capitulos":
+                realizarJoinSeriesTemporadasCapitulos();
+        }
+    }
+
+    // M E T O D O S  D E  J O I N S
+    // Estamos seleccionando las siguientes columnas: El titulo de la película, el nombre del actor y el papel que realiza el actor.
+    // Vamos a extraer los datos de la tabla principal que será "Peliculas"
+    // Hacemos una union mediante el primer JOIN de las tabla peliculas con la de participacion_actor_pelicula
+    // Con el ON, lo que hacemos es que el id_pelicula de la tabla peliculas deba ser igual al id de la tabla participacion_actor_pelicula
+    // Con el segundo JOIN, lo que hacemos es lo siguiente: Unimos la tabla participación_actor_pelicula con la de actors
+    // Con el ON, lo que hacemos es que el actors_id de participacion_actor_pelicula debe ser igual al id_actor de la tabla actors
+    // Este JOIN te muestra una lista con el título de la película, el nombre de los actores involucrados y el papel que desempeñaron en esta.
+    private void realizarJoinPeliculasParticipacionActorPeliculaActores() {
+        String query = "SELECT peliculas.titulo, actors.nombre_actor, participacion_actor_pelicula.papel_realiza "
+                + "FROM peliculas "
+                + "JOIN participacion_actor_pelicula ON peliculas.id_pelicula = participacion_actor_pelicula.peliculas_id "
+                + "JOIN actors ON participacion_actor_pelicula.actors_id = actors.id_actor";
+
+        StringBuilder resultados = new StringBuilder();
+        try ( PreparedStatement pstmt = dbConnection.prepareStatement(query);  ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                String tituloPelicula = rs.getString("titulo");
+                String nombreActor = rs.getString("nombre_actor");
+                String papelRealiza = rs.getString("papel_realiza");
+                resultados.append(String.format("Título de la Película: %s, Nombre del Actor: %s, Papel Realiza: %s%n",
+                        tituloPelicula, nombreActor, papelRealiza));
+            }
+            JOptionPane.showMessageDialog(null, resultados.toString(), "Resultados del JOIN", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /* Seleccionamos las siguientes columnas: El titulo de la serie, el nombre del creador y la nacionalidad de este.
+        Extraemos los datos de una tabla principal la cual sera 'Series'
+        Hacemos una union mediante un JOIN de la tabla series con la de creacion series
+        Mediante el ON, hacemos es que el id_serie de la serie debe ser igual al series_id de la tabla creacion_series
+        En el segundo JOIN, unimos la tabla creador_serie con la de creacion_series
+        Con el ON, lo que hacemos es que el creador_id de la tabla creacion_series debe ser igual al idcreador_serie de la tabla creador_serie
+        Este JOIN nos muestra una lista con el titulo de la serie, el nombre del creador de esta y su nacionalidad.*/
+    private void realizarJoinSeriesCreadoresdeSeriesNacionalidadCreador() {
+        String query = "SELECT series.titulo, creador_serie.nombre, creador_serie.nacionalidad "
+                + "FROM series "
+                + "JOIN creacion_series ON series.id_serie = creacion_series.series_id "
+                + "JOIN creador_serie ON creacion_series.creador_id = creador_serie.idcreador_serie";
+        StringBuilder resultados = new StringBuilder();
+        try ( PreparedStatement pstmt = dbConnection.prepareStatement(query);  ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                String tituloSerie = rs.getString("titulo");
+                String nombreCreador = rs.getString("nombre");
+                String nacionalidadCreador = rs.getString("nacionalidad");
+                resultados.append(String.format("Título de la Serie: %s, Nombre del Creador: %s, Nacionalidad del Creador: %s%n",
+                        tituloSerie, nombreCreador, nacionalidadCreador));
+            }
+            JOptionPane.showMessageDialog(null, resultados.toString(), "Resultados del JOIN", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /* Seleccionamos las siguientes columnas: El titulo de la serie, el numero de temporadas y el titulo del capitulo
+        Extraemos los datos de la tabla principal denominada 'Series'
+        Hacemos un JOIN de la tabla temporadas con la de serie
+        En el ON, hacemos que el id_serie de la tabla series, sea igual al series_id de la tabla temporadas
+        En el segundo JOIN, lo hacemos de la tabla capitulos con la de temporadas
+        Con el ON, lo que hacemos es que el id_temporada de la tabla temporada sea igual a que temporadas_id de la tabla capitulos y el series_id de las temporadas sea
+        igual al temporadas_series de la tabla capitulos
+    
+        El JOIN muestra el titulo de la serie, el numero de las temporadas mas el titulo de todos los capitulos de la serie*/
+    private void realizarJoinSeriesTemporadasCapitulos() {
+        String query = "SELECT series.titulo, temporadas.num_temporada, capitulos.titulo_capitulo "
+                + "FROM series "
+                + "JOIN temporadas ON series.id_serie = temporadas.series_id "
+                + "JOIN capitulos ON temporadas.id_temporada = capitulos.temporadas_id AND temporadas.series_id = capitulos.temporadas_series";
+        StringBuilder resultados = new StringBuilder();
+        try ( PreparedStatement pstmt = dbConnection.prepareStatement(query);  ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                String tituloSerie = rs.getString("titulo");
+                int numeroTemporada = rs.getInt("num_temporada");
+                String tituloCapitulo = rs.getString("titulo_capitulo");
+                resultados.append(String.format("Título de la Serie: %s, Número de Temporada: %d, Título del Capítulo: %s%n",
+                        tituloSerie, numeroTemporada, tituloCapitulo));
+            }
+            JOptionPane.showMessageDialog(null, resultados.toString(), "Resultados del JOIN", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // M É T O D O  L I K E
+    // Selecciona todos los datos de una tabla cuando se cumpla tal excepcion.
+    private void realizarLike() {
+        try {
+            // Hace que se obtengan todas las tablas de la base de datos
+            DatabaseMetaData metaData = dbConnection.getMetaData();
+            ResultSet tables = metaData.getTables(null, null, "%", new String[]{"TABLE"});
+            ArrayList<String> nombresTablas = new ArrayList<>();
+            while (tables.next()) {
+                String tableCatalog = tables.getString("TABLE_CAT");
+                if ("bdpeliculasseries".equals(tableCatalog)) {
+                    nombresTablas.add(tables.getString("TABLE_NAME"));
+                }
+            }
+
+            // Seleccionamos la tabla
+            String tablaSeleccionada = (String) JOptionPane.showInputDialog(
+                    null,
+                    "Selecciona el nombre de la tabla:",
+                    "Seleccion tabla",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    nombresTablas.toArray(),
+                    nombresTablas.get(0)
+            );
+
+            // Obtiene todos los nombres de todas las columnas de la tabla elegida
+            ResultSet columns = metaData.getColumns(null, "bdpeliculasseries", tablaSeleccionada, "%");
+            ArrayList<String> nombresColumnas = new ArrayList<>();
+            while (columns.next()) {
+                nombresColumnas.add(columns.getString("COLUMN_NAME"));
+            }
+
+            // Seleccionamos una columna de la tabla seleccionada anteriormente
+            String columnaSeleccionada = (String) JOptionPane.showInputDialog(
+                    null,
+                    "Seleccione una columna:",
+                    "Seleccion columna",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    nombresColumnas.toArray(),
+                    nombresColumnas.get(0)
+            );
+
+            // Nos pregunta mediante un JOptionPane el patron LIKE que queramos introducir
+            String likePattern = JOptionPane.showInputDialog(null, "Introduzca el patrón LIKE: 'Ejemplo: A%'");
+
+            // Se ejecuta la consulta deseada
+            String query = "SELECT * FROM " + tablaSeleccionada + " WHERE " + columnaSeleccionada + " LIKE ?";
+            PreparedStatement pstmt = dbConnection.prepareStatement(query);
+            pstmt.setString(1, likePattern);
+            ResultSet rs = pstmt.executeQuery();
+
+            // Muestra los resultados de la consulta
+            StringBuilder resultados = new StringBuilder();
+            ResultSetMetaData rsMetaData = rs.getMetaData();
+            int columnCount = rsMetaData.getColumnCount();
+            while (rs.next()) {
+                for (int i = 1; i <= columnCount; i++) {
+                    resultados.append(rsMetaData.getColumnName(i)).append(": ").append(rs.getString(i)).append(" ");
+                }
+                resultados.append("\n");
+            }
+            JOptionPane.showMessageDialog(null, resultados.toString(), "Resultados de la Consulta", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // M E T O D O  R E A L I Z A R  G R O U P  B Y
+    private void realizarGroupBy() {
+        try {
+            // Hace que se obtengan todas las tablas de la base de datos
+            DatabaseMetaData metaData = dbConnection.getMetaData();
+            ResultSet tables = metaData.getTables(null, null, "%", new String[]{"TABLE"});
+            ArrayList<String> nombresTablas = new ArrayList<>();
+            while (tables.next()) {
+                String tableCatalog = tables.getString("TABLE_CAT");
+                if ("bdpeliculasseries".equals(tableCatalog)) {
+                    nombresTablas.add(tables.getString("TABLE_NAME"));
+                }
+            }
+
+            // Seleccionamos la tabla
+            String tablaSeleccionada = (String) JOptionPane.showInputDialog(
+                    null,
+                    "Selecciona el nombre de la tabla:",
+                    "Seleccion tabla",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    nombresTablas.toArray(),
+                    nombresTablas.get(0)
+            );
+
+            // Obtiene todos los nombres de todas las columnas de la tabla elegida
+            ResultSet columns = metaData.getColumns(null, "bdpeliculasseries", tablaSeleccionada, "%");
+            ArrayList<String> nombresColumnas = new ArrayList<>();
+            while (columns.next()) {
+                nombresColumnas.add(columns.getString("COLUMN_NAME"));
+            }
+
+            // Seleccionamos una columna de la tabla seleccionada anteriormente
+            String columnaSeleccionada = (String) JOptionPane.showInputDialog(
+                    null,
+                    "Seleccione una columna:",
+                    "Seleccion columna",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    nombresColumnas.toArray(),
+                    nombresColumnas.get(0)
+            );
+
+
+            String query = "SELECT " + columnaSeleccionada
+                    + " FROM " + tablaSeleccionada + " GROUP BY " + columnaSeleccionada;
+            PreparedStatement pstmt = dbConnection.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+
+            // Muestra los resultados deseados.
+            StringBuilder resultados = new StringBuilder();
+            ResultSetMetaData rsMetaData = rs.getMetaData();
+            int columnCount = rsMetaData.getColumnCount();
+
+            // Añade el número de las columnas
+            for (int i = 1; i <= columnCount; i++) {
+                resultados.append(String.format("%-30s", rsMetaData.getColumnName(i)));
+            }
+            resultados.append("\n");
+
+            // Añadir separador
+            resultados.append("-".repeat(30 * columnCount));
+            resultados.append("\n");
+
+            // Añade cada fila de cada registro
+            while (rs.next()) {
+                for (int i = 1; i <= columnCount; i++) {
+                    resultados.append(String.format("%-30s", rs.getString(i)));
+                }
+                resultados.append("\n");
+            }
+
+            JOptionPane.showMessageDialog(null, resultados.toString(), "Resultados de la Consulta", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
