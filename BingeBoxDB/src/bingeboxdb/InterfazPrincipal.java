@@ -311,20 +311,20 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     // M E T O D O  I N S E R T A R  D A T O S
     private void insertarDatos() {
 
-        List<String> nombresTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula", "directors", "log_series",
+        List<String> nombredelasTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula", "directors", "log_series",
                 "participacion_actor_pelicula", "participacion_actor_serie", "peliculas", "series", "temporadas");
 
         String nombreTabla = (String) JOptionPane.showInputDialog(
                 null,
                 "Selecciona el nombre de la tabla:",
-                "Seleccion tabla",
+                "Elección de la tabla",
                 JOptionPane.QUESTION_MESSAGE,
                 null,
-                nombresTablas.toArray(),
-                nombresTablas.get(0)
+                nombredelasTablas.toArray(),
+                nombredelasTablas.get(0)
         );
         if (nombreTabla == null) {
-            JOptionPane.showMessageDialog(null, "No seleccionaste ningún nombre de tabla.");
+            JOptionPane.showMessageDialog(null, "No seleccionaste ninguna tabla.");
             return;
         }
 
@@ -350,17 +350,17 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
     // M E T O D O  P A R A  A C T U A L I Z A R  D A T O S
     private void actualizarDatos() {
-        List<String> nombresTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula", "directors", "log_series",
+        List<String> nombredelasTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula", "directors", "log_series",
                 "participacion_actor_pelicula", "participacion_actor_serie", "peliculas", "series", "temporadas");
 
         String nombreTabla = (String) JOptionPane.showInputDialog(
                 null,
                 "Selecciona el nombre de la tabla:",
-                "Seleccion tabla",
+                "Elección de la tabla:",
                 JOptionPane.QUESTION_MESSAGE,
                 null,
-                nombresTablas.toArray(),
-                nombresTablas.get(0)
+                nombredelasTablas.toArray(),
+                nombredelasTablas.get(0)
         );
 
         if (nombreTabla == null) {
@@ -369,7 +369,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         }
 
         // Hacemos que el usuario deba ingresar el nombre de las columnas que quiera actualizar
-        String columnas = JOptionPane.showInputDialog("Ingrese las columnas a actualizar separadas por coma: (Por ejemplo: id_serie= 12, nombre_serie= Stranger Things");
+        String columnas = JOptionPane.showInputDialog("Escribe el valor nuevo para cualquier columna: (Por ejemplo: id_serie= 12, nombre_serie= Stranger Things");
         if (columnas == null || columnas.trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No ingresaste columnas.");
             return;
@@ -378,7 +378,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         String[] columnasArray = columnas.split(",");
 
         // Hacemos que el usuario ingrese la condicion para el WHERE
-        String condicion = JOptionPane.showInputDialog("Ingrese la condición para actualizar. (Ejemplo: nombre_actor= James)");
+        String condicion = JOptionPane.showInputDialog("Ingrese la condición con la que se actualizará. (Ejemplo: nombre_actor= James)");
         if (condicion == null || condicion.trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No ingresaste una condición.");
             return;
@@ -410,7 +410,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
     // M E T O D O  D E L E T E
     private void borrarDatos() {
-        List<String> nombresTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula",
+        List<String> nombredelasTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula",
                 "directors", "log_series", "participacion_actor_pelicula",
                 "participacion_actor_serie", "peliculas", "series", "temporadas");
 
@@ -421,8 +421,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 "Seleccion tabla",
                 JOptionPane.QUESTION_MESSAGE,
                 null,
-                nombresTablas.toArray(),
-                nombresTablas.get(0)
+                nombredelasTablas.toArray(),
+                nombredelasTablas.get(0)
         );
 
         if (nombreTabla == null) {
@@ -456,7 +456,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
     // M E T O D O  S E L E C T
     private void realizarSelect() {
-        List<String> nombresTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula",
+        List<String> nombredelasTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula",
                 "directors", "log_series", "participacion_actor_pelicula",
                 "participacion_actor_serie", "peliculas", "series", "temporadas");
 
@@ -467,8 +467,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 "Seleccion tabla",
                 JOptionPane.QUESTION_MESSAGE,
                 null,
-                nombresTablas.toArray(),
-                nombresTablas.get(0)
+                nombredelasTablas.toArray(),
+                nombredelasTablas.get(0)
         );
 
         if (nombreTabla == null) {
@@ -659,9 +659,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
             // Obtiene todos los nombres de todas las columnas de la tabla elegida
             ResultSet columns = metaData.getColumns(null, "bdpeliculasseries", tablaSeleccionada, "%");
-            ArrayList<String> nombresColumnas = new ArrayList<>();
+            ArrayList<String> nombredelasColumnas = new ArrayList<>();
             while (columns.next()) {
-                nombresColumnas.add(columns.getString("COLUMN_NAME"));
+                nombredelasColumnas.add(columns.getString("COLUMN_NAME"));
             }
 
             // Seleccionamos una columna de la tabla seleccionada anteriormente
@@ -671,17 +671,17 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     "Seleccion columna",
                     JOptionPane.QUESTION_MESSAGE,
                     null,
-                    nombresColumnas.toArray(),
-                    nombresColumnas.get(0)
+                    nombredelasColumnas.toArray(),
+                    nombredelasColumnas.get(0)
             );
 
             // Nos pregunta mediante un JOptionPane el patron LIKE que queramos introducir
-            String likePattern = JOptionPane.showInputDialog(null, "Introduzca el patrón LIKE: 'Ejemplo: A%'");
+            String patrondelLike = JOptionPane.showInputDialog(null, "Introduzca el patrón LIKE: 'Ejemplo: A%'");
 
             // Se ejecuta la consulta deseada
             String query = "SELECT * FROM " + tablaSeleccionada + " WHERE " + columnaSeleccionada + " LIKE ?";
             PreparedStatement pstmt = dbConnection.prepareStatement(query);
-            pstmt.setString(1, likePattern);
+            pstmt.setString(1, patrondelLike);
             ResultSet rs = pstmt.executeQuery();
 
             // Muestra los resultados de la consulta
@@ -705,12 +705,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         try {
             // Hace que se obtengan todas las tablas de la base de datos
             DatabaseMetaData metaData = dbConnection.getMetaData();
-            ResultSet tables = metaData.getTables(null, null, "%", new String[]{"TABLE"});
+            ResultSet tablas = metaData.getTables(null, null, "%", new String[]{"TABLE"});
             ArrayList<String> nombresTablas = new ArrayList<>();
-            while (tables.next()) {
-                String tableCatalog = tables.getString("TABLE_CAT");
+            while (tablas.next()) {
+                String tableCatalog = tablas.getString("TABLE_CAT");
                 if ("bdpeliculasseries".equals(tableCatalog)) {
-                    nombresTablas.add(tables.getString("TABLE_NAME"));
+                    nombresTablas.add(tablas.getString("TABLE_NAME"));
                 }
             }
 
@@ -718,7 +718,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             String tablaSeleccionada = (String) JOptionPane.showInputDialog(
                     null,
                     "Selecciona el nombre de la tabla:",
-                    "Seleccion tabla",
+                    "Elección de la tabla",
                     JOptionPane.QUESTION_MESSAGE,
                     null,
                     nombresTablas.toArray(),
