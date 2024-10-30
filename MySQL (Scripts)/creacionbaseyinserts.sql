@@ -367,6 +367,7 @@ SELECT * FROM temporadas;
 
 -- temporadas_series hace referencia a la id de la serie.
 
+-- temporadas_series = al id de la serie
 INSERT INTO capitulos (id_capitulo, temporadas_id, temporadas_series, titulo_capitulo, numero_episodio, duracion_episodio, director_episodio, guionista_episodio) VALUES
 -- Los Soprano
 (1, 1, 1, 'Piloto', 1, '60 min.', 'David Chase', 'David Chase'),

@@ -313,7 +313,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         List<String> nombredelasTablas = List.of("actors", "capitulos", "creacion_series", "creador_serie", "direccion_pelicula", "directors", "log_series",
                 "participacion_actor_pelicula", "participacion_actor_serie", "peliculas", "series", "temporadas");
-
         String nombreTabla = (String) JOptionPane.showInputDialog(
                 null,
                 "Selecciona el nombre de la tabla:",
@@ -327,18 +326,22 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No seleccionaste ninguna tabla.");
             return;
         }
-
-        // Hace que el usuario ingrese las colummnas de la tabla en cuestion
+        // Hace que el usuario ingrese las columnas de la tabla en cuestión
         String columnas = JOptionPane.showInputDialog("Ingrese las columnas separadas por coma (Ejemplo: id_serie, nombre_serie...):");
         String[] columnasArray = columnas.split(",");
 
+        // Definimos el String de nuestra sentencia
         String sql = "INSERT INTO " + nombreTabla + " (" + String.join(", ", columnasArray) + ") VALUES (" + "?,".repeat(columnasArray.length).replaceAll(",$", "") + ")";
 
         // Se insertan los datos en la base de datos
-        try (PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
+        try ( PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
             for (int i = 0; i < columnasArray.length; i++) {
                 String dato = JOptionPane.showInputDialog("Ingrese el dato para " + columnasArray[i].trim() + ":");
-                pstmt.setString(i + 1, dato);
+                if (dato == null || dato.trim().isEmpty()) {
+                    pstmt.setNull(i + 1, java.sql.Types.VARCHAR);
+                } else {
+                    pstmt.setString(i + 1, dato);
+                }
             }
             pstmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Datos insertados exitosamente en la tabla " + nombreTabla);
@@ -395,7 +398,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         }
         sql += " WHERE " + condicion;
 
-        try (PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
+        try ( PreparedStatement pstmt = dbConnection.prepareStatement(sql)) {
             for (int i = 0; i < columnasArray.length; i++) {
                 String[] partes = columnasArray[i].split("=");
                 pstmt.setString(i + 1, partes[1].trim());
@@ -446,7 +449,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        try (PreparedStatement statement = dbConnection.prepareStatement(sql)) {
+        try ( PreparedStatement statement = dbConnection.prepareStatement(sql)) {
             int filasAfectadas = statement.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se han eliminado " + filasAfectadas + " filas de la tabla " + nombreTabla);
         } catch (SQLException e) {
@@ -485,7 +488,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         // Construir la sentencia SQL SELECT
         String sql = "SELECT * FROM " + nombreTabla;
 
-        try (PreparedStatement statement = dbConnection.prepareStatement(sql); ResultSet resultSet = statement.executeQuery()) {
+        try ( PreparedStatement statement = dbConnection.prepareStatement(sql);  ResultSet resultSet = statement.executeQuery()) {
 
             // Obtener los metadatos de la consulta para saber las columnas
             ResultSetMetaData metaData = resultSet.getMetaData();
@@ -561,7 +564,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 + "JOIN actors ON participacion_actor_pelicula.actors_id = actors.id_actor";
 
         StringBuilder resultados = new StringBuilder();
-        try (PreparedStatement pstmt = dbConnection.prepareStatement(primerJoin); ResultSet rs = pstmt.executeQuery()) {
+        try ( PreparedStatement pstmt = dbConnection.prepareStatement(primerJoin);  ResultSet rs = pstmt.executeQuery()) {
             String header = String.format("%-40s %-30s %-30s%n", "Título de la Película", "Nombre del Actor", "Papel Realiza");
             resultados.append(header);
             resultados.append(String.format("%-40s %-30s %-30s%n", "---------------------", "---------------", "-------------"));
@@ -597,7 +600,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 + "JOIN creador_serie ON creacion_series.creador_id = creador_serie.idcreador_serie";
 
         StringBuilder resultados = new StringBuilder();
-        try (PreparedStatement pstmt = dbConnection.prepareStatement(segundoJoin); ResultSet rs = pstmt.executeQuery()) {
+        try ( PreparedStatement pstmt = dbConnection.prepareStatement(segundoJoin);  ResultSet rs = pstmt.executeQuery()) {
 
             String header = String.format("%-40s %-30s %-20s%n", "Título de la Serie", "Nombre del Creador", "Nacionalidad");
             resultados.append(header);
@@ -637,7 +640,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 + "JOIN capitulos ON temporadas.id_temporada = capitulos.temporadas_id AND temporadas.series_id = capitulos.temporadas_series";
 
         StringBuilder resultados = new StringBuilder();
-        try (PreparedStatement pstmt = dbConnection.prepareStatement(tercerJoin); ResultSet rs = pstmt.executeQuery()) {
+        try ( PreparedStatement pstmt = dbConnection.prepareStatement(tercerJoin);  ResultSet rs = pstmt.executeQuery()) {
             // Encabezados y separadores
             String header = String.format("%-40s %-20s %-40s%n", "Título de la Serie", "Número de Temporada", "Título del Capítulo");
             resultados.append(header);
@@ -716,6 +719,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             pstmt.setString(1, patrondelLike);
             ResultSet rs = pstmt.executeQuery();
 
+            // CÓDIGO PARA HACERLO MÁS BONITO
             // Mostrar los resultados de la consulta
             StringBuilder resultados = new StringBuilder();
             ResultSetMetaData rsMetaData = rs.getMetaData();

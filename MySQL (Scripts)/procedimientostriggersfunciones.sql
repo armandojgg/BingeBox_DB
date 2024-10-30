@@ -2,7 +2,7 @@
 
 -- 1. Consultar las series creadas por un creador en concreto.
 
--- DROP PROCEDURE IF EXISTS consultargeneropelicula;
+DROP PROCEDURE IF EXISTS consultarseriescreadas;
 
 DELIMITER //
 CREATE PROCEDURE consultarseriescreadas (
@@ -25,6 +25,8 @@ CALL consultarseriescreadas(1);
 
 -- 2. Consultar todas las películas del género que queramos.
 
+DROP PROCEDURE IF EXISTS consultargeneropelicula;
+
 DELIMITER //
 CREATE PROCEDURE consultargeneropelicula (
     IN input_genero VARCHAR(100)
@@ -43,6 +45,8 @@ CALL consultargeneropelicula('Accion');
 
 -- 1. Calcular el presupuesto total de todas las películas de un género determinado
 
+DROP FUNCTION IF EXISTS presupuestototalgenero;
+
 DELIMITER $$
 CREATE FUNCTION presupuestototalgenero (
     genero_pelicula VARCHAR(100)
@@ -60,6 +64,8 @@ DELIMITER ;
 SELECT presupuestototalgenero('Accion');
 
 -- 2. Obtener el nombre de la película con el presupuesto más caro:
+
+DROP FUNCTION IF EXISTS peliculaconmayorpresupuesto;
 
 DELIMITER $$
 CREATE FUNCTION peliculaconmayorpresupuesto () 
@@ -83,9 +89,12 @@ SELECT peliculaconmayorpresupuesto();
 
 -- T R I G G E R S
 
+DROP TRIGGER IF EXISTS log_inserciones_series;
+
 
 -- 1. Registra todas las inserciones en la tabla de series
 
+-- 
 DELIMITER //
 
 CREATE TRIGGER log_inserciones_series
@@ -123,6 +132,8 @@ VALUES ('The Crown', 'Drama', '2016', 'Presente', 'Reino Unido', 6, 50);
 
 -- 2. Hace que no se pueda insertar una serie con el mismo nombre.
 
+DROP TRIGGER IF EXISTS log_inserciones_series
+
 DELIMITER //
 CREATE TRIGGER negacionseriesduplicadas
 BEFORE INSERT ON series
@@ -136,7 +147,7 @@ BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La serie ya existe en la base de datos';
     END IF;
 END//
-DELIMITER 
+DELIMITER ;
 
 -- P R U E B A  D E L  T R I G G E R
 
