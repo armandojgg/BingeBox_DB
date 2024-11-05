@@ -11,13 +11,13 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `bdpeliculasseries` DEFAULT CHARACTER SET utf8 ;
-USE `bdpeliculasseries` ;
+CREATE SCHEMA IF NOT EXISTS `bdpeliculasyseries` DEFAULT CHARACTER SET utf8 ;
+USE `bdpeliculasyseries` ;
 
 -- -----------------------------------------------------
 -- Table `mydb`.`peliculas`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdpeliculasseries`.`peliculas` (
+CREATE TABLE IF NOT EXISTS `bdpeliculasyseries`.`peliculas` (
   `id_pelicula` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(100) NULL,
   `genero` VARCHAR(100) NULL,
@@ -32,7 +32,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`series`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdpeliculasseries`.`series` (
+CREATE TABLE IF NOT EXISTS `bdpeliculasyseries`.`series` (
   `id_serie` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(100) NULL,
   `genero` VARCHAR(100) NULL,
@@ -48,7 +48,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`actors`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdpeliculasseries`.`actors` (
+CREATE TABLE IF NOT EXISTS `bdpeliculasyseries`.`actors` (
   `id_actor` INT NOT NULL AUTO_INCREMENT,
   `nombre_actor` VARCHAR(100) NULL,
   `nacionalidad_actor` VARCHAR(100) NULL,
@@ -60,7 +60,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`directors`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdpeliculasseries`.`directors` (
+CREATE TABLE IF NOT EXISTS `bdpeliculasyseries`.`directors` (
   `id_director` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
   `nacionalidad` VARCHAR(45) NULL,
@@ -72,16 +72,17 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`temporadas`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdpeliculasseries`.`temporadas` (
+CREATE TABLE IF NOT EXISTS `bdpeliculasyseries`.`temporadas` (
   `id_temporada` INT NOT NULL,
-  `series_id` INT NOT NULL,
   `num_temporada` INT NULL,
   `año_estreno` INT NULL,
   `num_episodios` INT NULL,
-  PRIMARY KEY (`id_temporada`, `series_id`),
-  CONSTRAINT `fk_temporadas_series`
+  `series_id` INT NOT NULL,
+  PRIMARY KEY (`id_temporada`),
+  INDEX `fk_temporadas_series1_idx` (`series_id` ASC) VISIBLE,
+  CONSTRAINT `fk_temporadas_series1`
     FOREIGN KEY (`series_id`)
-    REFERENCES `bdpeliculasseries`.`series` (`id_serie`)
+    REFERENCES `bdpeliculasyseries`.`series` (`id_serie`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -90,20 +91,19 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`capitulos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdpeliculasseries`.`capitulos` (
+CREATE TABLE IF NOT EXISTS `bdpeliculasyseries`.`capitulos` (
   `id_capitulo` INT NOT NULL,
-  `temporadas_id` INT NOT NULL,
-  `temporadas_series` INT NOT NULL,
   `titulo_capitulo` VARCHAR(45) NULL,
   `numero_episodio` INT NULL,
   `duracion_episodio` VARCHAR(45) NULL,
   `director_episodio` VARCHAR(45) NULL,
   `guionista_episodio` VARCHAR(45) NULL,
-  PRIMARY KEY (`id_capitulo`, `temporadas_id`, `temporadas_series`),
-  INDEX `fk_capitulos_temporadas1_idx` (`temporadas_id` ASC, `temporadas_series` ASC) VISIBLE,
+  `temporada_id` INT NOT NULL,
+  PRIMARY KEY (`id_capitulo`),
+  INDEX `fk_capitulos_temporadas1_idx` (`temporada_id` ASC) VISIBLE,
   CONSTRAINT `fk_capitulos_temporadas1`
-    FOREIGN KEY (`temporadas_id` , `temporadas_series`)
-    REFERENCES `bdpeliculasseries`.`temporadas` (`id_temporada` , `series_id`)
+    FOREIGN KEY (`temporada_id`)
+    REFERENCES `bdpeliculasyseries`.`temporadas` (`id_temporada`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -112,7 +112,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`creador_serie`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdpeliculasseries`.`creador_serie` (
+CREATE TABLE IF NOT EXISTS `bdpeliculasyseries`.`creador_serie` (
   `idcreador_serie` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NULL,
   `nacionalidad` VARCHAR(100) NULL,
@@ -124,7 +124,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`participacion_actor_serie`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdpeliculasseries`.`participacion_actor_serie` (
+CREATE TABLE IF NOT EXISTS `bdpeliculasyseries`.`participacion_actor_serie` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `actors_id` INT NOT NULL,
   `series_id` INT NOT NULL,
@@ -134,12 +134,12 @@ CREATE TABLE IF NOT EXISTS `bdpeliculasseries`.`participacion_actor_serie` (
   INDEX `fk_actors_has_series_actors1_idx` (`actors_id` ASC) VISIBLE,
   CONSTRAINT `fk_actors_has_series_actors1`
     FOREIGN KEY (`actors_id`)
-    REFERENCES `bdpeliculasseries`.`actors` (`id_actor`)
+    REFERENCES `bdpeliculasyseries`.`actors` (`id_actor`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_actors_has_series_series1`
     FOREIGN KEY (`series_id`)
-    REFERENCES `bdpeliculasseries`.`series` (`id_serie`)
+    REFERENCES `bdpeliculasyseries`.`series` (`id_serie`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -148,7 +148,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`participacion_actor_pelicula`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdpeliculasseries`.`participacion_actor_pelicula` (
+CREATE TABLE IF NOT EXISTS `bdpeliculasyseries`.`participacion_actor_pelicula` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `peliculas_id` INT NOT NULL,
   `actors_id` INT NOT NULL,
@@ -158,12 +158,12 @@ CREATE TABLE IF NOT EXISTS `bdpeliculasseries`.`participacion_actor_pelicula` (
   INDEX `fk_peliculas_has_actors_peliculas1_idx` (`peliculas_id` ASC) VISIBLE,
   CONSTRAINT `fk_peliculas_has_actors_peliculas1`
     FOREIGN KEY (`peliculas_id`)
-    REFERENCES `bdpeliculasseries`.`peliculas` (`id_pelicula`)
+    REFERENCES `bdpeliculasyseries`.`peliculas` (`id_pelicula`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_peliculas_has_actors_actors1`
     FOREIGN KEY (`actors_id`)
-    REFERENCES `bdpeliculasseries`.`actors` (`id_actor`)
+    REFERENCES `bdpeliculasyseries`.`actors` (`id_actor`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -172,7 +172,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`direccion_pelicula`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdpeliculasseries`.`direccion_pelicula` (
+CREATE TABLE IF NOT EXISTS `bdpeliculasyseries`.`direccion_pelicula` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `peliculas_id_pelicula` INT NOT NULL,
   `directors_id_director` INT NOT NULL,
@@ -181,12 +181,12 @@ CREATE TABLE IF NOT EXISTS `bdpeliculasseries`.`direccion_pelicula` (
   INDEX `fk_peliculas_has_directors_peliculas1_idx` (`peliculas_id_pelicula` ASC) VISIBLE,
   CONSTRAINT `fk_peliculas_has_directors_peliculas1`
     FOREIGN KEY (`peliculas_id_pelicula`)
-    REFERENCES `bdpeliculasseries`.`peliculas` (`id_pelicula`)
+    REFERENCES `bdpeliculasyseries`.`peliculas` (`id_pelicula`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_peliculas_has_directors_directors1`
     FOREIGN KEY (`directors_id_director`)
-    REFERENCES `bdpeliculasseries`.`directors` (`id_director`)
+    REFERENCES `bdpeliculasyseries`.`directors` (`id_director`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -195,7 +195,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`creacion_series`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdpeliculasseries`.`creacion_series` (
+CREATE TABLE IF NOT EXISTS `bdpeliculasyseries`.`creacion_series` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `series_id` INT NOT NULL,
   `creador_id` INT NOT NULL,
@@ -204,12 +204,12 @@ CREATE TABLE IF NOT EXISTS `bdpeliculasseries`.`creacion_series` (
   INDEX `fk_series_has_creador_serie_series1_idx` (`series_id` ASC) VISIBLE,
   CONSTRAINT `fk_series_has_creador_serie_series1`
     FOREIGN KEY (`series_id`)
-    REFERENCES `bdpeliculasseries`.`series` (`id_serie`)
+    REFERENCES `bdpeliculasyseries`.`series` (`id_serie`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_series_has_creador_serie_creador_serie1`
     FOREIGN KEY (`creador_id`)
-    REFERENCES `bdpeliculasseries`.`creador_serie` (`idcreador_serie`)
+    REFERENCES `bdpeliculasyseries`.`creador_serie` (`idcreador_serie`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -218,6 +218,7 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 -- INSERTS -------------------------------------------------------------------------------------
 
@@ -368,29 +369,29 @@ SELECT * FROM temporadas;
 -- temporadas_series hace referencia a la id de la serie.
 
 -- temporadas_series = al id de la serie
-INSERT INTO capitulos (id_capitulo, temporadas_id, temporadas_series, titulo_capitulo, numero_episodio, duracion_episodio, director_episodio, guionista_episodio) VALUES
--- Los Soprano
-(1, 1, 1, 'Piloto', 1, '60 min.', 'David Chase', 'David Chase'),
-(2, 1, 1, '46 Largo', 2, '50 min.', 'Daniel Attias', 'David Chase'),
-(3, 1, 1, 'Negacion, enfado y aceptacion', 3, '50 min.', 'Nick Gomez', 'Mark Saraceni'),
--- Dexter
-(6, 7, 2, 'Cocodrilo', 2, '50 minutos', 'Michael Cuesta', 'Clyde Phillips'),
-(7, 7, 2, 'Resquebrajando a Cherry', 3, '50 minutos', 'Michael Cuesta', 'Daniel Cerone'),
--- Breaking Bad
-(8, 21, 4, 'Piloto', 1, '58 minutos', 'Vince Gilligan', 'Vince Gilligan'),
-(9, 22, 4, 'A la parrilla', 2, '48 minutos', 'Adam Bernstein', 'Vince Gilligan'),
--- Juego de Tronos
-(10, 26, 5, 'Winter Is Coming', 1, '62 minutos', 'Tim Van Patten', 'David Benioff y D.B. Weiss'),
-(11, 27, 5, 'El camino real', 2, '56 minutos', 'Tim Van Patten', 'David Benioff y D.B. Weiss'),
--- La Casa de Papel
-(12, 50, 10, 'Efectuar lo acordado', 1, '47 minutos', 'Alex Pina', 'Alex Pina'),
-(13, 51, 10, 'Imprudencias letales', 2, '42 minutos', 'Jesus Colmenar', 'Alex Pina'),
--- Peaky Blinders
-(14, 15, 3, 'Episodio 1', 1, '55 minutos', 'Otto Bathurst', 'Steven Knight'),
-(15, 16, 3, 'Episodio 2', 2, '58 minutos', 'Tom Harper', 'Steven Knight'),
--- Stranger Things
-(16, 34, 6, 'La desaparicion de Will Byers ', 1, '47 minutos', 'The Duffer Brothers', 'The Duffer Brothers'),
-(17, 35, 6, 'La loca de la calle Maple', 2, '55 minutos', 'The Duffer Brothers', 'The Duffer Brothers');
+INSERT INTO capitulos (id_capitulo, titulo_capitulo, numero_episodio, duracion_episodio, director_episodio, guionista_episodio, temporada_id) VALUES
+-- Los Soprano 
+(1, 'Piloto', 1, '60 min.', 'David Chase', 'David Chase', 1), 
+(2, '46 Largo', 2, '50 min.', 'Daniel Attias', 'David Chase', 1),
+(3, 'Negacion, enfado y aceptacion', 3, '50 min.', 'Nick Gomez', 'Mark Saraceni', 1),
+ -- Dexter 
+ (6, 'Cocodrilo', 2, '50 minutos', 'Michael Cuesta', 'Clyde Phillips', 7),
+ (7, 'Resquebrajando a Cherry', 3, '50 minutos', 'Michael Cuesta', 'Daniel Cerone', 7),
+ -- Breaking Bad 
+ (8, 'Piloto', 1, '58 minutos', 'Vince Gilligan', 'Vince Gilligan', 21),
+ (9, 'A la parrilla', 2, '48 minutos', 'Adam Bernstein', 'Vince Gilligan', 21), 
+ -- Juego de Tronos 
+ (10, 'Winter Is Coming', 1, '62 minutos', 'Tim Van Patten', 'David Benioff y D.B. Weiss', 26),
+ (11, 'El camino real', 2, '56 minutos', 'Tim Van Patten', 'David Benioff y D.B. Weiss', 26),
+ -- La Casa de Papel
+ (12, 'Efectuar lo acordado', 1, '47 minutos', 'Alex Pina', 'Alex Pina', 50),
+ (13, 'Imprudencias letales', 2, '42 minutos', 'Jesus Colmenar', 'Alex Pina', 50),
+ -- Peaky Blinders
+ (14, 'Episodio 1', 1, '55 minutos', 'Otto Bathurst', 'Steven Knight', 15),
+ (15, 'Episodio 2', 2, '58 minutos', 'Tom Harper', 'Steven Knight', 15),
+ -- Stranger Things
+ (16, 'La desaparicion de Will Byers', 1, '47 minutos', 'The Duffer Brothers', 'The Duffer Brothers', 34),
+ (17, 'La loca de la calle Maple', 2, '55 minutos', 'The Duffer Brothers', 'The Duffer Brothers', 34);
 
 SELECT * FROM capitulos;
 
