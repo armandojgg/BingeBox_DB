@@ -10,7 +10,17 @@
         <property name="hibernate.show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
-        <mapping class="bingeboxdb.Actors" />
+        <mapping class="bingeboxdb.Actors_NaM" />
+        <mapping class="bingeboxdb.Peliculas_NaM" />
+        <mapping class="bingeboxdb.Series_1aN" />
+        <mapping class="bingeboxdb.Directors_NaM" />
+        <mapping class="bingeboxdb.Temporadas_1aN" />
+        <mapping class="bingeboxdb.Capitulos" />
+        <mapping class="bingeboxdb.Participacion_Actor_Serie" />
+        <mapping class="bingeboxdb.Participacion_Actor_Pelicula" />
+        <mapping class="bingeboxdb.Direccion_Pelicula" />
+        <mapping class="bingeboxdb.Creador_Serie_NaM" />
+        <mapping class="bingeboxdb.creacion_series" />
         
     </session-factory>
 </hibernate-configuration>

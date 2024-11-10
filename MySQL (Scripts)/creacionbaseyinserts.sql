@@ -219,7 +219,6 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-
 -- INSERTS -------------------------------------------------------------------------------------
 
 -- I N S E R T S  P E L I C U L A S
@@ -277,6 +276,7 @@ INSERT INTO actors (nombre_actor, nacionalidad_actor, genero_actor) VALUES
 ('Sam Neill', 'Neozelandes', 'Masculino');
 
 SELECT * FROM actors;
+ALTER TABLE actors DROP COLUMN id;
 
 -- I N S E R T   D I R E C T O R E S
 
@@ -366,9 +366,6 @@ SELECT * FROM temporadas;
 
 -- I N S E R T  C A P I T U L O S
 
--- temporadas_series hace referencia a la id de la serie.
-
--- temporadas_series = al id de la serie
 INSERT INTO capitulos (id_capitulo, titulo_capitulo, numero_episodio, duracion_episodio, director_episodio, guionista_episodio, temporada_id) VALUES
 -- Los Soprano 
 (1, 'Piloto', 1, '60 min.', 'David Chase', 'David Chase', 1), 
