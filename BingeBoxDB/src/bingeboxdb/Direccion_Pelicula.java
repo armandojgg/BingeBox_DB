@@ -46,8 +46,8 @@ public class Direccion_Pelicula implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "direccion_pelicula",
-        joinColumns = @JoinColumn(name = "id_director"),
-        inverseJoinColumns = @JoinColumn(name = "id_pelicula")
+        joinColumns = @JoinColumn(name = "directors_id_director"),
+        inverseJoinColumns = @JoinColumn(name = "peliculas_id_pelicula")
     )
     private List<Peliculas_NaM> peliculas;
 

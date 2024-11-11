@@ -24,22 +24,22 @@ import javax.persistence.Table;
  * @author Armando
  */
 @Entity
-@Table(name = "creador_serie")
+@Table(name = "creacion_series")
 public class creacion_series implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idcreador_serie")
+    @Column(name = "id")
     private Integer id;
     // Relación muchos a uno con Serie
     @ManyToOne
-    @JoinColumn(name = "id_serie", referencedColumnName = "series_id")
+    @JoinColumn(name = "series_id")
     private Series_1aN serie;
     
     // Relación muchos a uno con Creador
     @ManyToOne
-    @JoinColumn(name = "idcreador_serie", referencedColumnName = "idcreador_serie", insertable = false, updatable = false)
+    @JoinColumn(name = "creador_id")
     private Creador_Serie_NaM creador;
 
     public creacion_series() {

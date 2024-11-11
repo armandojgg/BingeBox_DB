@@ -37,7 +37,7 @@ public class Participacion_Actor_Pelicula implements Serializable {
     private Peliculas_NaM pelicula;
 
     @ManyToOne
-    @JoinColumn(name = "id_actor")
+    @JoinColumn(name = "actors_id")
     private Actors_NaM actor;
 
     @Column(name = "papel_realiza")

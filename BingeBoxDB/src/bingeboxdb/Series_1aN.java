@@ -56,8 +56,8 @@ public class Series_1aN implements Serializable {
     @ManyToMany
     @JoinTable(
             name = "participacion_actor_serie",
-            joinColumns = @JoinColumn(name = "id_serie"),
-            inverseJoinColumns = @JoinColumn(name = "id_actor")
+            joinColumns = @JoinColumn(name = "series_id"),
+            inverseJoinColumns = @JoinColumn(name = "actors_id")
     )
     private List<Actors_NaM> actors;
 

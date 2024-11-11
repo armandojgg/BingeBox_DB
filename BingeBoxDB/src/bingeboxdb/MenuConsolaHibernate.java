@@ -86,7 +86,8 @@ public class MenuConsolaHibernate {
                 System.out.println("1. Crear un nuevo objeto");
                 System.out.println("2. Actualizar un objeto existente");
                 System.out.println("3. Eliminar un objeto existente");
-                System.out.println("4. Abandonar nuestro programa");
+                System.out.println("4. Consultar objetos existentes");
+                System.out.println("5. Abandonar nuestro programa");
                 System.out.println("");
                 System.out.println("Introduce el numero de la opcion que desees: ");
 
@@ -98,17 +99,22 @@ public class MenuConsolaHibernate {
                         crearObjeto();
                         break;
                     case 2:
+                        updateObjeto();
                         break;
                     case 3:
+                        eliminarObjeto();
                         break;
                     case 4:
+                        consultarObjeto();
+                        break;
+                    case 5:
                         // Se cierra la sesion, acabando el programa.
                         sessionFactory.close();
                         System.out.println("¡Hasta pronto!");
                         System.exit(0);
                         break;
                     default:
-                        System.out.println("Opción no válida. Por favor, introduce un número del 1 al 4.");
+                        System.out.println("Opción no válida. Por favor, introduce un número del 1 al 5.");
                         System.out.println("");
                         System.out.println("");
                 }
@@ -189,18 +195,25 @@ public class MenuConsolaHibernate {
 
         switch (opcion2) {
             case 1:
+                updateEnActors();
                 break;
             case 2:
+                updateEnPeliculas();
                 break;
             case 3:
+                updateEnDirectors();
                 break;
             case 4:
+                updateEnSeries();
                 break;
             case 5:
+                updateEnTemporadas();
                 break;
             case 6:
+                updateEnCapitulos();
                 break;
             case 7:
+                updateEnCreador_Serie();
                 break;
             case 8:
                 volverAlMenu();
@@ -234,16 +247,22 @@ public class MenuConsolaHibernate {
                 borrarEnActors();
                 break;
             case 2:
+                borrarEnPeliculas();
                 break;
             case 3:
+                borrarEnDirectors();
                 break;
             case 4:
+                borrarEnSeries();
                 break;
             case 5:
+                borrarEnTemporadas();
                 break;
             case 6:
+                borrarEnCapitulos();
                 break;
             case 7:
+                borrarEnCreador_Serie();
                 break;
             case 8:
                 volverAlMenu();
@@ -570,6 +589,349 @@ public class MenuConsolaHibernate {
     }
     // M E T O D O S  P A R A  L O S  U P D A T E
 
+    private static void updateEnActors() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Actors_NaM.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar Scanner para leer los valores de entrada
+            System.out.print("Introduce el ID del actor a actualizar: ");
+            Integer id_actor = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.print("Introduce el nombre: ");
+            String nombre = scanner.nextLine();
+
+            System.out.print("Introduce la nacionalidad: ");
+            String nacionalidad = scanner.nextLine();
+
+            System.out.print("Introduce el género: ");
+            String genero = scanner.nextLine();
+
+            // Obtener el objeto Actor existente usando su ID
+            Actors_NaM a = session.get(Actors_NaM.class, id_actor);
+
+            // Actualizar los valores del objeto
+            if (a != null) {
+                a.setNombre_actor(nombre);
+                a.setNacionalidadActor(nacionalidad);
+                a.setGenero_actor(genero);
+
+                // Iniciar transacción, actualizar el objeto y confirmar la transacción
+                session.beginTransaction();
+                session.update(a);
+                session.getTransaction().commit();
+                System.out.println("Registro actualizado en la tabla Actors");
+            } else {
+                System.out.println("El actor con el ID proporcionado no existe");
+            }
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+
+    }
+
+    private static void updateEnPeliculas() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Peliculas_NaM.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar Scanner para leer los valores de entrada
+            System.out.print("Introduce el ID de la película a actualizar: ");
+            Integer id_pelicula = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.print("Introduce el título: ");
+            String titulo = scanner.nextLine();
+
+            System.out.print("Introduce el genero: ");
+            String genero = scanner.nextLine();
+
+            System.out.print("Introduce la duracion: ");
+            String duracion = scanner.nextLine();
+
+            System.out.print("Introduce el rating: ");
+            String rating = scanner.nextLine();
+
+            System.out.print("Introduce el país de la película: ");
+            String pais_pelicula = scanner.nextLine();
+
+            System.out.print("Introduce el presupuesto: ");
+            Integer presupuesto = scanner.nextInt();
+            scanner.nextLine();
+
+            // Obtener el objeto Pelicula existente usando su ID
+            Peliculas_NaM p = session.get(Peliculas_NaM.class, id_pelicula);
+
+            // Actualizar los valores del objeto
+            if (p != null) {
+                p.setTitulo(titulo);
+                p.setGenero(genero);
+                p.setDuracion(duracion);
+                p.setRating(rating);
+                p.setPais_pelicula(pais_pelicula);
+                p.setPresupuesto(presupuesto);
+
+                // Iniciar transacción, actualizar el objeto y confirmar la transacción
+                session.beginTransaction();
+                session.update(p);
+                session.getTransaction().commit();
+                System.out.println("Registro actualizado en la tabla Películas");
+            } else {
+                System.out.println("La película con el ID proporcionado no existe");
+            }
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+
+    }
+
+    private static void updateEnDirectors() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Directors_NaM.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar Scanner para leer los valores de entrada
+            System.out.print("Introduce el ID del director a actualizar: ");
+            Integer id_director = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.print("Introduce el nombre: ");
+            String nombre = scanner.nextLine();
+
+            System.out.print("Introduce la nacionalidad: ");
+            String nacionalidad = scanner.nextLine();
+
+            System.out.print("Introduce el género: ");
+            String genero = scanner.nextLine();
+
+            // Obtener el objeto Director existente usando su ID
+            Directors_NaM d = session.get(Directors_NaM.class, id_director);
+
+            // Actualizar los valores del objeto
+            if (d != null) {
+                d.setNombre(nombre);
+                d.setNacionalidad(nacionalidad);
+                d.setGenero(genero);
+
+                // Iniciar transacción, actualizar el objeto y confirmar la transacción
+                session.beginTransaction();
+                session.update(d);
+                session.getTransaction().commit();
+                System.out.println("Registro actualizado en la tabla Directors");
+            } else {
+                System.out.println("El director con el ID proporcionado no existe");
+            }
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+
+    }
+
+    private static void updateEnSeries() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Series_1aN.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar Scanner para leer los valores de entrada
+            System.out.print("Introduce el ID de la serie a actualizar: ");
+            Integer id_serie = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.print("Introduce el título: ");
+            String titulo = scanner.nextLine();
+
+            System.out.print("Introduce el genero: ");
+            String genero = scanner.nextLine();
+
+            System.out.print("Introduce el comienzo de la serie: ");
+            String comienzo_serie = scanner.nextLine();
+
+            System.out.print("Introduce el final de la serie: ");
+            String final_serie = scanner.nextLine();
+
+            System.out.print("Introduce el país de la serie: ");
+            String pais_serie = scanner.nextLine();
+
+            System.out.print("Introduce el número de temporadas: ");
+            Integer num_temporadas = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.print("Introduce el número de capítulos: ");
+            Integer num_capitulos = scanner.nextInt();
+            scanner.nextLine();
+
+            // Obtener el objeto Serie existente usando su ID
+            Series_1aN s = session.get(Series_1aN.class, id_serie);
+
+            // Actualizar los valores del objeto
+            if (s != null) {
+                s.setTitulo(titulo);
+                s.setGenero(genero);
+                s.setComienzo_serie(comienzo_serie);
+                s.setFinal_serie(final_serie);
+                s.setPais_serie(pais_serie);
+                s.setNum_temporadas(num_temporadas);
+                s.setNum_capitulos(num_capitulos);
+
+                // Iniciar transacción, actualizar el objeto y confirmar la transacción
+                session.beginTransaction();
+                session.update(s);
+                session.getTransaction().commit();
+                System.out.println("Registro actualizado en la tabla Series");
+            } else {
+                System.out.println("La serie con el ID proporcionado no existe");
+            }
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+
+    }
+
+    private static void updateEnTemporadas() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Temporadas_1aN.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar Scanner para leer los valores de entrada
+            System.out.print("Introduce el ID de la temporada a actualizar: ");
+            Integer id_temporada = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.print("Introduce el número de la temporada: ");
+            Integer numero_temporada = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.print("Introduce el año de estreno de la temporada: ");
+            Integer año_estreno = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.print("Introduce el número de episodios de la temporada: ");
+            Integer num_episodios = scanner.nextInt();
+            scanner.nextLine();
+
+            // Obtener el objeto Temporada existente usando su ID
+            Temporadas_1aN t = session.get(Temporadas_1aN.class, id_temporada);
+
+            // Actualizar los valores del objeto
+            if (t != null) {
+                t.setNum_temporada(numero_temporada);
+                t.setAño_estreno(año_estreno);
+                t.setNum_episodios(num_episodios);
+
+                // Iniciar transacción, actualizar el objeto y confirmar la transacción
+                session.beginTransaction();
+                session.update(t);
+                session.getTransaction().commit();
+                System.out.println("Registro actualizado en la tabla Temporadas");
+            } else {
+                System.out.println("La temporada con el ID proporcionado no existe");
+            }
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+
+    }
+
+    private static void updateEnCapitulos() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Capitulos.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar Scanner para leer los valores de entrada
+            System.out.print("Introduce el ID del capítulo a actualizar: ");
+            Integer id_capitulo = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.print("Introduce el título del capítulo: ");
+            String titulo_capitulo = scanner.nextLine();
+
+            System.out.print("Introduce el número del episodio: ");
+            Integer num_episodio = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.print("Introduce la duración del episodio: ");
+            String duracion_episodio = scanner.nextLine();
+
+            System.out.print("Introduce el director del episodio: ");
+            String director_episodio = scanner.nextLine();
+
+            System.out.print("Introduce el guionista del episodio: ");
+            String guionista_episodio = scanner.nextLine();
+
+            // Obtener el objeto Capítulo existente usando su ID
+            Capitulos c = session.get(Capitulos.class, id_capitulo);
+
+            // Actualizar los valores del objeto
+            if (c != null) {
+                c.setTitulo_capitulo(titulo_capitulo);
+                c.setNumero_episodio(num_episodio);
+                c.setDuracion_episodio(duracion_episodio);
+                c.setDirector_episodio(director_episodio);
+                c.setGuionista_episodio(guionista_episodio);
+
+                // Iniciar transacción, actualizar el objeto y confirmar la transacción
+                session.beginTransaction();
+                session.update(c);
+                session.getTransaction().commit();
+                System.out.println("Registro actualizado en la tabla Capitulos");
+            } else {
+                System.out.println("El capítulo con el ID proporcionado no existe");
+            }
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+    }
+
+    private static void updateEnCreador_Serie() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Creador_Serie_NaM.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar Scanner para leer los valores de entrada
+            System.out.print("Introduce el ID del creador a actualizar: ");
+            Integer id_creador = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.print("Introduce el nombre: ");
+            String nombre = scanner.nextLine();
+
+            System.out.print("Introduce la nacionalidad: ");
+            String nacionalidad = scanner.nextLine();
+
+            System.out.print("Introduce el género: ");
+            String genero = scanner.nextLine();
+
+            // Obtener el objeto Creador_Serie existente usando su ID
+            Creador_Serie_NaM c = session.get(Creador_Serie_NaM.class, id_creador);
+
+            // Actualizar los valores del objeto
+            if (c != null) {
+                c.setNombre(nombre);
+                c.setNacionalidad(nacionalidad);
+                c.setGenero(genero);
+
+                // Iniciar transacción, actualizar el objeto y confirmar la transacción
+                session.beginTransaction();
+                session.update(c);
+                session.getTransaction().commit();
+                System.out.println("Registro actualizado en la tabla Creador_Serie");
+            } else {
+                System.out.println("El creador con el ID proporcionado no existe");
+            }
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+
+    }
+
     // M E T O D O S  P A R A  L O S  D E L E T E
     private static void borrarEnActors() {
         try {
@@ -608,11 +970,226 @@ public class MenuConsolaHibernate {
 
     }
 
+    private static void borrarEnPeliculas() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml")
+                    .addAnnotatedClass(Peliculas_NaM.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar Scanner para leer el valor de entrada (en este caso, el nombre)
+            System.out.print("Introduce el nombre de la película que deseas eliminar: ");
+            String titulo = scanner.nextLine();
+
+            // Iniciar transacción
+            session.beginTransaction();
+
+            // Realizar la consulta para buscar al actor por su nombre (o algún otro criterio)
+            Peliculas_NaM pelicula = session.createQuery("FROM Peliculas_NaM WHERE titulo = :titulo", Peliculas_NaM.class).setParameter("titulo", titulo).uniqueResult();
+
+            // Verificar si se encontró el actor
+            if (pelicula != null) {
+                // Eliminar el actor encontrado
+                session.delete(pelicula);
+                session.getTransaction().commit();
+                System.out.println("Pelicula eliminada de la base de datos.");
+            } else {
+                System.out.println("No se encontró una película con ese nombre.");
+            }
+
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+
+    }
+
+    private static void borrarEnDirectors() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml")
+                    .addAnnotatedClass(Directors_NaM.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar Scanner para leer el valor de entrada (en este caso, el nombre)
+            System.out.print("Introduce el nombre del director que deseas eliminar: ");
+            String nombre = scanner.nextLine();
+
+            // Iniciar transacción
+            session.beginTransaction();
+
+            // Realizar la consulta para buscar al actor por su nombre (o algún otro criterio)
+            Directors_NaM director = session.createQuery("FROM Directors_NaM WHERE nombre = :nombre", Directors_NaM.class).setParameter("nombre", nombre).uniqueResult();
+
+            // Verificar si se encontró el actor
+            if (director != null) {
+                // Eliminar el actor encontrado
+                session.delete(director);
+                session.getTransaction().commit();
+                System.out.println("Director eliminado de la base de datos.");
+            } else {
+                System.out.println("No se encontró un director con ese nombre.");
+            }
+
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+    }
+
+    private static void borrarEnSeries() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml")
+                    .addAnnotatedClass(Series_1aN.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar Scanner para leer el valor de entrada (en este caso, el nombre)
+            System.out.print("Introduce el nombre de la serie que deseas eliminar: ");
+            String nombre = scanner.nextLine();
+
+            // Iniciar transacción
+            session.beginTransaction();
+
+            // Realizar la consulta para buscar al actor por su nombre (o algún otro criterio)
+            Series_1aN serie = session.createQuery("FROM Series_1aN WHERE titulo = :nombre", Series_1aN.class).setParameter("nombre", nombre).uniqueResult();
+
+            // Verificar si se encontró la serie
+            if (serie != null) {
+                // Eliminar la serie encontrado
+                session.delete(serie);
+                session.getTransaction().commit();
+                System.out.println("Serie eliminada de la base de datos.");
+            } else {
+                System.out.println("No se encontró ninguna serie con ese nombre.");
+            }
+
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+    }
+
+    private static void borrarEnTemporadas() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml")
+                    .addAnnotatedClass(Temporadas_1aN.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar Scanner para leer el valor de entrada (en este caso, el nombre)
+            System.out.print("Introduce el año de estreno de la temporada que deseas eliminar: ");
+            Integer año_estreno = scanner.nextInt();
+
+            // Iniciar transacción
+            session.beginTransaction();
+
+            // Realizar la consulta para buscar al actor por su nombre (o algún otro criterio)
+            Temporadas_1aN temporada = session.createQuery("FROM Temporadas_1aN WHERE año_estreno = :año_estreno", Temporadas_1aN.class).setParameter(año_estreno, año_estreno).uniqueResult();
+
+            // Verificar si se encontró la serie
+            if (temporada != null) {
+                // Eliminar la serie encontrado
+                session.delete(temporada);
+                session.getTransaction().commit();
+                System.out.println("Temporada eliminada de la base de datos.");
+            } else {
+                System.out.println("No se encontró ninguna serie con ese nombre.");
+            }
+
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+    }
+
+    private static void borrarEnCapitulos() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Capitulos.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar Scanner para leer el valor de entrada (en este caso, el nombre)
+            System.out.print("Introduce el ID del capítulo que deseas eliminar: ");
+            Integer id_capitulo = scanner.nextInt();
+
+            // Iniciar transacción
+            session.beginTransaction();
+
+            // Realizar la consulta para buscar al actor por su nombre (o algún otro criterio)
+            Capitulos capitulo = session.createQuery("FROM Capitulos WHERE id_capitulo = :id_capitulo", Capitulos.class).setParameter(id_capitulo, id_capitulo).uniqueResult();
+
+            // Verificar si se encontró la serie
+            if (capitulo != null) {
+                // Eliminar la serie encontrado
+                session.delete(capitulo);
+                session.getTransaction().commit();
+                System.out.println("Capitulo eliminado de la base de datos.");
+            } else {
+                System.out.println("No se encontró ningún capítulo con ese nombre.");
+            }
+
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+    }
+
+    private static void borrarEnCreador_Serie() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Creador_Serie_NaM.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar Scanner para leer el valor de entrada (en este caso, el nombre)
+            System.out.print("Introduce el nombre del creador de la serie: ");
+            String nombre = scanner.nextLine();
+
+            // Iniciar transacción
+            session.beginTransaction();
+
+            // Realizar la consulta para buscar al actor por su nombre (o algún otro criterio)
+            Creador_Serie_NaM creador = session.createQuery("FROM Creador_Serie_NaM WHERE nombre = :nombre", Creador_Serie_NaM.class).setParameter(nombre, nombre).uniqueResult();
+
+            // Verificar si se encontró la serie
+            if (creador != null) {
+                // Eliminar la serie encontrado
+                session.delete(creador);
+                session.getTransaction().commit();
+                System.out.println("Creador de la serie eliminado de la base de datos.");
+            } else {
+                System.out.println("No se encontró ningún creador de series con ese nombre.");
+            }
+
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+    }
+
     // M E T O D O S  P A R A  L A S  C O N S U L T A S
     private static void consultarActors() {
         SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Actors_NaM.class).buildSessionFactory();
 
-        try (Session session = instancia.openSession()) {
+        try ( Session session = instancia.openSession()) {
 
             System.out.println("Selecciona la columna por la que deseas buscar:");
             System.out.println("1. Nombre del actor");
@@ -674,7 +1251,7 @@ public class MenuConsolaHibernate {
     private static void consultarPeliculas() {
         SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Peliculas_NaM.class).buildSessionFactory();
 
-        try (Session session = instancia.openSession()) {
+        try ( Session session = instancia.openSession()) {
 
             System.out.println("Selecciona la columna por la que deseas buscar:");
             System.out.println("1. Nombre de la pelicula");
@@ -751,7 +1328,7 @@ public class MenuConsolaHibernate {
     private static void consultarDirectors() {
         SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Directors_NaM.class).buildSessionFactory();
 
-        try (Session session = instancia.openSession()) {
+        try ( Session session = instancia.openSession()) {
 
             System.out.println("Selecciona la columna por la que deseas buscar:");
             System.out.println("1. Nombre del director");
@@ -813,7 +1390,7 @@ public class MenuConsolaHibernate {
     private static void consultarSeries() {
         SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Series_1aN.class).buildSessionFactory();
 
-        try (Session session = instancia.openSession()) {
+        try ( Session session = instancia.openSession()) {
 
             System.out.println("Selecciona la columna por la que deseas buscar:");
             System.out.println("1. Título de la serie");
@@ -895,7 +1472,7 @@ public class MenuConsolaHibernate {
     private static void consultarTemporadas() {
         SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Temporadas_1aN.class).buildSessionFactory();
 
-        try (Session session = instancia.openSession()) {
+        try ( Session session = instancia.openSession()) {
 
             System.out.println("Selecciona la columna por la que deseas buscar:");
             System.out.println("1. Número de la temporada");
@@ -961,7 +1538,7 @@ public class MenuConsolaHibernate {
     private static void consultarCapitulos() {
         SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Capitulos.class).buildSessionFactory();
 
-        try (Session session = instancia.openSession()) {
+        try ( Session session = instancia.openSession()) {
 
             System.out.println("Selecciona la columna por la que deseas buscar:");
             System.out.println("1. Nombre del capitulo");
@@ -1038,7 +1615,7 @@ public class MenuConsolaHibernate {
     private static void consultarCreador_Serie() {
         SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Creador_Serie_NaM.class).buildSessionFactory();
 
-        try (Session session = instancia.openSession()) {
+        try ( Session session = instancia.openSession()) {
 
             System.out.println("Selecciona la columna por la que deseas buscar:");
             System.out.println("1. Nombre del creador");
@@ -1096,4 +1673,5 @@ public class MenuConsolaHibernate {
             instancia.close();
         }
     }
+
 }
