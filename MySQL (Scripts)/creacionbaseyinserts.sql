@@ -276,7 +276,6 @@ INSERT INTO actors (nombre_actor, nacionalidad_actor, genero_actor) VALUES
 ('Sam Neill', 'Neozelandes', 'Masculino');
 
 SELECT * FROM actors;
-ALTER TABLE actors DROP COLUMN id;
 
 -- I N S E R T   D I R E C T O R E S
 
