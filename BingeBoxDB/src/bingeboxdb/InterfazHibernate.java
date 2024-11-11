@@ -49,9 +49,10 @@ public class InterfazHibernate extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 102, 0));
+        jPanel1.setBackground(new java.awt.Color(102, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("BingeBox DB");
 
@@ -66,6 +67,7 @@ public class InterfazHibernate extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Opciones:");
 
@@ -197,7 +199,9 @@ public class InterfazHibernate extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCrearObjetoActionPerformed
     // B O T O N  U P D A T E
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
-        // TODO add your handling code here:
+        UpdateObjetos updateObjetos = new UpdateObjetos();
+        updateObjetos.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonUpdateActionPerformed
     // B O T O N  S E L E C T
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed

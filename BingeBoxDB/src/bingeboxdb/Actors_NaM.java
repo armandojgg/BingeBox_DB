@@ -26,7 +26,7 @@ public class Actors_NaM implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_actor")
     private Integer id;
     @Column(name = "nombre_actor")

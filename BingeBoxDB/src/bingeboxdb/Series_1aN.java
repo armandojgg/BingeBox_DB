@@ -30,7 +30,7 @@ public class Series_1aN implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_serie")
     private Integer id;
     @Column(name = "titulo")

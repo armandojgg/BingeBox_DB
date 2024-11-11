@@ -4,6 +4,12 @@
  */
 package bingeboxdb;
 
+import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 /**
  *
  * @author MEDAC
@@ -13,6 +19,8 @@ public class InsertarObjetos extends javax.swing.JFrame {
     /**
      * Creates new form InsertarObjetos
      */
+    private static SessionFactory sessionFactory;
+
     public InsertarObjetos() {
         setTitle("BingeBox Database");
         initComponents();
@@ -27,21 +35,280 @@ public class InsertarObjetos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabelInserciones = new javax.swing.JLabel();
+        jLabelActors = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jLabelActors1 = new javax.swing.JLabel();
+        jLabelActors2 = new javax.swing.JLabel();
+        jLabelActors3 = new javax.swing.JLabel();
+        jLabelActors4 = new javax.swing.JLabel();
+        jLabelActors5 = new javax.swing.JLabel();
+        jLabelActors6 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(102, 0, 0));
+        jPanel1.setForeground(new java.awt.Color(204, 255, 255));
+
+        jLabelInserciones.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabelInserciones.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelInserciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelInserciones.setText("I N S E R C I O N E S");
+
+        jLabelActors.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabelActors.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelActors.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelActors.setText("Actors");
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("Actors");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jButton2.setText("Peliculas");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(0, 0, 0));
+        jButton3.setText("Series");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(0, 0, 0));
+        jButton4.setText("Directors");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(0, 0, 0));
+        jButton5.setText("Temporadas");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(0, 0, 0));
+        jButton6.setText("Capitulos");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(0, 0, 0));
+        jButton7.setText("Creador de la Serie");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jLabelActors1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabelActors1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelActors1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelActors1.setText("Peliculas");
+
+        jLabelActors2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabelActors2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelActors2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelActors2.setText("Series");
+
+        jLabelActors3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabelActors3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelActors3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelActors3.setText("Directors");
+
+        jLabelActors4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabelActors4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelActors4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelActors4.setText("Temporadas");
+
+        jLabelActors5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabelActors5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelActors5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelActors5.setText("Capitulos");
+
+        jLabelActors6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabelActors6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelActors6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelActors6.setText("Creador de la serie");
+
+        jButton8.setBackground(new java.awt.Color(255, 255, 255));
+        jButton8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(0, 0, 0));
+        jButton8.setText("Volver");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(jLabelInserciones, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelActors, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelActors4)
+                            .addComponent(jLabelActors2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelActors3, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabelActors1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelActors6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelActors5)
+                                .addGap(61, 61, 61)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(229, 229, 229)
+                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(85, 85, 85))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelInserciones, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelActors, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelActors5))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                    .addComponent(jLabelActors1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelActors6))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                    .addComponent(jLabelActors2))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                    .addComponent(jLabelActors3))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                            .addComponent(jLabelActors4))
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44))))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 819, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 647, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    // B O T O N  P E L I C U L A S
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        añadiraPeliculas();
+    }//GEN-LAST:event_jButton2ActionPerformed
+    // B O T O N  A C T O R S
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        añadiraActors();
+    }//GEN-LAST:event_jButton1ActionPerformed
+    // B O T O N  S E R I E S
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        añadiraSeries();
+    }//GEN-LAST:event_jButton3ActionPerformed
+    // B O T O N  D I R E C T O R S
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        añadiraDirectors();
+    }//GEN-LAST:event_jButton4ActionPerformed
+    // B O T O N  T E M P O R A D A S
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        añadiraTemporadas();
+    }//GEN-LAST:event_jButton5ActionPerformed
+    // B O T O N  C A P I T U L O S
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        añadiraCapitulos();
+    }//GEN-LAST:event_jButton6ActionPerformed
+    // B O T O N  C R E A D O R  D E  L A  S E R I E
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        añadiraCreadorSerie();
+    }//GEN-LAST:event_jButton7ActionPerformed
+    // B O T O N  V O L V E R
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        InterfazHibernate interfaz = new InterfazHibernate();
+        interfaz.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +346,300 @@ public class InsertarObjetos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JLabel jLabelActors;
+    private javax.swing.JLabel jLabelActors1;
+    private javax.swing.JLabel jLabelActors2;
+    private javax.swing.JLabel jLabelActors3;
+    private javax.swing.JLabel jLabelActors4;
+    private javax.swing.JLabel jLabelActors5;
+    private javax.swing.JLabel jLabelActors6;
+    private javax.swing.JLabel jLabelInserciones;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+    
+    // M E T O D O S  I N S E R T S
+    
+    // Metodo denominado añadirPeliculas, el cual añade una nueva pelicula a la tabla Peliculas, nos va pidiendo mediante JOptionPane.showInputDialog los
+    // atributos de la tabla, ademas, hacemos parseInt al atributo Presupuesto para poder ingresar un numero para el presupuesto.
+    private void añadiraPeliculas() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Peliculas_NaM.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar JOptionPane para leer los valores de entrada
+            String titulo = JOptionPane.showInputDialog("Introduce el titulo:");
+            String duracion = JOptionPane.showInputDialog("Introduce la duración:");
+            String genero = JOptionPane.showInputDialog("Introduce el género:");
+            String rating = JOptionPane.showInputDialog("Introduce el rating:");
+            String pais_pelicula = JOptionPane.showInputDialog("Introduce el país de la película:");
+
+            // Leer y convertir presupuesto a Integer con validación
+            Integer presupuesto = null;
+            boolean validInput = false;
+            while (!validInput) {
+                try {
+                    String presupuestoStr = JOptionPane.showInputDialog("Introduce el presupuesto:");
+                    presupuesto = Integer.parseInt(presupuestoStr);
+                    validInput = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido para el presupuesto.");
+                }
+            }
+
+            // Crear el objeto Peliculas_NaM con los valores leídos
+            Peliculas_NaM p = new Peliculas_NaM(titulo, genero, duracion, rating, pais_pelicula, presupuesto);
+
+            // Iniciar transacción, guardar el objeto y confirmar la transacción
+            session.beginTransaction();
+            session.save(p);
+            session.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Registro insertado en la tabla Peliculas");
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+    }
+
+    private void añadiraActors() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Actors_NaM.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar JOptionPane para leer los valores de entrada
+            String nombre_actor = JOptionPane.showInputDialog("Introduce el nombre del actor:");
+            String nacionalidad_actor = JOptionPane.showInputDialog("Introduce la nacionalidad del actor:");
+            String genero_actor = JOptionPane.showInputDialog("Introduce el género del actor/actriz:");
+
+            // Crear el objeto Peliculas_NaM con los valores leídos
+            Actors_NaM a = new Actors_NaM(nombre_actor, nacionalidad_actor, genero_actor);
+
+            // Iniciar transacción, guardar el objeto y confirmar la transacción
+            session.beginTransaction();
+            session.save(a);
+            session.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Registro insertado en la tabla Actors");
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+    }
+
+    private void añadiraSeries() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Series_1aN.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar JOptionPane para leer los valores de entrada
+            String titulo = JOptionPane.showInputDialog("Introduce el título de la serie:");
+            String genero = JOptionPane.showInputDialog("Introduce el género de la serie");
+            String comienzo_serie = JOptionPane.showInputDialog("Introduce cuando comenzó la serie");
+            String final_serie = JOptionPane.showInputDialog("Introduce cuando finalizó la serie");
+            String pais_serie = JOptionPane.showInputDialog("Introduce el país de la serie:");
+
+            Integer num_temporadas = null;
+            boolean validInput = false;
+            while (!validInput) {
+                try {
+                    String num_temporadasStr = JOptionPane.showInputDialog("Introduce el número de temporadas:");
+                    num_temporadas = Integer.parseInt(num_temporadasStr);
+                    validInput = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido para el número de temporadas.");
+                }
+            }
+
+            Integer num_capitulos = null;
+            boolean validInput2 = false;
+            while (!validInput2) {
+                try {
+                    String num_capitulosStr = JOptionPane.showInputDialog("Introduce el número de capítulos:");
+                    num_capitulos = Integer.parseInt(num_capitulosStr);
+                    validInput2 = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido para el número de capítulos.");
+                }
+            }
+
+            // Crear el objeto Peliculas_NaM con los valores leídos
+            Series_1aN s = new Series_1aN(titulo, genero, comienzo_serie, final_serie, pais_serie, num_temporadas, num_capitulos);
+
+            // Iniciar transacción, guardar el objeto y confirmar la transacción
+            session.beginTransaction();
+            session.save(s);
+            session.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Registro insertado en la tabla Series");
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+    }
+
+    private void añadiraDirectors() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Directors_NaM.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar JOptionPane para leer los valores de entrada
+            String nombre_director = JOptionPane.showInputDialog("Introduce el nombre del director:");
+            String nacionalidad_director = JOptionPane.showInputDialog("Introduce la nacionalidad del director:");
+            String genero_director = JOptionPane.showInputDialog("Introduce el género del director:");
+
+            // Crear el objeto Peliculas_NaM con los valores leídos
+            Directors_NaM d = new Directors_NaM(nombre_director, nacionalidad_director, genero_director);
+
+            // Iniciar transacción, guardar el objeto y confirmar la transacción
+            session.beginTransaction();
+            session.save(d);
+            session.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Registro insertado en la tabla Directors");
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+    }
+
+    private void añadiraTemporadas() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Temporadas_1aN.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            Integer num_temporada = null;
+            boolean validInput = false;
+            while (!validInput) {
+                try {
+                    String num_temporadaStr = JOptionPane.showInputDialog("Introduce el número de la temporada:");
+                    num_temporada = Integer.parseInt(num_temporadaStr);
+                    validInput = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido para el número de la temporada.");
+                }
+            }
+            Integer año_estreno = null;
+            boolean validInput2 = false;
+            while (!validInput2) {
+                try {
+                    String año_estrenoStr = JOptionPane.showInputDialog("Introduce el año de estreno de la temporada:");
+                    año_estreno = Integer.parseInt(año_estrenoStr);
+                    validInput2 = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido para la fecha de estreno.");
+                }
+            }
+            Integer num_episodios = null;
+            boolean validInput3 = false;
+            while (!validInput3) {
+                try {
+                    String num_episodiosStr = JOptionPane.showInputDialog("Introduce la cantidad de episodios:");
+                    num_episodios = Integer.parseInt(num_episodiosStr);
+                    validInput3 = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido para el número de episodios.");
+                }
+            }
+            Integer series_id = null;
+            boolean validInput4 = false;
+            while (!validInput4) {
+                try {
+                    String series_idStr = JOptionPane.showInputDialog("Introduce el ID de la serie:");
+                    series_id = Integer.parseInt(series_idStr);
+                    validInput4 = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un ID válido.");
+                }
+            }
+
+            // Crear el objeto Peliculas_NaM con los valores leídos
+            Temporadas_1aN t = new Temporadas_1aN(num_temporada, año_estreno, num_episodios, series_id);
+
+            // Iniciar transacción, guardar el objeto y confirmar la transacción
+            session.beginTransaction();
+            session.save(t);
+            session.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Registro insertado en la tabla Temporadas");
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+    }
+
+    private void añadiraCapitulos() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Capitulos.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar JOptionPane para leer los valores de entrada
+            String titulo_capitulo = JOptionPane.showInputDialog("Introduce el título del capítulo:");
+
+            Integer numero_episodio = null;
+            boolean validInput = false;
+            while (!validInput) {
+                try {
+                    String num_episodioStr = JOptionPane.showInputDialog("Introduce el número del episodio:");
+                    numero_episodio = Integer.parseInt(num_episodioStr);
+                    validInput = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido para el episodio.");
+                }
+            }
+
+            String duracion_episodio = JOptionPane.showInputDialog("Introduce la duración del episodio:");
+            String director_episodio = JOptionPane.showInputDialog("Introduce el director del episodio:");
+            String guionista_episodio = JOptionPane.showInputDialog("Introduce el guionista del episodio");
+            Integer temporada_id = null;
+            boolean validInput2 = false;
+            while (!validInput2) {
+                try {
+                    String temporada_idStr = JOptionPane.showInputDialog("Introduce el ID de la temporada:");
+                    temporada_id = Integer.parseInt(temporada_idStr);
+                    validInput2 = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un ID válido de la temporada.");
+                }
+            }
+
+            // Crear el objeto Peliculas_NaM con los valores leídos
+            Capitulos c = new Capitulos(titulo_capitulo, numero_episodio, duracion_episodio, director_episodio, guionista_episodio, temporada_id);
+
+            // Iniciar transacción, guardar el objeto y confirmar la transacción
+            session.beginTransaction();
+            session.save(c);
+            session.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Registro insertado en la tabla Capitulos");
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+    }
+
+    private void añadiraCreadorSerie() {
+        try {
+            // Crear un SessionFactory
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Creador_Serie_NaM.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Usar JOptionPane para leer los valores de entrada
+            String nombre_creador = JOptionPane.showInputDialog("Introduce el nombre del creador:");
+            String nacionalidad_creador = JOptionPane.showInputDialog("Introduce la nacionalidad del creador:");
+            String genero_creador = JOptionPane.showInputDialog("Introduce el género del creador:");
+
+            // Crear el objeto Peliculas_NaM con los valores leídos
+            Creador_Serie_NaM c = new Creador_Serie_NaM(nombre_creador, nacionalidad_creador, genero_creador);
+
+            // Iniciar transacción, guardar el objeto y confirmar la transacción
+            session.beginTransaction();
+            session.save(c);
+            session.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Registro insertado en la tabla Actors");
+        } catch (HibernateException he) {
+            System.out.println(he);
+        }
+    }
 }

@@ -43,7 +43,7 @@ public class Temporadas_1aN implements Serializable {
     private Integer series_id;
     
     @ManyToOne
-    @JoinColumn(name = "id_serie")
+    @JoinColumn(name = "series_id", insertable = false, updatable = false)
     private Series_1aN series;
 
     @OneToMany(mappedBy = "temporada", cascade = CascadeType.ALL)
