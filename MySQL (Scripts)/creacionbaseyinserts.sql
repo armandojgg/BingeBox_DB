@@ -410,15 +410,11 @@ SELECT * FROM creador_serie;
 -- I N S E R T  PARTICIPACION_ACTOR_SERIE
 
 INSERT INTO participacion_actor_serie (actors_id, series_id, papel_realiza) VALUES
-(1, 1, 'Tony Soprano'),
-(2, 1, 'Dr. Melfi'),
-(3, 2, 'Dexter Morgan'),
-(4, 2, 'Debra Morgan'),
-(5, 3, 'Thomas Shelby'),
-(6, 3, 'Arthur Shelby'),
-(7, 4, 'Walter White'),
-(8, 5, 'Jon Snow'),
-(9, 6, 'Eleven');
+(9, 1, 'Tony Soprano'),
+(10, 1, 'Carmela Soprano'),
+(12, 2, 'Dexter Morgan'),
+(13, 2, 'Debra Morgan'),
+(14, 3, 'Thomas Shelby');
 
 SELECT * FROM participacion_actor_serie;
 
@@ -429,8 +425,7 @@ INSERT INTO participacion_actor_pelicula (peliculas_id, actors_id, papel_realiza
 (1, 2, 'Vito Corleone'),
 (2, 3, 'Bruce Wayne / Batman'),
 (2, 4, 'Joker'),
-(3, 5, 'Narrador'),
-(3, 6, 'Tyler Durden'),
+(3, 5, 'Tyler Durden'),
 (4, 7, 'Clarice Starling'),
 (4, 8, 'Hannibal Lecter');
 

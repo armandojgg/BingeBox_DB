@@ -21,6 +21,7 @@ import javax.persistence.Table;
  *
  * @author Armando
  */
+// Clase Participacion_Actor_Serie en la cual se le asigna unos atributos, unos métodos GET y SET y su relación.
 @Entity
 @Table(name = "participacion_actor_serie")
 public class Participacion_Actor_Serie implements Serializable {
@@ -28,7 +29,7 @@ public class Participacion_Actor_Serie implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ManyToOne
     @JoinColumn(name = "series_id")
     private Series_1aN serie;

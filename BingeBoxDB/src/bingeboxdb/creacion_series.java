@@ -23,13 +23,14 @@ import javax.persistence.Table;
  *
  * @author Armando
  */
+// Clase creacion_series en la cual se le asigna unos atributos, unos métodos GET y SET y su relación.
 @Entity
 @Table(name = "creacion_series")
 public class creacion_series implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
     // Relación muchos a uno con Serie

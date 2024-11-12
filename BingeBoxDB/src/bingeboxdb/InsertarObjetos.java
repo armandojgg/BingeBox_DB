@@ -4,6 +4,9 @@
  */
 package bingeboxdb;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -22,7 +25,16 @@ public class InsertarObjetos extends javax.swing.JFrame {
     private static SessionFactory sessionFactory;
 
     public InsertarObjetos() {
-        setTitle("BingeBox Database");
+        this.setSize(800, 600);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        int x = (screenSize.width - this.getWidth()) / 2;
+        int y = (screenSize.height - this.getHeight()) / 2;
+
+        this.setLocation(x, y);
+        setTitle("BingeBox DB - Save");
         initComponents();
     }
 
@@ -36,145 +48,136 @@ public class InsertarObjetos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabelInserciones = new javax.swing.JLabel();
-        jLabelActors = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jLabelActors1 = new javax.swing.JLabel();
-        jLabelActors2 = new javax.swing.JLabel();
-        jLabelActors3 = new javax.swing.JLabel();
-        jLabelActors4 = new javax.swing.JLabel();
-        jLabelActors5 = new javax.swing.JLabel();
-        jLabelActors6 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
+        jButtonActors = new javax.swing.JButton();
+        jButtonPeliculas = new javax.swing.JButton();
+        jButtonSeries = new javax.swing.JButton();
+        jButtonDirectors = new javax.swing.JButton();
+        jButtonTemporadas = new javax.swing.JButton();
+        jButtonCapitulos = new javax.swing.JButton();
+        jButtonCreadorSerie = new javax.swing.JButton();
+        jButtonDireccionPelicula = new javax.swing.JButton();
+        jButtonParticipacionActorPel = new javax.swing.JButton();
+        jButtonParticipacionActorSerie = new javax.swing.JButton();
+        jButtonCreacionSeries = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jButtonUpdate = new javax.swing.JButton();
+        jButtonDelete = new javax.swing.JButton();
+        jButtonVolver = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(204, 255, 255));
 
-        jLabelInserciones.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabelInserciones.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelInserciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelInserciones.setText("I N S E R C I O N E S");
-
-        jLabelActors.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabelActors.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelActors.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelActors.setText("Actors");
-
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Actors");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonActors.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonActors.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonActors.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonActors.setText("Actors");
+        jButtonActors.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonActorsActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Peliculas");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPeliculas.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonPeliculas.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonPeliculas.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonPeliculas.setText("Peliculas");
+        jButtonPeliculas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonPeliculasActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jButton3.setText("Series");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSeries.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonSeries.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonSeries.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSeries.setText("Series");
+        jButtonSeries.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonSeriesActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setText("Directors");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDirectors.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonDirectors.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonDirectors.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonDirectors.setText("Directors");
+        jButtonDirectors.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonDirectorsActionPerformed(evt);
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(0, 0, 0));
-        jButton5.setText("Temporadas");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jButtonTemporadas.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonTemporadas.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonTemporadas.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonTemporadas.setText("Temporadas");
+        jButtonTemporadas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButtonTemporadasActionPerformed(evt);
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(0, 0, 0));
-        jButton6.setText("Capitulos");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCapitulos.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonCapitulos.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonCapitulos.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCapitulos.setText("Capitulos");
+        jButtonCapitulos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jButtonCapitulosActionPerformed(evt);
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jButton7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(0, 0, 0));
-        jButton7.setText("Creador de la Serie");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCreadorSerie.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonCreadorSerie.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonCreadorSerie.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCreadorSerie.setText("Creador");
+        jButtonCreadorSerie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                jButtonCreadorSerieActionPerformed(evt);
             }
         });
 
-        jLabelActors1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabelActors1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelActors1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelActors1.setText("Peliculas");
-
-        jLabelActors2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabelActors2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelActors2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelActors2.setText("Series");
-
-        jLabelActors3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabelActors3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelActors3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelActors3.setText("Directors");
-
-        jLabelActors4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabelActors4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelActors4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelActors4.setText("Temporadas");
-
-        jLabelActors5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabelActors5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelActors5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelActors5.setText("Capitulos");
-
-        jLabelActors6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabelActors6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelActors6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelActors6.setText("Creador de la serie");
-
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
-        jButton8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(0, 0, 0));
-        jButton8.setText("Volver");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDireccionPelicula.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonDireccionPelicula.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonDireccionPelicula.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonDireccionPelicula.setText("Direccion pelicula");
+        jButtonDireccionPelicula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                jButtonDireccionPeliculaActionPerformed(evt);
+            }
+        });
+
+        jButtonParticipacionActorPel.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonParticipacionActorPel.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonParticipacionActorPel.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonParticipacionActorPel.setText("P. Actor Película");
+        jButtonParticipacionActorPel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonParticipacionActorPelActionPerformed(evt);
+            }
+        });
+
+        jButtonParticipacionActorSerie.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonParticipacionActorSerie.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonParticipacionActorSerie.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonParticipacionActorSerie.setText("P. Actor Serie");
+        jButtonParticipacionActorSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonParticipacionActorSerieActionPerformed(evt);
+            }
+        });
+
+        jButtonCreacionSeries.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonCreacionSeries.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonCreacionSeries.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCreacionSeries.setText("Creacion series");
+        jButtonCreacionSeries.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCreacionSeriesActionPerformed(evt);
             }
         });
 
@@ -183,132 +186,221 @@ public class InsertarObjetos extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(jLabelInserciones, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelActors, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelActors4)
-                            .addComponent(jLabelActors2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelActors3, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelActors1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabelActors6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabelActors5)
-                                .addGap(61, 61, 61)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jButtonActors, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(94, 94, 94)
+                        .addComponent(jButtonTemporadas, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(229, 229, 229)
-                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(85, 85, 85))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonDirectors, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSeries, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonPeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(94, 94, 94)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonCapitulos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonCreadorSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonDireccionPelicula))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonParticipacionActorSerie, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonParticipacionActorPel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonCreacionSeries, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonActors, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonTemporadas, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonParticipacionActorPel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(63, 63, 63)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonPeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCapitulos, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonParticipacionActorSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCreadorSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSeries, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCreacionSeries, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonDirectors, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonDireccionPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(204, 0, 51));
+        jPanel3.setForeground(new java.awt.Color(153, 0, 0));
+
+        jButtonUpdate.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonUpdate.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonUpdate.setText("UPDATE");
+        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateActionPerformed(evt);
+            }
+        });
+
+        jButtonDelete.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonDelete.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jButtonDelete.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonDelete.setText("DELETE");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
+
+        jButtonVolver.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonVolver.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jButtonVolver.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonVolver.setText("VOLVER");
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVolverActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelInserciones, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabelActors, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabelActors5))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                    .addComponent(jLabelActors1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelActors6))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                    .addComponent(jLabelActors2))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                    .addComponent(jLabelActors3))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                            .addComponent(jLabelActors4))
-                        .addGap(39, 39, 39))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44))))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                    .addComponent(jButtonDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(204, 0, 51));
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("SAVE");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    // B O T O N  P E L I C U L A S
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        añadiraPeliculas();
-    }//GEN-LAST:event_jButton2ActionPerformed
-    // B O T O N  A C T O R S
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        añadiraActors();
-    }//GEN-LAST:event_jButton1ActionPerformed
-    // B O T O N  S E R I E S
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        añadiraSeries();
-    }//GEN-LAST:event_jButton3ActionPerformed
-    // B O T O N  D I R E C T O R S
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        añadiraDirectors();
-    }//GEN-LAST:event_jButton4ActionPerformed
-    // B O T O N  T E M P O R A D A S
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        añadiraTemporadas();
-    }//GEN-LAST:event_jButton5ActionPerformed
-    // B O T O N  C A P I T U L O S
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        añadiraCapitulos();
-    }//GEN-LAST:event_jButton6ActionPerformed
-    // B O T O N  C R E A D O R  D E  L A  S E R I E
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        añadiraCreadorSerie();
-    }//GEN-LAST:event_jButton7ActionPerformed
+
     // B O T O N  V O L V E R
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         InterfazHibernate interfaz = new InterfazHibernate();
         interfaz.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_jButtonVolverActionPerformed
+    // B O T O N  I R  A  V E N T A N A  U P D A T E
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
+        UpdateObjetos interfaz = new UpdateObjetos();
+        interfaz.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonUpdateActionPerformed
+    // B O T O N  I R  A  V E N T A N A  D E L E T E
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        DeleteObjetos interfaz = new DeleteObjetos();
+        interfaz.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
+    // B O T O N  I N S E R T A R  E N  A C T O R S
+    private void jButtonActorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActorsActionPerformed
+        añadiraActors();
+    }//GEN-LAST:event_jButtonActorsActionPerformed
+    // B O T O N  I N S E R T A R  E N  P E L I C U L A S
+    private void jButtonPeliculasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPeliculasActionPerformed
+        añadiraPeliculas();
+    }//GEN-LAST:event_jButtonPeliculasActionPerformed
+    // B O T O N  I N S E R T A R  E N  S E R I E S
+    private void jButtonSeriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeriesActionPerformed
+        añadiraSeries();
+    }//GEN-LAST:event_jButtonSeriesActionPerformed
+    // B O T O N  I N S E R T A R  E N  D I R E C T O R S
+    private void jButtonDirectorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDirectorsActionPerformed
+        añadiraDirectors();
+    }//GEN-LAST:event_jButtonDirectorsActionPerformed
+    // B O T O N  I N S E R T A R  E N  T E M P O R A D A S
+    private void jButtonTemporadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTemporadasActionPerformed
+        añadiraTemporadas();
+    }//GEN-LAST:event_jButtonTemporadasActionPerformed
+    // B O T O N  I N S E R T A R  E N  C A P I T U L O S
+    private void jButtonCapitulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCapitulosActionPerformed
+        añadiraCapitulos();
+    }//GEN-LAST:event_jButtonCapitulosActionPerformed
+    // B O T O N  I N S E R T A R  E N  C R E A D O R  S E R I E
+    private void jButtonCreadorSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreadorSerieActionPerformed
+        añadiraCreadorSerie();
+    }//GEN-LAST:event_jButtonCreadorSerieActionPerformed
+    // B O T O N  I N S E R T A R  E N  D I R E C C I O N  P E L I C U L A
+    private void jButtonDireccionPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDireccionPeliculaActionPerformed
+        añadiraDireccionPelicula();
+    }//GEN-LAST:event_jButtonDireccionPeliculaActionPerformed
+    // B O T O N  I N S E R T A R  E N  P A R T I C I P A C I O N  A C T O R  P E L I C U L A
+    private void jButtonParticipacionActorPelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonParticipacionActorPelActionPerformed
+        añadiraPActorPelicula();
+    }//GEN-LAST:event_jButtonParticipacionActorPelActionPerformed
+    // B O T O N  I N S E R T A R  E N  P A R T I C I P A C I O N  A C T O R  S E R I E
+    private void jButtonParticipacionActorSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonParticipacionActorSerieActionPerformed
+        añadiraPActorSerie();
+    }//GEN-LAST:event_jButtonParticipacionActorSerieActionPerformed
+    // B O T O N  I N S E R T A R  E N  C R E A C I O N  S E R I E S
+    private void jButtonCreacionSeriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreacionSeriesActionPerformed
+        añadiraCreacionSeries();
+    }//GEN-LAST:event_jButtonCreacionSeriesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -346,43 +438,43 @@ public class InsertarObjetos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JLabel jLabelActors;
-    private javax.swing.JLabel jLabelActors1;
-    private javax.swing.JLabel jLabelActors2;
-    private javax.swing.JLabel jLabelActors3;
-    private javax.swing.JLabel jLabelActors4;
-    private javax.swing.JLabel jLabelActors5;
-    private javax.swing.JLabel jLabelActors6;
-    private javax.swing.JLabel jLabelInserciones;
+    private javax.swing.JButton jButtonActors;
+    private javax.swing.JButton jButtonCapitulos;
+    private javax.swing.JButton jButtonCreacionSeries;
+    private javax.swing.JButton jButtonCreadorSerie;
+    private javax.swing.JButton jButtonDelete;
+    private javax.swing.JButton jButtonDireccionPelicula;
+    private javax.swing.JButton jButtonDirectors;
+    private javax.swing.JButton jButtonParticipacionActorPel;
+    private javax.swing.JButton jButtonParticipacionActorSerie;
+    private javax.swing.JButton jButtonPeliculas;
+    private javax.swing.JButton jButtonSeries;
+    private javax.swing.JButton jButtonTemporadas;
+    private javax.swing.JButton jButtonUpdate;
+    private javax.swing.JButton jButtonVolver;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
-    
+
     // M E T O D O S  I N S E R T S
-    
     // Metodo denominado añadirPeliculas, el cual añade una nueva pelicula a la tabla Peliculas, nos va pidiendo mediante JOptionPane.showInputDialog los
     // atributos de la tabla, ademas, hacemos parseInt al atributo Presupuesto para poder ingresar un numero para el presupuesto.
     private void añadiraPeliculas() {
         try {
-            // Crear un SessionFactory
+            // Creamos un SessionFactory en la clase de Peliculas.
             SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Peliculas_NaM.class).buildSessionFactory();
             Session session = instancia.openSession();
 
-            // Usar JOptionPane para leer los valores de entrada
+            // Usamos JOptionPane para leer los valores introducidos.
             String titulo = JOptionPane.showInputDialog("Introduce el titulo:");
             String duracion = JOptionPane.showInputDialog("Introduce la duración:");
             String genero = JOptionPane.showInputDialog("Introduce el género:");
             String rating = JOptionPane.showInputDialog("Introduce el rating:");
             String pais_pelicula = JOptionPane.showInputDialog("Introduce el país de la película:");
 
-            // Leer y convertir presupuesto a Integer con validación
+            // Convertimos presupuesto a Integer.
             Integer presupuesto = null;
             boolean validInput = false;
             while (!validInput) {
@@ -395,10 +487,10 @@ public class InsertarObjetos extends javax.swing.JFrame {
                 }
             }
 
-            // Crear el objeto Peliculas_NaM con los valores leídos
+            // Creamos el objeto en cuestión.
             Peliculas_NaM p = new Peliculas_NaM(titulo, genero, duracion, rating, pais_pelicula, presupuesto);
 
-            // Iniciar transacción, guardar el objeto y confirmar la transacción
+            // Empezamos la transacción y guardamos el objeto en la base de datos.
             session.beginTransaction();
             session.save(p);
             session.getTransaction().commit();
@@ -408,21 +500,23 @@ public class InsertarObjetos extends javax.swing.JFrame {
         }
     }
 
+    // Metodo denominado añadiraActors, el cual añade un nuevo actor a la tabla Actors, nos va pidiendo mediante JOptionPane.showInputDialog los
+    // atributos de la tabla.
     private void añadiraActors() {
         try {
-            // Crear un SessionFactory
+            // Creamos un SessionFactory en la clase de Actors.
             SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Actors_NaM.class).buildSessionFactory();
             Session session = instancia.openSession();
 
-            // Usar JOptionPane para leer los valores de entrada
+            // Usamos JOptionPane para leer los valores introducidos.
             String nombre_actor = JOptionPane.showInputDialog("Introduce el nombre del actor:");
             String nacionalidad_actor = JOptionPane.showInputDialog("Introduce la nacionalidad del actor:");
             String genero_actor = JOptionPane.showInputDialog("Introduce el género del actor/actriz:");
 
-            // Crear el objeto Peliculas_NaM con los valores leídos
+            // Creamos el objeto en cuestión.
             Actors_NaM a = new Actors_NaM(nombre_actor, nacionalidad_actor, genero_actor);
 
-            // Iniciar transacción, guardar el objeto y confirmar la transacción
+            // Empezamos la transacción y guardamos el objeto en la base de datos.
             session.beginTransaction();
             session.save(a);
             session.getTransaction().commit();
@@ -432,19 +526,22 @@ public class InsertarObjetos extends javax.swing.JFrame {
         }
     }
 
+    // Metodo denominado añadiraSeries, el cual añade una nueva Serie a la tabla Series, nos va pidiendo mediante JOptionPane.showInputDialog los
+    // atributos de la tabla, ademas, hacemos parseInt a los atributos num_temporadas y num_capitulos para poder ingresar un numero al numero de temporadas y capitulos.
     private void añadiraSeries() {
         try {
-            // Crear un SessionFactory
+            // Creamos un SessionFactory en la clase de Series.
             SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Series_1aN.class).buildSessionFactory();
             Session session = instancia.openSession();
 
-            // Usar JOptionPane para leer los valores de entrada
+            // Usamos JOptionPane para leer los valores introducidos.
             String titulo = JOptionPane.showInputDialog("Introduce el título de la serie:");
             String genero = JOptionPane.showInputDialog("Introduce el género de la serie");
             String comienzo_serie = JOptionPane.showInputDialog("Introduce cuando comenzó la serie");
             String final_serie = JOptionPane.showInputDialog("Introduce cuando finalizó la serie");
             String pais_serie = JOptionPane.showInputDialog("Introduce el país de la serie:");
 
+            // Convertimos num_temporadas a Integer.
             Integer num_temporadas = null;
             boolean validInput = false;
             while (!validInput) {
@@ -456,7 +553,7 @@ public class InsertarObjetos extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido para el número de temporadas.");
                 }
             }
-
+            // Convertimos num_capitulos a Integer.
             Integer num_capitulos = null;
             boolean validInput2 = false;
             while (!validInput2) {
@@ -469,10 +566,10 @@ public class InsertarObjetos extends javax.swing.JFrame {
                 }
             }
 
-            // Crear el objeto Peliculas_NaM con los valores leídos
+            // Creamos el objeto en cuestión.
             Series_1aN s = new Series_1aN(titulo, genero, comienzo_serie, final_serie, pais_serie, num_temporadas, num_capitulos);
 
-            // Iniciar transacción, guardar el objeto y confirmar la transacción
+            // Empezamos la transacción y guardamos el objeto en la base de datos.
             session.beginTransaction();
             session.save(s);
             session.getTransaction().commit();
@@ -482,21 +579,23 @@ public class InsertarObjetos extends javax.swing.JFrame {
         }
     }
 
+    // Metodo denominado añadiraDirectors, el cual añade un nuevo director a la tabla Directors, nos va pidiendo mediante JOptionPane.showInputDialog los
+    // atributos de la tabla.
     private void añadiraDirectors() {
         try {
-            // Crear un SessionFactory
+            // Creamos un SessionFactory en la clase de Directors.
             SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Directors_NaM.class).buildSessionFactory();
             Session session = instancia.openSession();
 
-            // Usar JOptionPane para leer los valores de entrada
+            // Usamos JOptionPane para leer los valores introducidos.
             String nombre_director = JOptionPane.showInputDialog("Introduce el nombre del director:");
             String nacionalidad_director = JOptionPane.showInputDialog("Introduce la nacionalidad del director:");
             String genero_director = JOptionPane.showInputDialog("Introduce el género del director:");
 
-            // Crear el objeto Peliculas_NaM con los valores leídos
+            // Creamos el objeto en cuestión.
             Directors_NaM d = new Directors_NaM(nombre_director, nacionalidad_director, genero_director);
 
-            // Iniciar transacción, guardar el objeto y confirmar la transacción
+            // Empezamos la transacción y guardamos el objeto en la base de datos.
             session.beginTransaction();
             session.save(d);
             session.getTransaction().commit();
@@ -506,12 +605,15 @@ public class InsertarObjetos extends javax.swing.JFrame {
         }
     }
 
+    // Metodo denominado añadiraTemporadas, el cual añade una nueva Temporada a la tabla Temporadas, 
+    // hacemos parseInt a los atributos num_temporadam, año_estreno, num_episodio y series_id.
     private void añadiraTemporadas() {
         try {
-            // Crear un SessionFactory
+            // Creamos un SessionFactory en la clase de Temporadas.
             SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Temporadas_1aN.class).buildSessionFactory();
             Session session = instancia.openSession();
 
+            // Convertimos num_temporadas a Integer.
             Integer num_temporada = null;
             boolean validInput = false;
             while (!validInput) {
@@ -523,6 +625,7 @@ public class InsertarObjetos extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido para el número de la temporada.");
                 }
             }
+            // Convertimos año_estreno a Integer.
             Integer año_estreno = null;
             boolean validInput2 = false;
             while (!validInput2) {
@@ -534,6 +637,7 @@ public class InsertarObjetos extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido para la fecha de estreno.");
                 }
             }
+            // Convertimos num_episodios a Integer.
             Integer num_episodios = null;
             boolean validInput3 = false;
             while (!validInput3) {
@@ -545,6 +649,7 @@ public class InsertarObjetos extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido para el número de episodios.");
                 }
             }
+            // Convertimos series_id a Integer.
             Integer series_id = null;
             boolean validInput4 = false;
             while (!validInput4) {
@@ -557,10 +662,10 @@ public class InsertarObjetos extends javax.swing.JFrame {
                 }
             }
 
-            // Crear el objeto Peliculas_NaM con los valores leídos
+            // Creamos el objeto en cuestión.
             Temporadas_1aN t = new Temporadas_1aN(num_temporada, año_estreno, num_episodios, series_id);
 
-            // Iniciar transacción, guardar el objeto y confirmar la transacción
+            // Empezamos la transacción y guardamos el objeto en la base de datos.
             session.beginTransaction();
             session.save(t);
             session.getTransaction().commit();
@@ -570,15 +675,18 @@ public class InsertarObjetos extends javax.swing.JFrame {
         }
     }
 
+    // Metodo denominado añadiraCapitulos, el cual nos va pidiendo mediante JOptionPane.showInputDialog los
+    // atributos de la tabla, ademas hacemos parseInt a los siguientes atributos: numero_episodio y temporada_id.
     private void añadiraCapitulos() {
         try {
-            // Crear un SessionFactory
+            // Creamos un SessionFactory en la clase de Capitulos.
             SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Capitulos.class).buildSessionFactory();
             Session session = instancia.openSession();
 
-            // Usar JOptionPane para leer los valores de entrada
+            // Usamos JOptionPane para leer los valores introducidos.
             String titulo_capitulo = JOptionPane.showInputDialog("Introduce el título del capítulo:");
 
+            // Convertimos numero_episodio a Integer.
             Integer numero_episodio = null;
             boolean validInput = false;
             while (!validInput) {
@@ -590,10 +698,13 @@ public class InsertarObjetos extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido para el episodio.");
                 }
             }
+            // Usamos JOptionPane para leer los valores introducidos.
 
             String duracion_episodio = JOptionPane.showInputDialog("Introduce la duración del episodio:");
             String director_episodio = JOptionPane.showInputDialog("Introduce el director del episodio:");
             String guionista_episodio = JOptionPane.showInputDialog("Introduce el guionista del episodio");
+
+            // Convertimos temporada_id a Integer.
             Integer temporada_id = null;
             boolean validInput2 = false;
             while (!validInput2) {
@@ -606,10 +717,10 @@ public class InsertarObjetos extends javax.swing.JFrame {
                 }
             }
 
-            // Crear el objeto Peliculas_NaM con los valores leídos
+            // Creamos el objeto en cuestión.
             Capitulos c = new Capitulos(titulo_capitulo, numero_episodio, duracion_episodio, director_episodio, guionista_episodio, temporada_id);
 
-            // Iniciar transacción, guardar el objeto y confirmar la transacción
+            // Empezamos la transacción y guardamos el objeto en la base de datos.
             session.beginTransaction();
             session.save(c);
             session.getTransaction().commit();
@@ -619,27 +730,270 @@ public class InsertarObjetos extends javax.swing.JFrame {
         }
     }
 
+    // Metodo denominado añadiraCreadorSerie, el cual nos va pidiendo mediante JOptionPane.showInputDialog los atributos de la tabla.
     private void añadiraCreadorSerie() {
         try {
-            // Crear un SessionFactory
+            // Creamos un SessionFactory en la clase de Creador_Serie.
             SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Creador_Serie_NaM.class).buildSessionFactory();
             Session session = instancia.openSession();
 
-            // Usar JOptionPane para leer los valores de entrada
+            // Usamos JOptionPane para leer los valores introducidos.
             String nombre_creador = JOptionPane.showInputDialog("Introduce el nombre del creador:");
             String nacionalidad_creador = JOptionPane.showInputDialog("Introduce la nacionalidad del creador:");
             String genero_creador = JOptionPane.showInputDialog("Introduce el género del creador:");
 
-            // Crear el objeto Peliculas_NaM con los valores leídos
+            // Creamos el objeto en cuestión.
             Creador_Serie_NaM c = new Creador_Serie_NaM(nombre_creador, nacionalidad_creador, genero_creador);
 
-            // Iniciar transacción, guardar el objeto y confirmar la transacción
+            // Empezamos la transacción y guardamos el objeto en la base de datos.
             session.beginTransaction();
             session.save(c);
             session.getTransaction().commit();
-            JOptionPane.showMessageDialog(null, "Registro insertado en la tabla Actors");
+            JOptionPane.showMessageDialog(null, "Registro insertado en la tabla Creador_Serie");
         } catch (HibernateException he) {
             System.out.println(he);
+        }
+    }
+    // Metodo denominado añadiraDireccionPelicula, el cual nos va pidiendo mediante JOptionPane.showInputDialog los atributos de la tabla, además de si el dato debe
+    // de ser integer, se hace un parseInt.
+    private void añadiraDireccionPelicula() {
+        try {
+            // Creamos un SessionFactory en la clase Direccion Pelicula.
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Direccion_Pelicula.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Convertimos peliculas_id_pelicula a Integer.
+            Integer peliculas_id_pelicula = null;
+            boolean validInput = false;
+            while (!validInput) {
+                try {
+                    String pidStr = JOptionPane.showInputDialog("Introduce el ID de la película:");
+                    peliculas_id_pelicula = Integer.parseInt(pidStr);
+                    validInput = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido.");
+                }
+            }
+
+            // Convertimos directors_id_director a Integer.
+            Integer directors_id_director = null;
+            boolean validInput2 = false;
+            while (!validInput2) {
+                try {
+                    String idDirectorStr = JOptionPane.showInputDialog("Introduce el ID del director:");
+                    directors_id_director = Integer.parseInt(idDirectorStr);
+                    validInput2 = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido.");
+                }
+            }
+
+            Peliculas_NaM pelicula = session.get(Peliculas_NaM.class, peliculas_id_pelicula);
+            Directors_NaM director = session.get(Directors_NaM.class, directors_id_director);
+
+            if (pelicula == null || director == null) {
+                JOptionPane.showMessageDialog(null, "No se encontró la película o el director con los ID proporcionados.");
+                session.close();
+                return;
+            }
+
+            // Creamos el objeto.
+            Direccion_Pelicula d = new Direccion_Pelicula(pelicula, director);
+
+            // Guardamos el objeto en la BBDD.
+            session.beginTransaction();
+            session.save(d);
+            session.getTransaction().commit();
+
+            JOptionPane.showMessageDialog(null, "Registro insertado en la tabla Direccion Pelicula");
+            session.close();
+        } catch (HibernateException he) {
+            System.out.println(he);
+            JOptionPane.showMessageDialog(null, "Error en la operación de base de datos: " + he.getMessage());
+        }
+
+    }
+    // Metodo denominado añadiraPActorPelicula, el cual nos va pidiendo mediante JOptionPane.showInputDialog los atributos de la tabla, además de si el dato debe
+    // de ser integer, se hace un parseInt.
+    private void añadiraPActorPelicula() {
+        try {
+            // Creamos un SessionFactory en la clase Participacion_Actor_Pelicula.
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Participacion_Actor_Pelicula.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Convertimos peliculas_id a Integer.
+            Integer peliculas_id = null;
+            boolean validInput = false;
+            while (!validInput) {
+                try {
+                    String pidStr = JOptionPane.showInputDialog("Introduce el ID de la película:");
+                    peliculas_id = Integer.parseInt(pidStr);
+                    validInput = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido.");
+                }
+            }
+
+            // Convertimos actors_id a Integer.
+            Integer actors_id = null;
+            boolean validInput2 = false;
+            while (!validInput2) {
+                try {
+                    String aidStr = JOptionPane.showInputDialog("Introduce el ID del actor:");
+                    actors_id = Integer.parseInt(aidStr);
+                    validInput2 = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido.");
+                }
+            }
+            
+            // Usamos JOptionPane para leer los valores introducidos.
+            String papel_realiza = JOptionPane.showInputDialog("Introduce el papel que realiza:");
+
+            Peliculas_NaM pelicula = session.get(Peliculas_NaM.class, peliculas_id);
+            Actors_NaM actor = session.get(Actors_NaM.class, actors_id);
+
+            // No deben de ser nulas.
+            if (pelicula == null || actor == null) {
+                JOptionPane.showMessageDialog(null, "No se encontró la película o el actor con los ID proporcionados.");
+                session.close();
+                return;
+            }
+
+            // Creamos el objeto.
+            Participacion_Actor_Pelicula pap = new Participacion_Actor_Pelicula(pelicula, actor, papel_realiza);
+
+            // Guardamos el objeto en la BBDD.
+            session.beginTransaction();
+            session.save(pap);
+            session.getTransaction().commit();
+
+            JOptionPane.showMessageDialog(null, "Registro insertado en la tabla Participacion_Actor_Pelicula");
+            session.close();
+        } catch (HibernateException he) {
+            System.out.println(he);
+            JOptionPane.showMessageDialog(null, "Error en la operación de base de datos: " + he.getMessage());
+        }
+    }
+    // Metodo denominado añadiraPActorSerie, el cual nos va pidiendo mediante JOptionPane.showInputDialog los atributos de la tabla, además de si el dato debe
+    // de ser integer, se hace un parseInt.
+    private void añadiraPActorSerie() {
+        try {
+            // Creamos un SessionFactory en la clase Participacion_Actor_Serie.
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Participacion_Actor_Serie.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Convertimos peliculas_id a Integer.
+            Integer series_id = null;
+            boolean validInput = false;
+            while (!validInput) {
+                try {
+                    String sidStr = JOptionPane.showInputDialog("Introduce el ID de la serie:");
+                    series_id = Integer.parseInt(sidStr);
+                    validInput = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido.");
+                }
+            }
+
+            // Convertimos actors_id a Integer.
+            Integer actors_id = null;
+            boolean validInput2 = false;
+            while (!validInput2) {
+                try {
+                    String aidStr = JOptionPane.showInputDialog("Introduce el ID del actor:");
+                    actors_id = Integer.parseInt(aidStr);
+                    validInput2 = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido.");
+                }
+            }
+            
+            // Usamos JOptionPane para leer los valores introducidos.
+            String papel_realiza = JOptionPane.showInputDialog("Introduce el papel que realiza:");
+
+            Series_1aN serie = session.get(Series_1aN.class, series_id);
+            Actors_NaM actor = session.get(Actors_NaM.class, actors_id);
+
+            // No deben de ser nulas.
+            if (serie == null || actor == null) {
+                JOptionPane.showMessageDialog(null, "No se encontró la serie o el actor con los ID proporcionados.");
+                session.close();
+                return;
+            }
+
+            // Creamos el objeto.
+            Participacion_Actor_Serie pas = new Participacion_Actor_Serie(serie, actor, papel_realiza);
+
+            // Guardamos el objeto en la BBDD.
+            session.beginTransaction();
+            session.save(pas);
+            session.getTransaction().commit();
+
+            JOptionPane.showMessageDialog(null, "Registro insertado en la tabla Participacion_Actor_Serie");
+            session.close();
+        } catch (HibernateException he) {
+            System.out.println(he);
+            JOptionPane.showMessageDialog(null, "Error en la operación de base de datos: " + he.getMessage());
+        }
+    }
+    // Metodo denominado añadiraCreacionSeries, el cual nos va pidiendo mediante JOptionPane.showInputDialog los atributos de la tabla, además de si el dato debe
+    // de ser integer, se hace un parseInt.
+    private void añadiraCreacionSeries() {
+        try {
+            // Creamos un SessionFactory en la clase Participacion_Actor_Serie.
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(creacion_series.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Convertimos series_id a Integer.
+            Integer series_id = null;
+            boolean validInput = false;
+            while (!validInput) {
+                try {
+                    String sidStr = JOptionPane.showInputDialog("Introduce el ID de la serie:");
+                    series_id = Integer.parseInt(sidStr);
+                    validInput = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido.");
+                }
+            }
+
+            // Convertimos creador_id a Integer.
+            Integer creador_id = null;
+            boolean validInput2 = false;
+            while (!validInput2) {
+                try {
+                    String cidStr = JOptionPane.showInputDialog("Introduce el ID del creador:");
+                    creador_id = Integer.parseInt(cidStr);
+                    validInput2 = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido.");
+                }
+            }
+
+            Series_1aN serie = session.get(Series_1aN.class, series_id);
+            Creador_Serie_NaM creador = session.get(Creador_Serie_NaM.class, creador_id);
+
+            // No deben de ser nulas.
+            if (serie == null || creador == null) {
+                JOptionPane.showMessageDialog(null, "No se encontró la serie o el creador con los ID proporcionados.");
+                session.close();
+                return;
+            }
+
+            // Creamos el objeto.
+            creacion_series cs = new creacion_series(serie, creador);
+
+            // Guardamos el objeto en la BBDD.
+            session.beginTransaction();
+            session.save(cs);
+            session.getTransaction().commit();
+
+            JOptionPane.showMessageDialog(null, "Registro insertado en la tabla Creacion_Series");
+            session.close();
+        } catch (HibernateException he) {
+            System.out.println(he);
+            JOptionPane.showMessageDialog(null, "Error en la operación de base de datos: " + he.getMessage());
         }
     }
 }

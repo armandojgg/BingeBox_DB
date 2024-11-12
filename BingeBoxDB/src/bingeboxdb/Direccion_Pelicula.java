@@ -25,13 +25,14 @@ import javax.persistence.Table;
  * @author Armando
  */
 
+// Clase Direccion_Pelicula en la cual se le asigna unos atributos, unos métodos GET y SET y su relación.
 @Entity
 @Table(name = "direccion_pelicula")
 public class Direccion_Pelicula implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -91,7 +92,6 @@ public class Direccion_Pelicula implements Serializable {
     public void setPeliculas(List<Peliculas_NaM> peliculas) {
         this.peliculas = peliculas;
     }
-
     
 
     @Override

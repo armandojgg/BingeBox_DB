@@ -24,6 +24,7 @@ import javax.persistence.Table;
  *
  * @author Armando
  */
+// Clase Series_1aN en la cual se le asigna unos atributos, unos métodos GET y SET y su relación.
 @Entity
 @Table(name = "series")
 public class Series_1aN implements Serializable {

@@ -23,6 +23,7 @@ import javax.persistence.Table;
  *
  * @author Armando
  */
+// Clase Peliculas_NaM en la cual se le asigna unos atributos, unos métodos GET y SET y su relación.
 @Entity
 @Table(name = "peliculas")
 public class Peliculas_NaM implements Serializable {

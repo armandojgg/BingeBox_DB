@@ -4,6 +4,9 @@
  */
 package bingeboxdb;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -20,7 +23,16 @@ public class UpdateObjetos extends javax.swing.JFrame {
      * Creates new form UpdateObjetos
      */
     public UpdateObjetos() {
-        setTitle("BingeBox Database");
+        this.setSize(800, 600);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        int x = (screenSize.width - this.getWidth()) / 2;
+        int y = (screenSize.height - this.getHeight()) / 2;
+
+        this.setLocation(x, y);
+        setTitle("BingeBox Database - Update");
         initComponents();
     }
 
@@ -35,147 +47,139 @@ public class UpdateObjetos extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabelInserciones = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jLabelActors = new javax.swing.JLabel();
-        jLabelActors1 = new javax.swing.JLabel();
-        jLabelActors2 = new javax.swing.JLabel();
-        jLabelActors3 = new javax.swing.JLabel();
-        jLabelActors4 = new javax.swing.JLabel();
-        jLabelActors5 = new javax.swing.JLabel();
-        jLabelActors6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        jButtonActors = new javax.swing.JButton();
+        jButtonPeliculas = new javax.swing.JButton();
+        jButtonSeries = new javax.swing.JButton();
+        jButtonDirectors = new javax.swing.JButton();
+        jButtonTemporadas = new javax.swing.JButton();
+        jButtonCapitulos = new javax.swing.JButton();
+        jButtonCreadorSerie = new javax.swing.JButton();
+        jButtonDireccionPelicula = new javax.swing.JButton();
+        jButtonParticipacionActorPel = new javax.swing.JButton();
+        jButtonParticipacionActorSerie = new javax.swing.JButton();
+        jButtonCreacionSeries = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jButtonDelete = new javax.swing.JButton();
+        jButtonVolver = new javax.swing.JButton();
+        jButtonSave = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(846, 647));
 
-        jPanel1.setBackground(new java.awt.Color(102, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(204, 255, 255));
 
-        jLabelInserciones.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabelInserciones.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelInserciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelInserciones.setText("U P D A T E");
-
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
-        jButton8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(0, 0, 0));
-        jButton8.setText("Volver");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        jButtonActors.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonActors.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonActors.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonActors.setText("Actors");
+        jButtonActors.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                jButtonActorsActionPerformed(evt);
             }
         });
 
-        jLabelActors.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabelActors.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelActors.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelActors.setText("Actors");
-
-        jLabelActors1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabelActors1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelActors1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelActors1.setText("Peliculas");
-
-        jLabelActors2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabelActors2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelActors2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelActors2.setText("Series");
-
-        jLabelActors3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabelActors3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelActors3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelActors3.setText("Directors");
-
-        jLabelActors4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabelActors4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelActors4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelActors4.setText("Temporadas");
-
-        jLabelActors5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabelActors5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelActors5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelActors5.setText("Capitulos");
-
-        jLabelActors6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabelActors6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelActors6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelActors6.setText("Creador de la serie");
-
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Actors");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPeliculas.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonPeliculas.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonPeliculas.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonPeliculas.setText("Peliculas");
+        jButtonPeliculas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonPeliculasActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Peliculas");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSeries.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonSeries.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonSeries.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSeries.setText("Series");
+        jButtonSeries.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonSeriesActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jButton3.setText("Series");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDirectors.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonDirectors.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonDirectors.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonDirectors.setText("Directors");
+        jButtonDirectors.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonDirectorsActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setText("Directors");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonTemporadas.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonTemporadas.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonTemporadas.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonTemporadas.setText("Temporadas");
+        jButtonTemporadas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonTemporadasActionPerformed(evt);
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(0, 0, 0));
-        jButton5.setText("Temporadas");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCapitulos.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonCapitulos.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonCapitulos.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCapitulos.setText("Capitulos");
+        jButtonCapitulos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButtonCapitulosActionPerformed(evt);
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(0, 0, 0));
-        jButton6.setText("Capitulos");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCreadorSerie.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonCreadorSerie.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonCreadorSerie.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCreadorSerie.setText("Creador");
+        jButtonCreadorSerie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jButtonCreadorSerieActionPerformed(evt);
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jButton7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(0, 0, 0));
-        jButton7.setText("Creador de la Serie");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDireccionPelicula.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonDireccionPelicula.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonDireccionPelicula.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonDireccionPelicula.setText("Direccion pelicula");
+        jButtonDireccionPelicula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                jButtonDireccionPeliculaActionPerformed(evt);
+            }
+        });
+
+        jButtonParticipacionActorPel.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonParticipacionActorPel.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonParticipacionActorPel.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonParticipacionActorPel.setText("P. Actor Película");
+        jButtonParticipacionActorPel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonParticipacionActorPelActionPerformed(evt);
+            }
+        });
+
+        jButtonParticipacionActorSerie.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonParticipacionActorSerie.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonParticipacionActorSerie.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonParticipacionActorSerie.setText("P. Actor Serie");
+        jButtonParticipacionActorSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonParticipacionActorSerieActionPerformed(evt);
+            }
+        });
+
+        jButtonCreacionSeries.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonCreacionSeries.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButtonCreacionSeries.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCreacionSeries.setText("Creacion series");
+        jButtonCreacionSeries.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCreacionSeriesActionPerformed(evt);
             }
         });
 
@@ -184,136 +188,224 @@ public class UpdateObjetos extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonDirectors, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addComponent(jButtonDireccionPelicula)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButtonSeries, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonCreadorSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButtonPeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonCapitulos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButtonActors, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(68, 68, 68)
+                                .addComponent(jButtonTemporadas, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelActors, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabelActors1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelActors3)
-                                    .addComponent(jLabelActors2)
-                                    .addComponent(jLabelActors4))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(86, 86, 86)
-                                        .addComponent(jLabelActors6))
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)))))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabelActors5, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(210, 210, 210)
-                            .addComponent(jLabelInserciones, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(48, 48, 48))
+                            .addComponent(jButtonParticipacionActorPel)
+                            .addComponent(jButtonParticipacionActorSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonCreacionSeries, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabelInserciones, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelActors, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelActors5)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelActors1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2))
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelActors2)
-                            .addComponent(jButton3))
-                        .addGap(47, 47, 47))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelActors6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jButtonActors, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonTemporadas, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonParticipacionActorPel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(63, 63, 63)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelActors3)
-                    .addComponent(jButton4))
-                .addGap(33, 33, 33)
+                    .addComponent(jButtonPeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCapitulos, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonParticipacionActorSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jLabelActors4))
-                .addGap(18, 18, 18)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72))
+                    .addComponent(jButtonCreadorSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSeries, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCreacionSeries, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonDirectors, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonDireccionPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(204, 0, 51));
+        jPanel3.setForeground(new java.awt.Color(153, 0, 0));
+
+        jButtonDelete.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonDelete.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jButtonDelete.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonDelete.setText("DELETE");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
+
+        jButtonVolver.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonVolver.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jButtonVolver.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonVolver.setText("VOLVER");
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVolverActionPerformed(evt);
+            }
+        });
+
+        jButtonSave.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonSave.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jButtonSave.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSave.setText("SAVE");
+        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                    .addComponent(jButtonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(204, 0, 51));
+
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("UPDATE");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    // B O T O N  V O L V E R
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    // B O T O N  U P D A T E  E N  A C T O R S
+    private void jButtonActorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActorsActionPerformed
+        updateActors();
+    }//GEN-LAST:event_jButtonActorsActionPerformed
+    // B O T O N  U P D A T E  E N  P E L I C U L A S
+    private void jButtonPeliculasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPeliculasActionPerformed
+        updatePeliculas();
+    }//GEN-LAST:event_jButtonPeliculasActionPerformed
+    // B O T O N  U P D A T E  E N  S E R I E S
+    private void jButtonSeriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeriesActionPerformed
+        updateSeries();
+    }//GEN-LAST:event_jButtonSeriesActionPerformed
+    // B O T O N  U P D A T E  E N  D I R E C T O R S
+    private void jButtonDirectorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDirectorsActionPerformed
+        updateDirectors();
+    }//GEN-LAST:event_jButtonDirectorsActionPerformed
+    // B O T O N  U P D A T E  E N  T E M P O R A D A S
+    private void jButtonTemporadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTemporadasActionPerformed
+        updateTemporadas();
+    }//GEN-LAST:event_jButtonTemporadasActionPerformed
+    // B O T O N  U P D A T E  E N  C A P I T U L O S
+    private void jButtonCapitulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCapitulosActionPerformed
+        updateCapitulos();
+    }//GEN-LAST:event_jButtonCapitulosActionPerformed
+    // B O T O N  U P D A T E  E N  C R E A D O R  S E R I E
+    private void jButtonCreadorSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreadorSerieActionPerformed
+        updateCreadorSerie();
+    }//GEN-LAST:event_jButtonCreadorSerieActionPerformed
+    // B O T O N  I R  A  D E L E T E
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        DeleteObjetos interfaz = new DeleteObjetos();
+        interfaz.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
+    // B O T O N  V O L V E R  A  L A  V E N T A N A  P R I N C I P A L
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         InterfazHibernate interfaz = new InterfazHibernate();
         interfaz.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        updateActors();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        updateSeries();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        updateDirectors();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        updateTemporadas();
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        updateCapitulos();
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        updateCreadorSerie();
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        updatePeliculas();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonVolverActionPerformed
+    // B O T O N  I R  A  S A V E
+    private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
+        InsertarObjetos interfaz = new InsertarObjetos();
+        interfaz.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonSaveActionPerformed
+    // B O T O N  U P D A T E  E N  D I R E C C I O N  P E L I C U L A
+    private void jButtonDireccionPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDireccionPeliculaActionPerformed
+        updateDireccionPelicula();
+    }//GEN-LAST:event_jButtonDireccionPeliculaActionPerformed
+    // B O T O N  U P D A T E  E N  P A R T I C I P A C I O N  A C T O R  P E L I C U L A
+    private void jButtonParticipacionActorPelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonParticipacionActorPelActionPerformed
+        updatePActorPelicula();
+    }//GEN-LAST:event_jButtonParticipacionActorPelActionPerformed
+    // B O T O N  U P D A T E  E N  P A R T I CI P A C I O N  A C T O R  S E R I E
+    private void jButtonParticipacionActorSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonParticipacionActorSerieActionPerformed
+        updatePActorSerie();
+    }//GEN-LAST:event_jButtonParticipacionActorSerieActionPerformed
+    // B O T O N  U P D A T E  E N  C R E A C I O N  S E R I E S
+    private void jButtonCreacionSeriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreacionSeriesActionPerformed
+        updateCreacionSeries();
+    }//GEN-LAST:event_jButtonCreacionSeriesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,31 +443,38 @@ public class UpdateObjetos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButtonActors;
+    private javax.swing.JButton jButtonCapitulos;
+    private javax.swing.JButton jButtonCreacionSeries;
+    private javax.swing.JButton jButtonCreadorSerie;
+    private javax.swing.JButton jButtonDelete;
+    private javax.swing.JButton jButtonDireccionPelicula;
+    private javax.swing.JButton jButtonDirectors;
+    private javax.swing.JButton jButtonParticipacionActorPel;
+    private javax.swing.JButton jButtonParticipacionActorSerie;
+    private javax.swing.JButton jButtonPeliculas;
+    private javax.swing.JButton jButtonSave;
+    private javax.swing.JButton jButtonSeries;
+    private javax.swing.JButton jButtonTemporadas;
+    private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelActors;
-    private javax.swing.JLabel jLabelActors1;
-    private javax.swing.JLabel jLabelActors2;
-    private javax.swing.JLabel jLabelActors3;
-    private javax.swing.JLabel jLabelActors4;
-    private javax.swing.JLabel jLabelActors5;
-    private javax.swing.JLabel jLabelActors6;
-    private javax.swing.JLabel jLabelInserciones;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
     // M E T O D O S  U P D A T E
+
+    /* Metodo denominado 'updateActors' el cual realiza lo siguiente: Primero creamos un SessionFactory de la clase en cuestión, luego
+       usamos JOptionPane para leer los valores introducidos, o convertimos valores que lo requieran a Integer, realizamos la actualización de los valores de la clase.
+       Por último empezamos la transacción y actualizamos el objeto en la base de datos.
+     */
     private void updateActors() {
-        // Crear un SessionFactory
+        // Creamos un SessionFactory en la clase de Actors.
         SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Actors_NaM.class).buildSessionFactory();
         Session session = instancia.openSession();
 
+        // Convertimos id_actor a Integer.
         Integer id_actor = null;
         boolean validInput = false;
         while (!validInput) {
@@ -388,19 +487,20 @@ public class UpdateObjetos extends javax.swing.JFrame {
             }
         }
 
+        // Usamos JOptionPane para leer los valores introducidos.
         String nombre_actor = JOptionPane.showInputDialog("Introduce el nombre del actor:");
         String nacionalidad_actor = JOptionPane.showInputDialog("Introduce la nacionalidad del actor:");
         String genero_actor = JOptionPane.showInputDialog("Introduce el género del actor/actriz:");
 
         Actors_NaM a = session.get(Actors_NaM.class, id_actor);
         try {
-            // Actualizar los valores del objeto
+            // Realizamos la actualización de los valores de la clase.
             if (a != null) {
                 a.setNombre_actor(nombre_actor);
                 a.setNacionalidadActor(nacionalidad_actor);
                 a.setGenero_actor(genero_actor);
 
-                // Iniciar transacción, actualizar el objeto y confirmar la transacción
+                // Empezamos la transacción y actualizamos el objeto en la base de datos.
                 session.beginTransaction();
                 session.update(a);
                 session.getTransaction().commit();
@@ -413,11 +513,16 @@ public class UpdateObjetos extends javax.swing.JFrame {
         }
     }
 
+    /* Metodo denominado 'updateSeries' el cual realiza lo siguiente: Primero creamos un SessionFactory de la clase en cuestión, luego
+       usamos JOptionPane para leer los valores introducidos, o convertimos valores que lo requieran a Integer, realizamos la actualización de los valores de la clase.
+       Por último empezamos la transacción y actualizamos el objeto en la base de datos.
+     */
     private void updateSeries() {
-        // Crear un SessionFactory
+        // Creamos un SessionFactory en la clase de Series.
         SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Series_1aN.class).buildSessionFactory();
         Session session = instancia.openSession();
 
+        // Convertimos id_serie a Integer.
         Integer id_serie = null;
         boolean validInput = false;
         while (!validInput) {
@@ -429,12 +534,14 @@ public class UpdateObjetos extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Por favor, introduce un ID de alguna serie.");
             }
         }
-
+        // Usamos JOptionPane para leer los valores introducidos.
         String titulo = JOptionPane.showInputDialog("Introduce el titulo de la serie:");
         String genero = JOptionPane.showInputDialog("Introduce el género de la serie:");
         String comienzo_serie = JOptionPane.showInputDialog("Introduce cuando comenzó de la serie:");
         String final_serie = JOptionPane.showInputDialog("Introduce cuando acabó la serie:");
         String pais_serie = JOptionPane.showInputDialog("Introduce el país de la serie:");
+
+        // Convertimos num_temporadas a Integer.
         Integer num_temporadas = null;
         boolean validInput2 = false;
         while (!validInput2) {
@@ -446,7 +553,7 @@ public class UpdateObjetos extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Por favor, introduce un número válido para las temporadas.");
             }
         }
-
+        // Convertimos num_capitulos a Integer.
         Integer num_capitulos = null;
         boolean validInput3 = false;
         while (!validInput3) {
@@ -461,7 +568,7 @@ public class UpdateObjetos extends javax.swing.JFrame {
 
         Series_1aN s = session.get(Series_1aN.class, id_serie);
         try {
-            // Actualizar los valores del objeto
+            // Realizamos la actualización de los valores de la clase.
             if (s != null) {
                 s.setTitulo(titulo);
                 s.setGenero(genero);
@@ -471,7 +578,7 @@ public class UpdateObjetos extends javax.swing.JFrame {
                 s.setNum_temporadas(num_temporadas);
                 s.setNum_capitulos(num_capitulos);
 
-                // Iniciar transacción, actualizar el objeto y confirmar la transacción
+                // Empezamos la transacción y actualizamos el objeto en la base de datos.
                 session.beginTransaction();
                 session.update(s);
                 session.getTransaction().commit();
@@ -484,11 +591,16 @@ public class UpdateObjetos extends javax.swing.JFrame {
         }
     }
 
+    /* Metodo denominado 'updateDirectors' el cual realiza lo siguiente: Primero creamos un SessionFactory de la clase en cuestión, luego
+       usamos JOptionPane para leer los valores introducidos, o convertimos valores que lo requieran a Integer, realizamos la actualización de los valores de la clase.
+       Por último empezamos la transacción y actualizamos el objeto en la base de datos.
+     */
     private void updateDirectors() {
-        // Crear un SessionFactory
+        // Creamos un SessionFactory en la clase de Directors.
         SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Directors_NaM.class).buildSessionFactory();
         Session session = instancia.openSession();
 
+        // Convertimos id_director a Integer.
         Integer id_director = null;
         boolean validInput = false;
         while (!validInput) {
@@ -501,19 +613,20 @@ public class UpdateObjetos extends javax.swing.JFrame {
             }
         }
 
+        // Usamos JOptionPane para leer los valores introducidos.
         String nombre_director = JOptionPane.showInputDialog("Introduce el nombre del director:");
         String nacionalidad_director = JOptionPane.showInputDialog("Introduce la nacionalidad del director:");
         String genero_director = JOptionPane.showInputDialog("Introduce el género del director:");
 
         Directors_NaM d = session.get(Directors_NaM.class, id_director);
         try {
-            // Actualizar los valores del objeto
+            // Realizamos la actualización de los valores de la clase.
             if (d != null) {
                 d.setNombre(nombre_director);
                 d.setNacionalidad(nacionalidad_director);
                 d.setGenero(genero_director);
 
-                // Iniciar transacción, actualizar el objeto y confirmar la transacción
+                // Empezamos la transacción y actualizamos el objeto en la base de datos.
                 session.beginTransaction();
                 session.update(d);
                 session.getTransaction().commit();
@@ -526,11 +639,15 @@ public class UpdateObjetos extends javax.swing.JFrame {
         }
     }
 
+    /* Metodo denominado 'updateTemporadas' el cual realiza lo siguiente: Primero creamos un SessionFactory de la clase en cuestión, luego
+       usamos JOptionPane para leer los valores introducidos, o convertimos valores que lo requieran a Integer, realizamos la actualización de los valores de la clase.
+       Por último empezamos la transacción y actualizamos el objeto en la base de datos.
+     */
     private void updateTemporadas() {
-        // Crear un SessionFactory
+        // Creamos un SessionFactory en la clase de Temporadas.
         SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Temporadas_1aN.class).buildSessionFactory();
         Session session = instancia.openSession();
-
+        // Convertimos id_temporada a Integer.
         Integer id_temporada = null;
         boolean validInput = false;
         while (!validInput) {
@@ -542,7 +659,7 @@ public class UpdateObjetos extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Por favor, introduce un ID válido de la temporada.");
             }
         }
-
+        // Convertimos num_capitulos a Integer.
         Integer num_temporada = null;
         boolean validInput2 = false;
         while (!validInput2) {
@@ -554,7 +671,7 @@ public class UpdateObjetos extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Por favor, introduce un número valido de temporada.");
             }
         }
-
+        // Convertimos año_estreno a Integer.
         Integer año_estreno = null;
         boolean validInput3 = false;
         while (!validInput3) {
@@ -566,7 +683,7 @@ public class UpdateObjetos extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Por favor, introduce año de estreno válido.");
             }
         }
-
+        // Convertimos num_episodios a Integer.
         Integer num_episodios = null;
         boolean validInput4 = false;
         while (!validInput4) {
@@ -581,13 +698,13 @@ public class UpdateObjetos extends javax.swing.JFrame {
 
         Temporadas_1aN t = session.get(Temporadas_1aN.class, id_temporada);
         try {
-            // Actualizar los valores del objeto
+            // Realizamos la actualización de los valores de la clase.
             if (t != null) {
                 t.setNum_temporada(num_temporada);
                 t.setAño_estreno(año_estreno);
                 t.setNum_episodios(num_episodios);
 
-                // Iniciar transacción, actualizar el objeto y confirmar la transacción
+                // Empezamos la transacción y actualizamos el objeto en la base de datos.
                 session.beginTransaction();
                 session.update(t);
                 session.getTransaction().commit();
@@ -600,11 +717,15 @@ public class UpdateObjetos extends javax.swing.JFrame {
         }
     }
 
+    /* Metodo denominado 'updateCapitulos' el cual realiza lo siguiente: Primero creamos un SessionFactory de la clase en cuestión, luego
+       usamos JOptionPane para leer los valores introducidos, o convertimos valores que lo requieran a Integer, realizamos la actualización de los valores de la clase.
+       Por último empezamos la transacción y actualizamos el objeto en la base de datos.
+     */
     private void updateCapitulos() {
-        // Crear un SessionFactory
+        // Creamos un SessionFactory en la clase de Capitulos.
         SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Capitulos.class).buildSessionFactory();
         Session session = instancia.openSession();
-
+        // Convertimos id_capitulo a Integer.
         Integer id_capitulo = null;
         boolean validInput = false;
         while (!validInput) {
@@ -617,8 +738,10 @@ public class UpdateObjetos extends javax.swing.JFrame {
             }
         }
 
+        // Usamos JOptionPane para leer los valores introducidos.
         String titulo_capitulo = JOptionPane.showInputDialog("Introduce el título del capítulo:");
 
+        // Convertimos numero_capitulo a Integer.
         Integer numero_capitulo = null;
         boolean validInput2 = false;
         while (!validInput2) {
@@ -630,13 +753,14 @@ public class UpdateObjetos extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Por favor, introduce un número.");
             }
         }
+        // Usamos JOptionPane para leer los valores introducidos.
         String duracion_episodio = JOptionPane.showInputDialog("Introduce la duración del episodio:");
         String director_episodio = JOptionPane.showInputDialog("Introduce el director del episodio:");
         String guionista_episodio = JOptionPane.showInputDialog("Introduce el guionista del episodio:");
 
         Capitulos c = session.get(Capitulos.class, id_capitulo);
         try {
-            // Actualizar los valores del objeto
+            // Realizamos la actualización de los valores de la clase.
             if (c != null) {
                 c.setTitulo_capitulo(titulo_capitulo);
                 c.setNumero_episodio(numero_capitulo);
@@ -644,7 +768,7 @@ public class UpdateObjetos extends javax.swing.JFrame {
                 c.setDirector_episodio(director_episodio);
                 c.setGuionista_episodio(guionista_episodio);
 
-                // Iniciar transacción, actualizar el objeto y confirmar la transacción
+                // Empezamos la transacción y actualizamos el objeto en la base de datos.
                 session.beginTransaction();
                 session.update(c);
                 session.getTransaction().commit();
@@ -657,11 +781,16 @@ public class UpdateObjetos extends javax.swing.JFrame {
         }
     }
 
+    /* Metodo denominado 'updateCreadorSerie' el cual realiza lo siguiente: Primero creamos un SessionFactory de la clase en cuestión, luego
+       usamos JOptionPane para leer los valores introducidos, o convertimos valores que lo requieran a Integer, realizamos la actualización de los valores de la clase.
+       Por último empezamos la transacción y actualizamos el objeto en la base de datos.
+     */
     private void updateCreadorSerie() {
-        // Crear un SessionFactory
+        // Creamos un SessionFactory en la clase de Creador_Serie.
         SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Creador_Serie_NaM.class).buildSessionFactory();
         Session session = instancia.openSession();
 
+        // Convertimos idcreador_serie a Integer.
         Integer idcreador_serie = null;
         boolean validInput = false;
         while (!validInput) {
@@ -674,19 +803,20 @@ public class UpdateObjetos extends javax.swing.JFrame {
             }
         }
 
+        // Usamos JOptionPane para leer los valores introducidos.
         String nombre_creador = JOptionPane.showInputDialog("Introduce el nombre del creador:");
         String nacionalidad_creador = JOptionPane.showInputDialog("Introduce la nacionalidad del creador:");
         String genero_creador = JOptionPane.showInputDialog("Introduce el género del creador:");
 
         Creador_Serie_NaM cs = session.get(Creador_Serie_NaM.class, idcreador_serie);
         try {
-            // Actualizar los valores del objeto
+            // Realizamos la actualización de los valores de la clase.
             if (cs != null) {
                 cs.setNombre(nombre_creador);
                 cs.setNacionalidad(nacionalidad_creador);
                 cs.setGenero(genero_creador);
 
-                // Iniciar transacción, actualizar el objeto y confirmar la transacción
+                // Empezamos la transacción y actualizamos el objeto en la base de datos.
                 session.beginTransaction();
                 session.update(cs);
                 session.getTransaction().commit();
@@ -699,11 +829,16 @@ public class UpdateObjetos extends javax.swing.JFrame {
         }
     }
 
+    /* Metodo denominado 'updatePeliculas' el cual realiza lo siguiente: Primero creamos un SessionFactory de la clase en cuestión, luego
+       usamos JOptionPane para leer los valores introducidos, o convertimos valores que lo requieran a Integer, realizamos la actualización de los valores de la clase.
+       Por último empezamos la transacción y actualizamos el objeto en la base de datos.
+     */
     private void updatePeliculas() {
-        // Crear un SessionFactory
+        // Creamos un SessionFactory en la clase de Peliculas.
         SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Peliculas_NaM.class).buildSessionFactory();
         Session session = instancia.openSession();
 
+        // Convertimos id_pelicula a Integer.
         Integer id_pelicula = null;
         boolean validInput = false;
         while (!validInput) {
@@ -715,13 +850,14 @@ public class UpdateObjetos extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Por favor, introduce un ID válido.");
             }
         }
-
+        // Usamos JOptionPane para leer los valores introducidos.
         String titulo = JOptionPane.showInputDialog("Introduce el título de la película:");
         String genero = JOptionPane.showInputDialog("Introduce el genero de la película:");
         String duracion = JOptionPane.showInputDialog("Introduce la duración de la película:");
         String rating = JOptionPane.showInputDialog("Introduce el rating de la película:");
         String pais_pelicula = JOptionPane.showInputDialog("Introduce el país de la película:");
 
+        // Convertimos presupuesto a Integer.
         Integer presupuesto = null;
         boolean validInput2 = false;
         while (!validInput2) {
@@ -736,7 +872,7 @@ public class UpdateObjetos extends javax.swing.JFrame {
 
         Peliculas_NaM p = session.get(Peliculas_NaM.class, id_pelicula);
         try {
-            // Actualizar los valores del objeto
+            // Realizamos la actualización de los valores de la clase.
             if (p != null) {
                 p.setTitulo(titulo);
                 p.setGenero(genero);
@@ -745,7 +881,7 @@ public class UpdateObjetos extends javax.swing.JFrame {
                 p.setPais_pelicula(pais_pelicula);
                 p.setPresupuesto(presupuesto);
 
-                // Iniciar transacción, actualizar el objeto y confirmar la transacción
+                // Empezamos la transacción y actualizamos el objeto en la base de datos.
                 session.beginTransaction();
                 session.update(p);
                 session.getTransaction().commit();
@@ -756,5 +892,340 @@ public class UpdateObjetos extends javax.swing.JFrame {
         } catch (HibernateException he) {
             System.out.println(he);
         }
+    }
+    /* Metodo denominado 'updateDireccionPelicula'
+    
+    */
+    private void updateDireccionPelicula() {
+        try {
+            // Creamos un SessionFactory en la clase Direccion_Pelicula.
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Direccion_Pelicula.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Pasamos direccion_id_pelicula a Integer.
+            Integer direccion_id_pelicula = null;
+            boolean validInput = false;
+            while (!validInput) {
+                try {
+                    String idPrincipal = JOptionPane.showInputDialog("Introduce el ID principal:");
+                    direccion_id_pelicula = Integer.parseInt(idPrincipal);
+                    validInput = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un ID correcto.");
+                }
+            }
+            Direccion_Pelicula direccionPelicula = session.get(Direccion_Pelicula.class, direccion_id_pelicula);
+
+            if (direccionPelicula == null) {
+                JOptionPane.showMessageDialog(null, "No se encontró la Dirección de Película con el ID proporcionado.");
+                session.close();
+                return;
+            }
+            // Pasamos peliculas_id_pelicula a Integer.
+            Integer peliculas_id_pelicula = null;
+            boolean validInput2 = false;
+            while (!validInput2) {
+                try {
+                    String pidStr = JOptionPane.showInputDialog("Introduce el nuevo ID de la película:");
+                    peliculas_id_pelicula = Integer.parseInt(pidStr);
+                    validInput2 = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un ID correcto.");
+                }
+            }
+            // Pasamos directors_id_director a Integer.
+            Integer directors_id_director = null;
+            boolean validInput3 = false;
+            while (!validInput3) {
+                try {
+                    String idDirectorStr = JOptionPane.showInputDialog("Introduce el nuevo ID del director:");
+                    directors_id_director = Integer.parseInt(idDirectorStr);
+                    validInput3 = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un ID correcto.");
+                }
+            }
+
+            Peliculas_NaM nuevaPelicula = session.get(Peliculas_NaM.class, peliculas_id_pelicula);
+            Directors_NaM nuevoDirector = session.get(Directors_NaM.class, directors_id_director);
+
+            if (nuevaPelicula == null || nuevoDirector == null) {
+                JOptionPane.showMessageDialog(null, "No se encontró la película o el director con los ID proporcionados.");
+                session.close();
+                return;
+            }
+
+            direccionPelicula.setDirector(nuevoDirector);
+            direccionPelicula.setPelicula(nuevaPelicula);
+
+            session.beginTransaction();
+
+            session.update(direccionPelicula);
+
+            session.getTransaction().commit();
+
+            JOptionPane.showMessageDialog(null, "Registro actualizado exitosamente en Direccion_Pelicula.");
+            session.close();
+        } catch (HibernateException he) {
+            System.out.println(he);
+            JOptionPane.showMessageDialog(null, "Error en la operación de base de datos: " + he.getMessage());
+        }
+
+    }
+    /* Metodo denominado 'updatePActorPelicula'
+    
+    */
+    private void updatePActorPelicula() {
+        try {
+            // Creamos un SessionFactory en la clase Participacion_Actor_Pelicula.
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml")
+                    .addAnnotatedClass(Participacion_Actor_Pelicula.class)
+                    .buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Convertimos participacion_id a Integer.
+            Integer participacion_id = null;
+            boolean validInput = false;
+
+            // Pedimos el ID principal de la tabla.
+            while (!validInput) {
+                try {
+                    String idPrincipal = JOptionPane.showInputDialog("Introduce el ID principal:");
+                    participacion_id = Integer.parseInt(idPrincipal);
+                    validInput = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un ID válido.");
+                }
+            }
+
+            Participacion_Actor_Pelicula pap = session.get(Participacion_Actor_Pelicula.class, participacion_id);
+
+            if (pap == null) {
+                JOptionPane.showMessageDialog(null, "No se encontró el ID.");
+                session.close();
+                return;
+            }
+
+            // Preguntamos que papel realiza.
+            String papel_realiza = JOptionPane.showInputDialog("Introduce el nuevo papel que realizará el actor:");
+
+            // Se pregunta si se desea cambiar el ID de la película en cuestión.
+            Integer peliculas_id = null;
+            validInput = false;
+            while (!validInput) {
+                try {
+                    String pidStr = JOptionPane.showInputDialog("Introduce el nuevo ID de la película (Si no quieres, dejalo en blanco):");
+                    if (!pidStr.trim().isEmpty()) {
+                        peliculas_id = Integer.parseInt(pidStr);
+                        validInput = true;
+                    } else {
+                        validInput = true;
+                    }
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un ID válido.");
+                }
+            }
+
+            if (peliculas_id != null) {
+                Peliculas_NaM nuevaPelicula = session.get(Peliculas_NaM.class, peliculas_id);
+                if (nuevaPelicula == null) {
+                    JOptionPane.showMessageDialog(null, "No se encontró el ID de la película.");
+                    session.close();
+                    return;
+                }
+                pap.setPelicula(nuevaPelicula);
+            }
+
+            // Se pregunta si se desea cambiar el ID del actor en cuestión
+            Integer actors_id = null;
+            validInput = false;
+            while (!validInput) {
+                try {
+                    String aidStr = JOptionPane.showInputDialog("Introduce el nuevo ID del actor (Si no quieres cambiarlo, dejalo en blanco):");
+                    if (!aidStr.trim().isEmpty()) {
+                        actors_id = Integer.parseInt(aidStr);
+                        validInput = true;
+                    } else {
+                        validInput = true;
+                    }
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un ID válido.");
+                }
+            }
+
+            if (actors_id != null) {
+                Actors_NaM nuevoActor = session.get(Actors_NaM.class, actors_id);
+                if (nuevoActor == null) {
+                    JOptionPane.showMessageDialog(null, "No se encontró el actor con el ID proporcionado.");
+                    session.close();
+                    return;
+                }
+                pap.setActor(nuevoActor);
+            }
+
+            pap.setPapel_realiza(papel_realiza);
+
+            session.beginTransaction();
+
+            session.update(pap);
+
+            session.getTransaction().commit();
+
+            JOptionPane.showMessageDialog(null, "Registro actualizado exitosamente en la tabla Participacion_Actor_Pelicula.");
+            session.close();
+        } catch (HibernateException he) {
+            System.out.println(he);
+            JOptionPane.showMessageDialog(null, "Error en la operación de base de datos: " + he.getMessage());
+        }
+
+    }
+    /* Metodo denominado 'updatePActorSerie'
+    
+    */
+    private void updatePActorSerie() {
+        try {
+            // Creamos un SessionFactory en la clase Participacion_Actor_Serie.
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Participacion_Actor_Serie.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            // Convertimos series_id a Integer.
+            Integer series_id = null;
+            boolean validInput = false;
+            while (!validInput) {
+                try {
+                    String sidStr = JOptionPane.showInputDialog("Introduce el SERIES_ID:");
+                    series_id = Integer.parseInt(sidStr);
+                    validInput = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un ID válido.");
+                }
+            }
+
+            // Convertimos actors_id a Integer.
+            Integer actors_id = null;
+            boolean validInput2 = false;
+            while (!validInput2) {
+                try {
+                    String aidStr = JOptionPane.showInputDialog("Introduce el ACTORS_ID:");
+                    actors_id = Integer.parseInt(aidStr);
+                    validInput2 = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce un ID válido.");
+                }
+            }
+
+            String papel_realiza = JOptionPane.showInputDialog("Modifica el papel en cuestión del actor:");
+
+            Series_1aN serie = session.get(Series_1aN.class, series_id);
+            Actors_NaM actor = session.get(Actors_NaM.class, actors_id);
+
+            if (serie == null || actor == null) {
+                JOptionPane.showMessageDialog(null, "No se encontró la serie o el actor.");
+                session.close();
+                return;
+            }
+
+            String select = "FROM Participacion_Actor_Serie pas WHERE series_id = :serie AND actors_id = :actor";
+            Participacion_Actor_Serie pas = (Participacion_Actor_Serie) session.createQuery(select)
+                    .setParameter("serie", serie)
+                    .setParameter("actor", actor)
+                    .uniqueResult();
+
+            if (pas != null) {
+                pas.setPapel_realiza(papel_realiza);
+
+                session.beginTransaction();
+                session.update(pas);
+                session.getTransaction().commit();
+
+                JOptionPane.showMessageDialog(null, "Registro actualizado exitosamente en la tabla Participacion_Actor_Serie");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró una participación existente para el actor y la serie especificados.");
+            }
+
+            session.close();
+        } catch (HibernateException he) {
+            System.out.println(he);
+            JOptionPane.showMessageDialog(null, "Error en la operación de base de datos: " + he.getMessage());
+        }
+
+    }
+    /* Metodo denominado 'updateCreacionSeries' 
+    
+    */
+    private void updateCreacionSeries() {
+        try {
+            // Creamos un SessionFactory en la clase creacion_series.
+            SessionFactory instancia = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml")
+                    .addAnnotatedClass(creacion_series.class).buildSessionFactory();
+            Session session = instancia.openSession();
+
+            Integer creacionSeriesId = null;
+            boolean validInput = false;
+            while (!validInput) {
+                try {
+                    String sidStr = JOptionPane.showInputDialog("Introduce el ID principal:");
+                    creacionSeriesId = Integer.parseInt(sidStr);
+                    validInput = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce ID válido.");
+                }
+            }
+            creacion_series cs = session.get(creacion_series.class, creacionSeriesId);
+
+            if (cs == null) {
+                JOptionPane.showMessageDialog(null, "No se encontró el ID.");
+                session.close();
+                return;
+            }
+
+            Integer series_id = null;
+            boolean validInput2 = false;
+            while (!validInput2) {
+                try {
+                    String sidStr = JOptionPane.showInputDialog("Introduce el nuevo ID de la serie:");
+                    series_id = Integer.parseInt(sidStr);
+                    validInput2 = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce ID válido.");
+                }
+            }
+
+            Integer creador_id = null;
+            boolean validInput3 = false;
+            while (!validInput3) {
+                try {
+                    String cidStr = JOptionPane.showInputDialog("Introduce el nuevo ID del creador:");
+                    creador_id = Integer.parseInt(cidStr);
+                    validInput3 = true;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Por favor, introduce ID válido.");
+                }
+            }
+
+            Series_1aN serie = session.get(Series_1aN.class, series_id);
+            Creador_Serie_NaM creador = session.get(Creador_Serie_NaM.class, creador_id);
+
+            if (serie == null || creador == null) {
+                JOptionPane.showMessageDialog(null, "No se ha encontrado exitosamente la serie o el creador con los ID proporcionados.");
+                session.close();
+                return;
+            }
+
+            cs.setSerie(serie);
+            cs.setCreador(creador);
+
+            session.beginTransaction();
+            session.update(cs);
+            session.getTransaction().commit();
+
+            JOptionPane.showMessageDialog(null, "Registro exitosamente actualizado en la tabla Creacion_Series");
+
+            session.close();
+        } catch (HibernateException he) {
+            System.out.println(he);
+            JOptionPane.showMessageDialog(null, "Error en la operación de base de datos: " + he.getMessage());
+        }
+
     }
 }

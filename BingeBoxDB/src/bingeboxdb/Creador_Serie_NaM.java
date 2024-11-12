@@ -23,6 +23,7 @@ import javax.persistence.Table;
  * @author Armando
  */
 
+// Clase Creador_Serie_NaM en la cual se le asigna unos atributos, unos métodos GET y SET y su relación.
 @Entity
 @Table(name = "creador_serie")
 public class Creador_Serie_NaM implements Serializable {

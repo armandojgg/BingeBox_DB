@@ -4,12 +4,19 @@
  */
 package bingeboxdb;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -24,8 +31,20 @@ public class InterfazHibernate extends javax.swing.JFrame {
     private static Scanner scanner = new Scanner(System.in);
 
     public InterfazHibernate() {
-        setTitle("BingeBox Database");
         initComponents();
+        this.setSize(800, 600);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        int x = (screenSize.width - this.getWidth()) / 2;
+        int y = (screenSize.height - this.getHeight()) / 2;
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setFont(new java.awt.Font("Monospaced", java.awt.Font.PLAIN, 14));
+
+        this.setLocation(x, y);
+        setTitle("BingeBox Database");
     }
 
     /**
@@ -37,189 +56,217 @@ public class InterfazHibernate extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButtonCerrarSesion = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jButtonCrearObjeto = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jButtonSave = new javax.swing.JButton();
         jButtonUpdate = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
-        jButtonSelect = new javax.swing.JButton();
-        jButtonCerrarSesion1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(102, 0, 0));
+        jPanel3.setBackground(new java.awt.Color(204, 0, 51));
+        jPanel3.setForeground(new java.awt.Color(153, 0, 0));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("BingeBox DB");
-
-        jButtonCerrarSesion.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonCerrarSesion.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButtonCerrarSesion.setForeground(new java.awt.Color(0, 0, 0));
-        jButtonCerrarSesion.setText("Cerrar sesión");
-        jButtonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSave.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonSave.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSave.setText("SAVE");
+        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCerrarSesionActionPerformed(evt);
+                jButtonSaveActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Opciones:");
-
-        jButtonCrearObjeto.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonCrearObjeto.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButtonCrearObjeto.setForeground(new java.awt.Color(0, 0, 0));
-        jButtonCrearObjeto.setText("Insertar");
-        jButtonCrearObjeto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCrearObjetoActionPerformed(evt);
-            }
-        });
-
-        jButtonUpdate.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonUpdate.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButtonUpdate.setForeground(new java.awt.Color(0, 0, 0));
-        jButtonUpdate.setText("Update");
+        jButtonUpdate.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonUpdate.setText("UPDATE");
         jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUpdateActionPerformed(evt);
             }
         });
 
-        jButtonDelete.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonDelete.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButtonDelete.setForeground(new java.awt.Color(0, 0, 0));
-        jButtonDelete.setText("Delete");
+        jButtonDelete.setBackground(new java.awt.Color(102, 0, 0));
+        jButtonDelete.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonDelete.setText("DELETE");
         jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDeleteActionPerformed(evt);
             }
         });
 
-        jButtonSelect.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonSelect.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButtonSelect.setForeground(new java.awt.Color(0, 0, 0));
-        jButtonSelect.setText("Select");
-        jButtonSelect.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSelectActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                    .addComponent(jButtonDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(159, 159, 159)
+                .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(172, Short.MAX_VALUE))
+        );
 
-        jButtonCerrarSesion1.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonCerrarSesion1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButtonCerrarSesion1.setForeground(new java.awt.Color(0, 0, 0));
-        jButtonCerrarSesion1.setText("Iniciar sesión");
-        jButtonCerrarSesion1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCerrarSesion1ActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(204, 0, 51));
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("BingeBox DB");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(jButtonCrearObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCerrarSesion1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addGap(129, 129, 129)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(199, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonCrearObjeto, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jButtonCerrarSesion1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton1.setBackground(new java.awt.Color(102, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("SELECT");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                .addGap(23, 23, 23)
-                .addComponent(jButtonDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                .addGap(27, 27, 27)
-                .addComponent(jButtonSelect, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                .addGap(178, 178, 178))
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    // B O T O N  C E R R A R  S E S I O N
-    private void jButtonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarSesionActionPerformed
-        sessionFactory.close();
-        System.out.println("¡Vuelva a utilizar nuestra Base de Datos!");
-        System.exit(0);
-    }//GEN-LAST:event_jButtonCerrarSesionActionPerformed
-    // B O T O N  I N S E R T A R
-    private void jButtonCrearObjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearObjetoActionPerformed
-        InsertarObjetos insertarObjetos = new InsertarObjetos();
-        insertarObjetos.setVisible(true);
+    // B O T O N  S A V E
+    private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
+        InsertarObjetos interfaz = new InsertarObjetos();
+        interfaz.setVisible(true);
         dispose();
-
-    }//GEN-LAST:event_jButtonCrearObjetoActionPerformed
+    }//GEN-LAST:event_jButtonSaveActionPerformed
     // B O T O N  U P D A T E
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
-        UpdateObjetos updateObjetos = new UpdateObjetos();
-        updateObjetos.setVisible(true);
+        UpdateObjetos interfaz = new UpdateObjetos();
+        interfaz.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonUpdateActionPerformed
-    // B O T O N  S E L E C T
-    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonDeleteActionPerformed
     // B O T O N  D E L E T E
-    private void jButtonSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSelectActionPerformed
-    // B O T O N  I N I C I A R  S E S I O N
-    private void jButtonCerrarSesion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarSesion1ActionPerformed
-        sessionFactory = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").addAnnotatedClass(Actors_NaM.class
-        ).buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        DeleteObjetos interfaz = new DeleteObjetos();
+        interfaz.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
+    // B O T O N  S E L E C T
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // List de tipo String que contiene el nombre de todas las tablas disponibles.
+        List<String> nombredelasTablas = List.of(
+                "Actors_NaM", "Capitulos", "Creador_Serie_NaM", "Directors_NaM",
+                "Peliculas_NaM", "Series_1aN", "Temporadas_1aN", "Direccion_Pelicula", "Participacion_Actor_Pelicula", "Participacion_Actor_Serie",
+                "creacion_series");
 
-        System.out.println("¡Sesión iniciada con total éxito!");
-    }//GEN-LAST:event_jButtonCerrarSesion1ActionPerformed
+        // Se selecciona la tabla gracias a esto.
+        String nombreTabla = (String) JOptionPane.showInputDialog(
+                null,
+                "Selecciona el nombre de la tabla:",
+                "Elección de la tabla",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                nombredelasTablas.toArray(),
+                nombredelasTablas.get(0)
+        );
+
+        // Dependiendo de la tabla escogida, se realiza un Select.
+        if (nombreTabla != null) {
+            // El Select se realiza según la tabla escogida.
+            List<?> resultado = consultarTabla(nombreTabla);
+
+            // Muestra los resultados en el TextArea de la forma que queramos.
+            StringBuilder textoResultado = new StringBuilder();
+            if (resultado != null && !resultado.isEmpty()) {
+                for (Object item : resultado) {
+                    textoResultado.append(ponerOrdenadoLosDatos(item)).append("\n\n");
+                }
+            } else {
+                textoResultado.append("No se encontraron resultados.");
+            }
+
+            // Mostrar el texto en el JTextArea
+            jTextArea1.setText(textoResultado.toString());
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,14 +312,137 @@ public class InterfazHibernate extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCerrarSesion;
-    private javax.swing.JButton jButtonCerrarSesion1;
-    private javax.swing.JButton jButtonCrearObjeto;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonDelete;
-    private javax.swing.JButton jButtonSelect;
+    private javax.swing.JButton jButtonSave;
     private javax.swing.JButton jButtonUpdate;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+
+    private static List<?> consultarTabla(String nombreTabla) {
+        Session session = null;
+        session = InterfazHibernate.getSessionFactory().openSession();
+
+        try {
+            String sentencia = "FROM " + getClaseCorrespondiente(nombreTabla);
+
+            Query<?> query = session.createQuery(sentencia);
+            List<?> resultado = query.list();
+
+            return resultado;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
+
+    // Metodo que hace que se obtenga el nombre de la clase segun la tabla que seleccionemos.
+    private static String getClaseCorrespondiente(String nombreTabla) {
+        switch (nombreTabla) {
+            case "Actors_NaM":
+                return "Actors_NaM";
+            case "Capitulos":
+                return "Capitulos";
+            case "Creador_Serie_NaM":
+                return "Creador_Serie_NaM";
+            case "Directors_NaM":
+                return "Directors_NaM";
+            case "Peliculas_NaM":
+                return "Peliculas_NaM";
+            case "Series_1aN":
+                return "Series_1aN";
+            case "Temporadas_1aN":
+                return "Temporadas_1aN";
+            case "Direccion_Pelicula":
+                return "Direccion_Pelicula";
+            case "Participacion_Actor_Pelicula":
+                return "Participacion_Actor_Pelicula";
+            case "Participacion_Actor_Serie":
+                return "Participacion_Actor_Serie";
+            case "creacion_series":
+                return "creacion_series";
+            default:
+                throw new IllegalArgumentException("No se encontró la clase para la tabla: " + nombreTabla);
+        }
+    }
+
+    public static SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
+            try {
+                sessionFactory = new Configuration().configure("/bingeboxdb/hibernate.cfg.xml").buildSessionFactory();
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new ExceptionInInitializerError("No se pudo crear la SessionFactory");
+            }
+        }
+        return sessionFactory;
+    }
+
+    public static void shutdown() {
+        getSessionFactory().close();
+    }
+
+    // Formatea los resultados para que queden en el TextArea de una forma bonita y ordenada.
+    private String ponerOrdenadoLosDatos(Object item) {
+
+        if (item instanceof Actors_NaM) {
+            Actors_NaM actor = (Actors_NaM) item;
+            return String.format("ID: %d\nNombre: %s\nNacionalidad: %s\nGénero: %s\n\n",
+                    actor.getId(), actor.getNombre_actor(),
+                    actor.getNacionalidadActor(), actor.getGenero_actor() != null ? actor.getGenero_actor() : "N/A");
+        } else if (item instanceof Series_1aN) {
+            Series_1aN serie = (Series_1aN) item;
+            return String.format("ID: %d\nTítulo: %s\nAño de Inicio: %d\nAño de Finalización: %d\nPaís: %s\nNúmero de Temporadas: %d\nNúmero de Capitulos: %d\n\n",
+                    serie.getId(), serie.getTitulo(),
+                    serie.getComienzo_serie(), serie.getFinal_serie(),
+                    serie.getPais_serie(), serie.getNum_temporadas(), serie.getNum_capitulos());
+        } else if (item instanceof Peliculas_NaM) {
+            Peliculas_NaM pelicula = (Peliculas_NaM) item;
+            return String.format("ID: %d\nTítulo: %s\nGénero: %s\nDuración: %d min\nRating: %.1f\nPaís: %s\nPresupuesto: %.2f\n\n",
+                    pelicula.getId(), pelicula.getTitulo(), pelicula.getGenero(),
+                    pelicula.getDuracion(), pelicula.getRating(),
+                    pelicula.getPais_pelicula(), pelicula.getPresupuesto());
+        } else if (item instanceof Creador_Serie_NaM) {
+            Creador_Serie_NaM creadorserie = (Creador_Serie_NaM) item;
+            return String.format("ID: %d\nNombre: %s\nNacionalidad: %s\nGénero: %s\n\n",
+                    creadorserie.getId(), creadorserie.getNombre(),
+                    creadorserie.getNacionalidad(), creadorserie.getGenero() != null ? creadorserie.getGenero() : "N/A");
+        } else if (item instanceof Temporadas_1aN) {
+            Temporadas_1aN temporadas = (Temporadas_1aN) item;
+            return String.format("ID: %d\nNúmero de Temporada: %d\nAño de Estreno: %d\nNúmero de Episodios: %d\nID de Serie: %d\n\n",
+                    temporadas.getId(), temporadas.getNum_temporada(),
+                    temporadas.getAño_estreno(), temporadas.getNum_episodios(), temporadas.getSeries_id());
+        } else if (item instanceof Capitulos) {
+            Capitulos c = (Capitulos) item;
+            return String.format("ID: %d\nTítulo del capítulo: %s\nNúmero del episodio: %s\nDuración del episodio: %s min\nDirector del episodio: %s\nGuionista del episodio: %s\nID de la temporada: %d\n\n",
+                    c.getId(),
+                    c.getTitulo_capitulo(),
+                    c.getNumero_episodio() != null ? c.getNumero_episodio() : "N/A",
+                    c.getDuracion_episodio() != null ? c.getDuracion_episodio() : "0",
+                    c.getDirector_episodio() != null ? c.getDirector_episodio() : "Desconocido",
+                    c.getGuionista_episodio() != null ? c.getGuionista_episodio() : "Desconocido",
+                    c.getTemporada_id() != null ? c.getTemporada_id() : "N/A");
+
+        } else if (item instanceof Directors_NaM) {
+            Directors_NaM d = (Directors_NaM) item;
+            return String.format("ID: %d\nNombre: %s\nNacionalidad: %s\nGénero: %s\n\n",
+                    d.getId(), d.getNombre(), d.getNacionalidad(), d.getGenero());
+        } else if (item instanceof Direccion_Pelicula) {
+            Direccion_Pelicula dp = (Direccion_Pelicula) item;
+            return String.format("ID: %s\nPelicula, %s\nDirector",
+                    dp.getId(), dp.getPelicula(), dp.getDirector());
+        }
+
+        return item.toString(); // Default to the object’s string representation.
+    }
+
 }
