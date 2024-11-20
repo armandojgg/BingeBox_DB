@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -401,16 +399,17 @@ public class InterfazHibernate extends javax.swing.JFrame {
                     actor.getNacionalidadActor(), actor.getGenero_actor() != null ? actor.getGenero_actor() : "N/A");
         } else if (item instanceof Series_1aN) {
             Series_1aN serie = (Series_1aN) item;
-            return String.format("ID: %d\nTítulo: %s\nAño de Inicio: %d\nAño de Finalización: %d\nPaís: %s\nNúmero de Temporadas: %d\nNúmero de Capitulos: %d\n\n",
-                    serie.getId(), serie.getTitulo(),
-                    serie.getComienzo_serie(), serie.getFinal_serie(),
-                    serie.getPais_serie(), serie.getNum_temporadas(), serie.getNum_capitulos());
+            return String.format("ID: %d\nTítulo: %s\nGénero: %s\nAño de Inicio: %s\nAño de Finalización: %s\nPaís: %s\nNúmero de Temporadas: %d\nNúmero de Capitulos: %d\n\n",
+                    serie.getId(),serie.getTitulo(), serie.getGenero(),serie.getComienzo_serie(),
+                    serie.getFinal_serie(),serie.getPais_serie(),serie.getNum_temporadas(),serie.getNum_capitulos());
+
         } else if (item instanceof Peliculas_NaM) {
             Peliculas_NaM pelicula = (Peliculas_NaM) item;
-            return String.format("ID: %d\nTítulo: %s\nGénero: %s\nDuración: %d min\nRating: %.1f\nPaís: %s\nPresupuesto: %.2f\n\n",
+            return String.format("ID: %d\nTítulo: %s\nGénero: %s\nDuración: %s min\nRating: %s\nPaís: %s\nPresupuesto: %d\n\n",
                     pelicula.getId(), pelicula.getTitulo(), pelicula.getGenero(),
-                    pelicula.getDuracion(), pelicula.getRating(),
-                    pelicula.getPais_pelicula(), pelicula.getPresupuesto());
+                    pelicula.getDuracion(), pelicula.getRating(), pelicula.getPais_pelicula(),
+                    pelicula.getPresupuesto());
+
         } else if (item instanceof Creador_Serie_NaM) {
             Creador_Serie_NaM creadorserie = (Creador_Serie_NaM) item;
             return String.format("ID: %d\nNombre: %s\nNacionalidad: %s\nGénero: %s\n\n",
@@ -442,7 +441,7 @@ public class InterfazHibernate extends javax.swing.JFrame {
                     dp.getId(), dp.getPelicula(), dp.getDirector());
         }
 
-        return item.toString(); // Default to the object’s string representation.
+        return item.toString();
     }
 
 }

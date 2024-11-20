@@ -281,7 +281,7 @@ public class UpdateObjetos extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                    .addComponent(jButtonDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -843,7 +843,7 @@ public class UpdateObjetos extends javax.swing.JFrame {
         boolean validInput = false;
         while (!validInput) {
             try {
-                String idactor_Str = JOptionPane.showInputDialog("Introduce el ID del creador:");
+                String idactor_Str = JOptionPane.showInputDialog("Introduce el ID de la pelicula:");
                 id_pelicula = Integer.parseInt(idactor_Str);
                 validInput = true;
             } catch (NumberFormatException nfe) {
